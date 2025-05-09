@@ -1,30 +1,25 @@
 # EcommerceErp
-This project was generated with Angular CLI version 15.1.2.
+This project was generated with Angular CLI version 15.1.2 and node version 18.19.1.
 
 ## How It Works
 To get the application up and running, follow these steps:
 
 1. **Install Project Dependencies**
    ```bash
-   npm install
-2. **Install json-server Globally (Optional) If you don't have json-server installed globally, you can install it using:**
+   Run "npm install" on the fron-ent and in the back-end part.
+2. **Run the front-end**
    ```bash
-   npm install -g json-server
+   npm start
 
-- Alternatively, if you prefer not to install it globally, you can skip this step and use it locally
-
-3. **Serve the Angular Application**
-    ```bash
-    npx ng serve
 - This will start the Angular development server and the application will be available at http://localhost:4200 by default.
 
-4. **Run the JSON Server**
+3. **Run the back-end**
     ```bash
-    npx json-server -w data/pcinfo.json
-- This command will start the JSON server and watch for changes in the data/pcinfo.json file. By default, the JSON server will run on http://localhost:3000.
+    npm start
+- This will start the back-end
 
 # Additional Information
-- Make sure that you have Node.js and npm installed on your machine.
+- Make sure that you have Node.js version 18.19.1 and npm installed on your machine.
 - Ensure that you have Angular CLI version 15.1.2 installed to avoid compatibility issues.
 
 # Troubleshooting
