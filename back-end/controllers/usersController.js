@@ -88,5 +88,32 @@ router.delete('/users/:id', async(req, res) => {
 })
 
 
+// Update user data
+router.put('/users/:id', async (req, res) => {
+    try {
+        const { id } = req.params;
+        const updateData = {
+            name: req.body.name,
+            email: req.body.email,
+            isAdmin: req.body.isAdmin
+        };
+
+        // Hash the password only if it's provided in the body
+        if (req.body.password) {
+            updateData.password = await bcrypt.hash(req.body.password, 10);
+        }
+
+        const updatedUser = await Users.findByIdAndUpdate(id, updateData, { new: true });
+        if (updatedUser) {
+            res.status(200).json('Update successful!');
+        } else {
+            res.status(404).json('User not found');
+        }
+    } catch (err) {
+        res.status(500).json(err.message);
+    }
+});
+
+
 
 module.exports = router;
