@@ -38,12 +38,24 @@ import { LoginComponent } from './components/users/login/login.component';
 import { RegisterComponent } from './components/users/register/register.component';
 import { JwtHelperService, JWT_OPTIONS  } from '@auth0/angular-jwt';
 import { LoginGuard } from './guards/login.guard';
+import { StoresComponent } from './components/stores/stores.component';
+import { LandingPagesComponent } from './components/landing-pages/landing-pages.component';
 
 
 const appRoutes: Routes = [
   { 
     path: '', 
     component: HomeComponent,
+    canActivate: [LoginGuard]
+  },
+  { 
+    path: 'stores', 
+    component: StoresComponent,
+    canActivate: [LoginGuard]
+  },
+  { 
+    path: 'landpages', 
+    component: LandingPagesComponent,
     canActivate: [LoginGuard]
   },
   {
@@ -73,7 +85,7 @@ const appRoutes: Routes = [
   {
     path: 'register',
     component: RegisterComponent
-  }, 
+  },
 ];
 
 @NgModule({
@@ -92,7 +104,9 @@ const appRoutes: Routes = [
     HomeErpComponent,
     DeliveryComponent,
     RegisterComponent,
-    LoginComponent
+    LoginComponent,
+    StoresComponent,
+    LandingPagesComponent
   ],
   imports: [
     CheckboxModule,
