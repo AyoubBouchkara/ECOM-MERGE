@@ -6,7 +6,27 @@
   margin-right: auto;
   padding: 40px;
 }
+/* Hide the default radio button */
+.template-option input[type="radio"] {
+  display: none;
+}
 
+/* Style the label span by default */
+.template-option .template-label {
+  display: inline-block;
+  padding: 10px 15px;
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  color: #333;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+/* When the radio is checked, style the label span */
+.template-option input[type="radio"]:checked + .template-label {
+  background-color: #1149ff; /* green */
+  color: white;
+}
 .card {
   border: 1px solid #ccc;
   border-radius: 8px;

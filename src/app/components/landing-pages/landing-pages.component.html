@@ -8,7 +8,9 @@
         [(ngModel)]="selectedTemplate"
         (change)="selectTemplate(template)"
       />
-      <strong>{{ template.name }}</strong>
+      <span class="template-label">
+        {{ template.name }}
+      </span>
     </label>
 
     <div class="preview-section">
