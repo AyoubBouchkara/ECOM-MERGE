@@ -1,38 +1,51 @@
-<div class="register-form">
-    <h1 class="text-white img"><i class="fa-solid fa-store"></i> ECOM MERGE</h1>
-
+<div class="register-wrapper d-flex justify-content-center align-items-center">
+  <div class="register-card shadow-lg">
+    <h1 class="brand text-center mb-4">
+      <i class="fa-solid fa-store me-2"></i> ECOM MERGE
+    </h1>
 
     <form (ngSubmit)="onSubmit()">
-        <div class="input-text">
-            <input 
-            type="text"
-            placeholder="Username"
-            name="name"
-            pInputText [(ngModel)]="name" />
-        </div>
+      <h2 class="text-center mb-4 text-primary">Inscription</h2>
 
-        <div class="input-text">
-            <input 
-            type="text"
-            placeholder="Email"
-            name="email"
-            pInputText [(ngModel)]="email" />
-        </div>
+      <div class="mb-3">
+        <input
+          type="text"
+          placeholder="Nom d'utilisateur"
+          name="name"
+          class="form-control"
+          [(ngModel)]="name"
+          required />
+      </div>
 
-        <div class="input-text">
-            <input 
-            type="password"
-            placeholder="Password"
-            name="password"
-            pInputText [(ngModel)]="password" /> 
-        </div>
+      <div class="mb-3">
+        <input
+          type="email"
+          placeholder="Email"
+          name="email"
+          class="form-control"
+          [(ngModel)]="email"
+          required />
+      </div>
 
-        <input type="submit" value="Register" class="btn btn-primary" />
+      <div class="mb-4">
+        <input
+          type="password"
+          placeholder="Mot de passe"
+          name="password"
+          class="form-control"
+          [(ngModel)]="password"
+          required />
+      </div>
 
-        <div></div>
-        <a routerLink="/login"
-           class="float-end edit-register-btn text-white">Login</a>
+      <div class="d-grid mb-3">
+        <button type="submit" class="btn btn-primary">S'inscrire</button>
+      </div>
+
+      <div class="text-end">
+        <a routerLink="/login" class="text-decoration-none text-secondary">Déjà inscrit ? Se connecter</a>
+      </div>
     </form>
+  </div>
 </div>
 
 <p-toast></p-toast>

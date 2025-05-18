@@ -27,6 +27,24 @@ body{
     margin: 50px auto;
 }
 
+
+.stores-container {
+    display: flex;
+    flex-direction: column; /* ou 'row' si tu veux les éléments côte à côte */
+    align-items: center;     /* centre horizontalement */
+    justify-content: center; /* centre verticalement (si hauteur définie) */
+    min-height: 100vh;       /* occupe toute la hauteur de l'écran */
+    padding: 2rem;           /* optionnel, pour un peu d'espace */
+    gap: 2rem; 
+}
+
+.erp-form {
+    width: 300px; /* ou une autre largeur fixe */
+    padding: 1rem;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
 .home-container p{
     font-size: 0.9em;
     font-weight: bold;
@@ -49,6 +67,20 @@ body{
     border-radius: 0px 0px 14px 14px;
 }
 /*End Our Home*/
+
+/*Start our stores*/
+.store-card {
+  border-radius: 1rem;
+  transition: all 0.3s ease;
+}
+.store-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+}
+.modal-content {
+  transition: all 0.3s ease-in-out;
+}
+/*End our stores*/
 
 /*Start Our Erp Page*/
 .erp-container{
@@ -275,6 +307,90 @@ body{
     font-weight: bold;
     border-radius: 16px;
 }
+
+/*Login page  new css start*/
+.login-wrapper {
+  height: 100vh;
+  background: linear-gradient(135deg, #0755c2, #88a6d1);
+  padding: 20px;
+}
+
+.login-card {
+  background-color: white;
+  border-radius: 15px;
+  padding: 40px 30px;
+  width: 100%;
+  max-width: 400px;
+}
+
+.brand {
+  color: #0755c2;
+  font-weight: 700;
+  font-size: 28px;
+}
+
+.form-label {
+  font-weight: 500;
+  font-size: 15px;
+}
+
+.btn-primary {
+  padding: 10px;
+  font-weight: 600;
+  border-radius: 10px;
+  background-color: #0755c2;
+  border: none;
+}
+
+.btn-primary:hover {
+  background-color: #064bb3;
+}
+/*login page new css end*/
+
+/*register page new css start*/
+.register-wrapper {
+  height: 100vh;
+  background: linear-gradient(135deg, #0069ff, #0755c2);
+  padding: 20px;
+}
+
+.register-card {
+  background-color: white;
+  border-radius: 15px;
+  padding: 40px 30px;
+  width: 100%;
+  max-width: 400px;
+}
+
+.brand {
+  color: #0755c2;
+  font-weight: 700;
+  font-size: 28px;
+}
+
+.form-control {
+  padding: 12px;
+  border-radius: 10px;
+  border: 1px solid #ced4da;
+}
+
+.form-control:focus {
+  border-color: #0755c2;
+  box-shadow: 0 0 0 0.2rem rgba(7, 85, 194, 0.25);
+}
+
+.btn-primary {
+  padding: 10px;
+  font-weight: 600;
+  border-radius: 10px;
+  background-color: #0755c2;
+  border: none;
+}
+
+.btn-primary:hover {
+  background-color: #064bb3;
+}
+/*register page new css end*/
 
 @media(max-width: 992px){
     .first-section{

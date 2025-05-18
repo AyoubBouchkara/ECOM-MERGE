@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Pcinfo } from '../pcinfo';
 import { Losses } from '../losses';
+import { Store } from '../Models/store.model';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Purchases } from '../purchases';
@@ -20,6 +21,7 @@ export class MainService {
   private apiUrl = 'http://localhost:3000/orders/';
   private apiUrlLosses = ' http://localhost:3000/losses/';
   private Url = 'http://localhost:3000/purchases/';
+  private storeApi = 'http://localhost:3000/store/';
 
   constructor(
     private http: HttpClient,
@@ -90,5 +92,21 @@ export class MainService {
     return this.http.delete<Purchases>(this.Url+ nb);
   }
   //#endregion Purchases
+
+  //#region Store
+  getStores(): Observable<Store[]>{
+    let params = { sCode: this.getUsername() };
+    return this.http.get<Store[]>(this.storeApi, { params });
+  }
+
+  addStore(data: Store): Observable<Store>{
+    data.societeCode = this.getUsername();
+    return this.http.post<Store>(this.storeApi, data);
+  }   
+
+  deleteStore(nb: number): Observable<Store>{
+    return this.http.delete<Store>(this.storeApi+ nb);
+  }
+  //#endregion Store
 
 }

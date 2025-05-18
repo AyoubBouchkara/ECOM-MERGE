@@ -1,7 +1,111 @@
-<h2>Strore 01</h2>
-<p>this store  for slipat</p>
-<p>slipat</p>
+<div class="container py-5">
+  <!-- Header -->
+  <div class="text-center mb-5">
+    <h2 class="fw-bold text-dark">🛒 Liste des Stores</h2>
+    <p class="text-muted">Gérez vos boutiques de manière simple et élégante.</p>
+  </div>
 
-<h2>Strore 02</h2>
-<p>this store  for cossmitik</p>
-<p>cossmitik</p>
+  <!-- Liste des stores -->
+<div class="row justify-content-center gy-4">
+  <div class="col-md-6 col-lg-4" *ngFor="let store of stores">
+    <div class="card h-100 shadow-sm position-relative store-card">
+
+      <!-- Icône de suppression -->
+      <button (click)="onDeleteClick(store)"
+              class="btn btn-sm btn-danger position-absolute top-0 end-0 m-2"
+              title="Supprimer"
+              data-bs-toggle="modal" data-bs-target="#stores">
+        <i class="pi pi-trash"></i>
+      </button>
+
+      <div class="card-body">
+        <h5 class="card-title text-primary">
+          <i class="bi bi-shop me-2"></i>{{ store.name }}
+        </h5>
+        <p class="card-text">
+          <i class="bi bi-file-earmark-text me-2 text-muted"></i>{{ store.description }}
+        </p>
+        <p>
+          <i class="bi bi-folder me-2 text-muted"></i>
+          <span class="badge bg-secondary">{{ store.category }}</span>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <!-- Bouton Ajouter -->
+  <div class="text-center mt-5">
+    <button class="btn btn-outline-primary btn-lg rounded-pill px-4 shadow-sm"
+            data-bs-toggle="modal" data-bs-target="#addStoreModal">
+      <i class="bi bi-plus-circle me-2"></i>Ajouter un Store
+    </button>
+  </div>
+
+  <!-- Modal Ajouter Store -->
+  <div class="modal fade" id="addStoreModal" tabindex="-1" aria-labelledby="addStoreModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content border-0 rounded-4 shadow">
+        <form (ngSubmit)="addStore()">
+          <div class="modal-header bg-primary text-white rounded-top-4">
+            <h5 class="modal-title" id="addStoreModalLabel">➕ Nouveau Store</h5>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+          </div>
+          <div class="modal-body bg-light">
+            <div class="mb-3">
+              <label for="storeName" class="form-label">Nom du Store</label>
+              <input type="text" id="storeName" class="form-control" [(ngModel)]="newStore.name" name="name" required>
+            </div>
+            <div class="mb-3">
+              <label for="storeDescription" class="form-label">Description</label>
+              <textarea id="storeDescription" class="form-control" [(ngModel)]="newStore.description" name="description" required></textarea>
+            </div>
+            <div class="mb-3">
+              <label for="storeCategory" class="form-label">Catégorie</label>
+              <input type="text" id="storeCategory" class="form-control" [(ngModel)]="newStore.category" name="category" required>
+            </div>
+          </div>
+          <div class="modal-footer bg-light">
+            <button type="button" id="confirm-modaldismiss1" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+            <button type="submit" class="btn btn-primary">Ajouter</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!--Success Section Start-->
+<div *ngIf="successShow" class="alert alert-success alert-dismissible fade show" role="alert">
+    <i class="fa-solid fa-check"></i>
+    The {{ successText }} Has Been Added!!
+    <button type="button" class="btn-close" (click)="toggleSuccess()"></button>
+  </div>
+<!--Success Section End--> 
+
+ <!-- Modal -->
+ <div class="modal fade" id="stores" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Delete Store</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <i class="fa-solid fa-triangle-exclamation text-warning"></i>
+              Are You Sure You Want To Delete This ?? 
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button 
+            type="button" 
+            class="btn btn-danger" 
+            data-bs-dismiss="modal"
+            (click)="delete()">
+            Delete
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>

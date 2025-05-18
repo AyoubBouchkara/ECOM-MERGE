@@ -4,6 +4,7 @@ module.exports = app => {
     const lossessController = require('./controllers/losses.controller');
     const purchasesController = require('./controllers/purchase.controller');
     const paymentModeController = require('./controllers/paymentMode.controller.js');
+    const storeController = require('./controllers/store.controller.js');
 
     
     //#region Orders
@@ -50,8 +51,13 @@ module.exports = app => {
     app.delete('/deliverymen/:id', deliveryManController.deleteData); // Delete Data
     //#endregion DeliveryMan    
     
-    // stores
-    
+    //#region Stores
+    app.get('/store', storeController.readData); // Read Data
+    app.post('/store', storeController.createData); // Create Data
+    app.put('/store/:id', storeController.updateData); // Update Data
+    app.delete('/store/:id', storeController.deleteData); // Delete Data
+    //#endregion Stores  
+
     
     // Landing pages
 
