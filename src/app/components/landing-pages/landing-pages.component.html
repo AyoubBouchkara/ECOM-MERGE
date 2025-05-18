@@ -1,1 +1,49 @@
-<p>landing-pages works!</p>
+<div class="templates-container">
+  <div *ngFor="let template of templates" class="card">
+    <label class="template-option">
+      <input 
+        type="radio"
+        name="selectedTemplate"
+        [value]="template"
+        [(ngModel)]="selectedTemplate"
+        (change)="selectTemplate(template)"
+      />
+      <strong>{{ template.name }}</strong>
+    </label>
+
+    <div class="preview-section">
+      <iframe
+        [src]="safeUrls[template.name]"
+        width="100%"
+        height="200"
+        frameborder="0">
+      </iframe>
+    </div>
+  </div>
+</div>
+<!-- Customization toggle window -->
+<div class="customization-panel" *ngIf="selectedTemplate">
+  <h3>Customize Template: {{selectedTemplate.name}}</h3>
+  <label>Title:</label>
+  <input type="text" [(ngModel)]="customTitle" placeholder="Enter your custom title" />
+
+  <label>Logo URL:</label>
+  <input type="text" [(ngModel)]="customLogo" placeholder="Enter logo image URL" />
+
+  <label>Product Images (URL):</label>
+  <div class="product-input-group">
+    <input type="text" #productInput placeholder="Enter product image URL" />
+    <button (click)="addProductImage(productInput.value); productInput.value=''">Add</button>
+  </div>
+  <ul>
+    <li *ngFor="let img of productImages; let i = index">
+      {{ img }}
+      <button (click)="removeProductImage(i)">Remove</button>
+    </li>
+  </ul>
+
+  <label>Features:</label>
+  <textarea [(ngModel)]="features" rows="3" placeholder="Describe features..."></textarea>
+
+  <button class="generate-button" (click)="saveTemplate()">Generate Landing Page</button>
+</div>

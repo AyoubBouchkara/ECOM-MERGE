@@ -1,10 +1,13 @@
 module.exports = app => {
+    const fs = require('fs');
+    const path = require('path');
     const ordersController = require('./controllers/orderController');
     const deliveryManController = require('./controllers/deliveryMan.controller.js');
     const lossessController = require('./controllers/losses.controller');
     const purchasesController = require('./controllers/purchase.controller');
     const paymentModeController = require('./controllers/paymentMode.controller.js');
     const storeController = require('./controllers/store.controller.js');
+    const landingCtrl = require('./controllers/landingPage.controller.js')
 
     
     //#region Orders
@@ -59,8 +62,29 @@ module.exports = app => {
     //#endregion Stores  
 
     
-    // Landing pages
+    // Landing pages : Route pour retourner la liste des templates disponibles
+    
+    app.get('/templates', (req, res) => {
+        const templatesDir = path.join(__dirname, 'landing_pages_templates');
 
+        fs.readdir(templatesDir, (err, folders) => {
+            if (err) {
+                console.error(err);
+                return res.status(500).json({ error: 'Impossible de lire les templates' });
+            }
+
+            const templates = folders
+                .filter(name => fs.lstatSync(path.join(templatesDir, name)).isDirectory())
+                .map(name => ({
+                    name,
+                    previewUrl: `/landing_pages_templates/${name}/preview.png`,  // tu peux changer ça si tu n’as pas de preview.png
+                    folderPath: `/landing_pages_templates/${name}`
+                }));
+
+            res.json(templates);
+        });
+    });
+    app.post('/save-landing', landingCtrl.saveLandingPage);
 
 
     // profile 

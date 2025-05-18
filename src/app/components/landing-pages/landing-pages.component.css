@@ -1,0 +1,92 @@
+.templates-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 40px;
+}
+
+.card {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 12px;
+  width: 580px;
+  height: 500px;
+  background-color: #f9f9f9;
+}
+
+.preview-section {
+  margin-top: 10px;
+  border: 1px solid #eee;
+  height: 500px;
+  overflow: hidden;
+}
+.preview-section iframe{
+  height:400px;
+}
+
+/**/
+
+.customization-panel {
+  position: fixed; /* ou absolute selon besoin */
+  top: 80px; /* ajuste selon ta barre/header */
+  right: 20px; /* à droite */
+  width: 300px;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  padding: 15px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  z-index: 1000;
+  overflow-y: auto;
+  max-height: 80vh;
+  border-radius: 5px;
+}
+
+.customization-panel h3 {
+  margin-top: 0;
+}
+
+.customization-panel label {
+  display: block;
+  margin: 10px 0 5px;
+  font-weight: bold;
+}
+
+.customization-panel input[type="text"],
+.customization-panel textarea {
+  width: 100%;
+  padding: 6px 8px;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+.product-input-group {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.product-input-group input {
+  flex-grow: 1;
+}
+
+.product-input-group button {
+  padding: 6px 10px;
+}
+
+.generate-button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 3px;
+  cursor: pointer;
+  margin-top: 10px;
+  width: 100%;
+}
+
+.generate-button:hover {
+  background-color: #0056b3;
+}
