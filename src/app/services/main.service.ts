@@ -84,9 +84,10 @@ export class MainService {
     return this.http.get<Purchases[]>(this.Url, { params });
   }
 
-  addPurchases(data: Purchases): Observable<Purchases>{
-    return this.http.post<Purchases>(this.Url, data);
-  }   
+  addPurchases(data: FormData): Observable<any> {
+    data.societeCode = this.getUsername();
+    return this.http.post<any>(this.Url, data);
+  }
 
   deletePurchase(nb: number): Observable<Purchases>{
     return this.http.delete<Purchases>(this.Url+ nb);

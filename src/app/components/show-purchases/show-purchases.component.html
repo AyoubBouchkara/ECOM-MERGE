@@ -12,12 +12,12 @@
         <th>Actions</th>
     </tr>
     <tr *ngFor="let purchase of purchases">
-        <td>{{ purchase.number }}</td>
-        <td>{{ purchase.nameP }}</td>
+        <td>{{ purchase.productID }}</td>
+        <td>{{ purchase.productName }}</td>
         <td>{{ purchase.dateP | date: 'dd/MM/yyyy' }}</td>
-        <td>{{ purchase.priceP }} DH</td>
-        <td>{{ purchase.quantityP }}</td>
-        <td>{{ purchase.totalP }} DH</td>
+        <td>{{ purchase.productPrice }} DH</td>
+        <td>{{ purchase.productquantity }}</td>
+        <!--td>{{ purchase.totalP }} DH</td-->
         <td (click)="getId(purchase._id, purchase.totalP)">
             <i class="fa-solid fa-trash btn btn-danger" data-bs-toggle="modal" data-bs-target="#purchases"></i>
         </td>

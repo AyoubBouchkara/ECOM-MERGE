@@ -1,6 +1,21 @@
+const fs = require('fs');
+const path = require('path');
+const multer = require('multer');
+
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, 'uploads/');  // dossier uploads (à créer dans la racine)
+  },
+  filename: (req, file, cb) => {
+    cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname));
+  }
+});
+
+const upload = multer({ storage: storage });
+
 module.exports = app => {
-    const fs = require('fs');
-    const path = require('path');
+    //const fs = require('fs');
+    //const path = require('path');
     const ordersController = require('./controllers/orderController');
     const deliveryManController = require('./controllers/deliveryMan.controller.js');
     const lossessController = require('./controllers/losses.controller');
@@ -40,12 +55,18 @@ module.exports = app => {
      //#region Purchase
      app.get('/purchases', purchasesController.readData); // Read Data
  
-     app.post('/purchases', purchasesController.createData); // Create Data
+     //app.post('/purchases', purchasesController.createData); // Create Data
+     app.post('/purchases', upload.fields([  // Create Data
+        { name: 'productImg1', maxCount: 1 },
+        { name: 'productImg2', maxCount: 1 },
+        { name: 'productImg3', maxCount: 1 }
+    ]), purchasesController.createData);
           
      app.put('/purchases/:id', purchasesController.updateData); // Update Data
           
      app.delete('/purchases/:id', purchasesController.deleteData); // Delete Data
-     //#endregion Purchase
+     
+    //#endregion Purchase
 
      //#region DeliveryMan
     app.get('/deliverymen', deliveryManController.readData); // Read Data

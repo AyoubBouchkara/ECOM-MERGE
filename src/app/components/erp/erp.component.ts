@@ -45,7 +45,7 @@ export class ErpComponent{
     });
   }
 
-  addPurchases(data: Purchases): void{
+  addPurchases(data: FormData): void {
     this.mainService.addPurchases(data).subscribe((res) => {
       if (res) {
         this.successText = 'Bulk Purchases';
@@ -53,5 +53,4 @@ export class ErpComponent{
       }
     });
   }
-
 }

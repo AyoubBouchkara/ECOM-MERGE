@@ -14,7 +14,8 @@ app.use('/landing_pages_templates', express.static(path.join(__dirname, 'landing
 require('./routes')(app);
 app.use('/', userController);
 
-
+// Exposer le dossier uploads
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 // start the server
 const port = process.env.port || 3000;
