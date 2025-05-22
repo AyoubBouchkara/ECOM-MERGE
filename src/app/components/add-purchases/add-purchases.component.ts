@@ -1,5 +1,6 @@
 import { Component, EventEmitter, OnInit, Output, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 @Component({
   selector: 'app-add-purchases',
@@ -10,6 +11,7 @@ export class AddPurchasesComponent implements OnInit {
   @Input() purchasesShow!: boolean;
   @Output() addP = new EventEmitter<FormData>();
   purchasesForm!: FormGroup;
+  username;
 
   imgFiles: { [key: string]: File | null } = {
     img1_P: null,
@@ -17,9 +19,12 @@ export class AddPurchasesComponent implements OnInit {
     img3_P: null
   };
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder, private jwt: JwtHelperService) {}
 
   ngOnInit(): void {
+    const token = this.jwt.decodeToken(localStorage.getItem('token'));
+    this.username = token.name;
+
     this.purchasesForm = this.fb.group({
       nameP: ['', Validators.required],
       titleP: ['', Validators.required],
@@ -45,6 +50,7 @@ export class AddPurchasesComponent implements OnInit {
 
     const formValue = this.purchasesForm.value;
     const formData = new FormData();
+    const totalPrice = parseFloat(formValue.priceP) *  parseFloat(formValue.quantityP);
 
     formData.append('productName', formValue.nameP);
     formData.append('productTitle', formValue.titleP);
@@ -52,9 +58,11 @@ export class AddPurchasesComponent implements OnInit {
     formData.append('productFeature1', formValue.feature1_P);
     formData.append('productFeature2', formValue.feature2_P);
     formData.append('productFeature3', formValue.feature3_P);
-    formData.append('productquantity', formValue.quantityP.toString());
-    formData.append('productPrice', formValue.priceP.toString());
-    formData.append('promoPrice', formValue.promoPriceP.toString());
+    formData.append('productquantity', formValue.quantityP);
+    formData.append('productPrice', formValue.priceP);
+    formData.append('promoPrice', formValue.promoPriceP);
+    formData.append('societeCode', this.username);
+    formData.append('totalP', totalPrice.toString());
 
     formData.append('productImg1', this.imgFiles['img1_P'] as File);
     formData.append('productImg2', this.imgFiles['img2_P'] as File);

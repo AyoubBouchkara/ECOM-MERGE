@@ -85,7 +85,7 @@ export class MainService {
   }
 
   addPurchases(data: FormData): Observable<any> {
-    data.societeCode = this.getUsername();
+    //data.societeCode = this.getUsername();
     return this.http.post<any>(this.Url, data);
   }
 

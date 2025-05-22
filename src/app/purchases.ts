@@ -1,6 +1,6 @@
 export interface Purchases{
     _id?: number,
-    productID:  Number,
+    number:  Number,
     productName:  String,
     productTitle:  String,
     productDescription:  String,
@@ -16,5 +16,6 @@ export interface Purchases{
     totalP: Number,
     storeId:  Number,
     dateP: string,
+    createdAt: Date,
     societeCode: string
 }
