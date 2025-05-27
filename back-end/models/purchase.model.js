@@ -17,7 +17,7 @@ const purchaseSchema = mongoose.Schema(
         promoPrice: { type: Number },
         totalP: { type: Number },
         dateP: { type: String },
-        storeId: { type: Number }, //*********** modify this *************** */
+        storeId: { type: String }, //*********** modify this *************** */
         societeCode : { type: String } //*********** modify this *************** */
     },
     { timestamps: true }

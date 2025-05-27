@@ -63,6 +63,19 @@
       (change)="onFileChange($event, 'img3_P')" />
   </div>
 
+  <div class="form-group mt-3">
+    <label>Stores:</label>
+    <div class="col">
+      <p-dropdown 
+        [options]="storeList" 
+        [(ngModel)]="selectedStore" 
+        formControlName="stores"
+        optionLabel="name" 
+        placeholder="Sélectionne un store">
+      </p-dropdown>
+    </div>
+  </div>
+
   <div class="row mt-3">
     <div class="col">
       <input 

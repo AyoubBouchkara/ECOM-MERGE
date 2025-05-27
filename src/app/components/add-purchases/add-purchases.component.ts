@@ -1,6 +1,7 @@
 import { Component, EventEmitter, OnInit, Output, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { MainService } from 'src/app/services/main.service';
 
 @Component({
   selector: 'app-add-purchases',
@@ -19,12 +20,16 @@ export class AddPurchasesComponent implements OnInit {
     img3_P: null
   };
 
-  constructor(private fb: FormBuilder, private jwt: JwtHelperService) {}
+  selectedStore;
+  storeList;
+
+  constructor(private fb: FormBuilder, private jwt: JwtHelperService, private mainService: MainService) {}
 
   ngOnInit(): void {
     const token = this.jwt.decodeToken(localStorage.getItem('token'));
     this.username = token.name;
-
+    this.getStores();
+  
     this.purchasesForm = this.fb.group({
       nameP: ['', Validators.required],
       titleP: ['', Validators.required],
@@ -34,8 +39,13 @@ export class AddPurchasesComponent implements OnInit {
       feature3_P: [''],
       quantityP: [0, [Validators.required, Validators.min(1)]],
       priceP: [0, [Validators.required, Validators.min(0)]],
-      promoPriceP: [0, [Validators.min(0)]]
+      promoPriceP: [0, [Validators.min(0)]],
+      stores: ['']
     });
+  }
+
+  getStores(): void {
+    this.mainService.getStores().subscribe(res => this.storeList = res)
   }
 
   onFileChange(event: any, field: string) {
@@ -63,6 +73,7 @@ export class AddPurchasesComponent implements OnInit {
     formData.append('promoPrice', formValue.promoPriceP);
     formData.append('societeCode', this.username);
     formData.append('totalP', totalPrice.toString());
+    formData.append('storeId', this.selectedStore._id);
 
     formData.append('productImg1', this.imgFiles['img1_P'] as File);
     formData.append('productImg2', this.imgFiles['img2_P'] as File);
