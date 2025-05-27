@@ -39,6 +39,10 @@ import { RegisterComponent } from './components/users/register/register.componen
 import { JwtHelperService, JWT_OPTIONS  } from '@auth0/angular-jwt';
 import { LoginGuard } from './guards/login.guard';
 import { StoresComponent } from './components/stores/stores.component';
+import { DeliveryManComponent } from './components/delivery-man/delivery-man.component';
+// import { ProfileComponent } from './components/profile/profile.component';
+import { ProfileComponent } from './components/profile/profile.component'; // Ensure correct path
+
 import { LandingPagesComponent } from './components/landing-pages/landing-pages.component';
 
 
@@ -49,10 +53,20 @@ const appRoutes: Routes = [
     canActivate: [LoginGuard]
   },
   { 
+    path: 'profile', 
+    component: ProfileComponent,
+    canActivate: [LoginGuard]
+  },
+  { 
     path: 'stores', 
     component: StoresComponent,
     canActivate: [LoginGuard]
+  },{ 
+    path: 'Deliveryman', 
+    component: DeliveryManComponent,
+    canActivate: [LoginGuard]
   },
+  
   { 
     path: 'landpages', 
     component: LandingPagesComponent,
@@ -93,11 +107,14 @@ const appRoutes: Routes = [
     AppComponent, 
     HeaderComponent,
     HomeComponent,
+   
+    
     ErpComponent,
     ShowErpComponent,
     AddInfoComponent,
     AddLossesComponent,
     AddPurchasesComponent,
+    ProfileComponent,
     LossesPurchasesComponent,
     ShowLossesComponent,
     ShowPurchasesComponent,
@@ -106,6 +123,7 @@ const appRoutes: Routes = [
     RegisterComponent,
     LoginComponent,
     StoresComponent,
+     DeliveryManComponent,
     LandingPagesComponent
   ],
   imports: [

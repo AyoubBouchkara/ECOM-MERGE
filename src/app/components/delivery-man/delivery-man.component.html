@@ -1,0 +1,76 @@
+<!-- src/app/delivery-man/delivery-man.component.html -->
+<div class="container-lg mt-4">
+  <!-- Title Above the Form -->
+  <div class="title-container w-full mb-3">
+    <h5 class="form-title">Create Delivery Man</h5>
+  </div>
+
+  <!-- Error Message -->
+  <div *ngIf="errorMessage" class="alert alert-danger mt-5 ms-3 center w-full container-lg">
+    {{ errorMessage }}
+  </div>
+
+  <!-- Form -->
+  <form (ngSubmit)="editing ? updateDeliveryMan() : createDeliveryMan()" class="bg-light p-4 rounded shadow">
+    <div class="form-group mb-3">
+      <input [(ngModel)]="deliveryMan.name" name="name" class="form-control" placeholder="Name" required />
+    </div>
+    <div class="form-group mb-3">
+      <input [(ngModel)]="deliveryMan.phone" name="phone" class="form-control" placeholder="Phone" required />
+    </div>
+    <div class="form-group mb-3">
+      <select [(ngModel)]="deliveryMan.vehicle" name="vehicle" class="form-control" required>
+        <option value="" disabled selected>Select a vehicle</option>
+        <option value="Bike">Bike</option>
+        <option value="Van">Van</option>
+        <option value="Truck">Truck</option>
+        <option value="Scooter">Scooter</option>
+      </select>
+    </div>
+    <div class="form-group mb-3">
+      <input [(ngModel)]="deliveryMan.licenseNumber" name="licenseNumber" class="form-control" placeholder="License Number" required />
+    </div>
+    <div class="form-group mb-3">
+      <input [(ngModel)]="deliveryMan.email" name="email" class="form-control" placeholder="Email" required />
+    </div>
+    <div class="form-group mb-3">
+      <input [(ngModel)]="deliveryMan.password" name="password" type="password" class="form-control" placeholder="Password" required />
+    </div>
+    <button type="submit" class="btn btn-success">{{ editing ? 'Update' : 'Create' }}</button>
+    <button type="button" *ngIf="editing" (click)="cancelEdit()" class="btn btn-secondary ml-5">Cancel</button>
+  </form>
+
+  <!-- Table Title -->
+  <div class="title-container w-full mt-5 mb-3">
+    <h5 class="form-title">Delivery Men List</h5>
+  </div>
+
+  <!-- Table -->
+  <div class="table-responsive">
+    <table class="table table-striped">
+      <thead class="thead-light">
+        <tr>
+          <th>Name</th>
+          <th>Phone</th>
+          <th>Vehicle</th>
+          <th>License Number</th>
+          <th>Email</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let man of deliveryMen">
+          <td>{{ man.name }}</td>
+          <td>{{ man.phone }}</td>
+          <td>{{ man.vehicle }}</td>
+          <td>{{ man.licenseNumber }}</td>
+          <td>{{ man.email }}</td>
+          <td class="">
+            <button (click)="editDeliveryMan(man)" class="btn btn-primary btn-sm">Update</button>
+            <button (click)="deleteDeliveryMan(man._id)" class="btn btn-danger btn-sm ml-5">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

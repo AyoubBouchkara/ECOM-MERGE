@@ -19,6 +19,7 @@ const httpOptions = {
 
 export class MainService {
   private apiUrl = 'http://localhost:3000/orders/';
+  private mainBaseUrl='http://localhost:3000'
   private apiUrlLosses = ' http://localhost:3000/losses/';
   private Url = 'http://localhost:3000/purchases/';
   private storeApi = 'http://localhost:3000/store/';
@@ -109,5 +110,21 @@ export class MainService {
     return this.http.delete<Store>(this.storeApi+ nb);
   }
   //#endregion Store
+  /////////// delivery man sevice 
 
+  getDeliveryMen(): Observable<any> {
+    return this.http.get(this.mainBaseUrl+"/deliverymen");
+  }
+
+  createDeliveryMan(deliveryMan: any): Observable<any> {
+    return this.http.post(this.mainBaseUrl+"/deliverymen", deliveryMan);
+  }
+
+  updateDeliveryMan(id: string, deliveryMan: any): Observable<any> {
+    return this.http.put(`${this.mainBaseUrl}/deliverymen/${id}`, deliveryMan);
+  }
+
+  deleteDeliveryMan(id: string): Observable<any> {
+    return this.http.delete(`${this.mainBaseUrl}/deliverymen/${id}`);
+  }
 }

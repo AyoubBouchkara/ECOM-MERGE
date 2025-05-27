@@ -17,6 +17,7 @@ export class HeaderComponent {
 
   ngOnInit(){
     const token = this.jwt.decodeToken(localStorage.getItem('token'));
+    console.log(token)
     this.username = token.name;
   }
 
