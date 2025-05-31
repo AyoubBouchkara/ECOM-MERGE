@@ -13,11 +13,14 @@ export class StoresComponent {
   successText;
   successShow;
   storeId;
+  productList;
+  selectedStoreId;
 
   constructor(private mainService: MainService) {}
 
   ngOnInit() {
     this.getStores();
+    this.getProductList();
   }
 
   getStores(): void {
@@ -43,16 +46,28 @@ export class StoresComponent {
   }
 
   onDeleteClick(store) {
-    console.log('store: ', store)
     this.storeId = store?._id;
   }
 
   delete() {
     this.mainService.deleteStore(this.storeId).subscribe(res => {
-      console.log('storeId: ', this.storeId);
       if (res) {
         this.stores = this.stores.filter(vl => vl._id !== this.storeId);
       }
     })
+  }
+
+  getProductList() {
+    this.mainService.getPurchases().subscribe(vl => this.productList = vl);
+  }
+
+  get filteredProducts() {
+    if (!this.selectedStoreId) { return null; }
+    return this.productList.filter(p => p.storeId === this.selectedStoreId);
+  }
+
+  onChangeStoreId(storeId) {
+    console.log('storeId: ', storeId);
+    this.selectedStoreId = storeId;
   }
 }

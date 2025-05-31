@@ -4,7 +4,7 @@ const multer = require('multer');
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, 'uploads/');  // dossier uploads (à créer dans la racine)
+    cb(null, '../src/assets/uploads/');  // dossier uploads (à créer dans la racine)
   },
   filename: (req, file, cb) => {
     cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname));
