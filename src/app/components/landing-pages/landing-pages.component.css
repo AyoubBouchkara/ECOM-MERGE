@@ -38,14 +38,14 @@
 
 .preview-section {
   margin-top: 10px;
-  border: 1px solid #eee;
+  border: 1px solid #eeee;
   height: 500px;
   overflow: hidden;
 }
-.preview-section iframe{
-  height:400px;
+.preview-section img{
+  height: auto;
+  width: 100%;
 }
-
 /**/
 
 .customization-panel {

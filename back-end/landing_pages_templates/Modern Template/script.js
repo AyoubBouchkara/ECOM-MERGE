@@ -1,4 +1,7 @@
+let productId = null
+
 document.getElementById('buyNowBtn').addEventListener('click', function () {
-    alert('Thank you for your interest! Our team will contact you shortly.');
-  });
+    productId = document.getElementById("p_id").value;
+    window.location.href = `./forme.html?idp=${productId}`
+});
   

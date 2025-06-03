@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { JwtHelperService } from '@auth0/angular-jwt';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { MainService } from 'src/app/services/main.service';
 
 @Component({
   selector: 'app-landing-pages',
@@ -15,55 +18,135 @@ export class LandingPagesComponent implements OnInit {
   customTitle = '';
   customLogo = '';
   productImages: string[] = [];
-  features = '';
+  storeName = '';
 
-  constructor(private http: HttpClient, private sanitizer: DomSanitizer) {}
+  productList: any[] = [];
+  selectedProduct: any;
+  landingForm: FormGroup;
+
+  selectedStore: any;
+  storeList: any;
+
+  constructor(
+    private http: HttpClient,
+    private sanitizer: DomSanitizer,
+    private fb: FormBuilder,
+    private jwt: JwtHelperService,
+    private mainService: MainService
+  ) {
+    this.landingForm = this.fb.group({
+      p_id : [''],
+      lp_Name: ['', Validators.required],
+      p_Name: [''],
+      title: [''],
+      description: [''],
+      feature1: [''],
+      feature2: [''],
+      feature3: [''],
+      img1: [''],
+      img2: [''],
+      img3: [''],
+      quantity: [''],
+      Price: [''],
+      promoPrice: [''],
+      totalP: [''],
+      dateP: [''],
+      storeId: [''],
+      dateCreation: [''],
+      societeCode: [''],
+      storeName: ['']
+    });
+  }
 
   ngOnInit(): void {
     this.http.get<any[]>('http://localhost:3000/templates').subscribe({
       next: (data) => {
         this.templates = data;
         this.templates.forEach(template => {
-          const rawUrl = `http://localhost:3000/landing_pages_templates/${template.name}/index.html`;
+        const rawUrl = `http://localhost:3000/back-end/landing_pages_templates/${template.name}/preview.PNG`;
           this.safeUrls[template.name] = this.sanitizer.bypassSecurityTrustResourceUrl(rawUrl);
         });
+
       },
       error: (err) => {
         console.error('Error fetching templates:', err);
       }
     });
+
+    this.getStores();
+  }
+
+  getStores(): void {
+    this.mainService.getStores().subscribe(res => this.storeList = res);
+  }
+
+  onStoreChange(event: any): void {
+    const storeId = event.value._id;
+    this.storeName = event.value.name;
+    this.productList = [];
+
+    if (storeId) {
+      this.mainService.getPurchases().subscribe((purchases) => {
+        this.productList = purchases.filter(product => product.storeId === storeId);
+      });
+    }
+  }
+
+  onProductChange(product: any): void {
+    this.selectedProduct = product;
   }
 
   selectTemplate(template: any): void {
     this.selectedTemplate = template;
-    this.customTitle = '';
-    this.customLogo = '';
-    this.productImages = [];
-    this.features = '';
   }
 
-  addProductImage(url: string) {
-    if (url.trim()) {
-      this.productImages.push(url.trim());
+  generateLandingPage(): void {
+    if (!this.selectedProduct) {
+      alert('Veuillez sélectionner un produit avant de générer la landing page.');
+      return;
     }
-  }
 
-  removeProductImage(index: number) {
-    this.productImages.splice(index, 1);
-  }
+    if (!this.landingForm.get('lp_Name')?.value) {
+      alert('Veuillez entrer un nom pour la landing page.');
+      return;
+    }
 
-  saveTemplate(): void {
-    const payload = {
-      templateName: this.selectedTemplate?.name,
-      title: this.customTitle,
-      logoUrl: this.customLogo,
-      products: this.productImages.map(img => ({ name: 'Product', imageUrl: img })),
-      features: this.features
+    const product = this.selectedProduct;
+    const template = this.selectedTemplate;
+    const formData = {
+      p_id : product._id,
+      lp_Name: this.landingForm.get('lp_Name')?.value,  // 🆕 inclure le nom de LP
+      p_Name: product.productName,
+      title: product.productTitle,
+      description: product.productDescription,
+      feature1: product.productFeature1,
+      feature2: product.productFeature2,
+      feature3: product.productFeature3,
+      img1: product.productImg1,
+      img2: product.productImg2,
+      img3: product.productImg3,
+      quantity: product.productquantity,
+      Price: product.productPrice,
+      promoPrice: product.promoPrice,
+      totalP: product.totalP,
+      dateP: new Date().toISOString().slice(0, 10),
+      storeId: product.storeId,
+      dateCreation: new Date().toISOString().slice(0, 10),
+      societeCode: product.societeCode,
+      templateName: template.name,
+      storeName: this.storeName,
     };
 
-    this.http.post('http://localhost:3000/save-landing', payload).subscribe({
-      next: () => alert('Landing page saved successfully!'),
-      error: (err) => console.error('Error saving landing page:', err)
-    });
+    this.http.post('http://localhost:3000/landing-pages/generate', formData).subscribe(
+      (res: any) => {
+        alert('Landing page generated successfully!');
+        const landingPageUrl = `http://localhost:3000${res.url}`;
+        window.open(landingPageUrl, '_blank'); // Open in a new tab
+      },
+      err => {
+        console.error('Failed to generate landing page:', err);
+        alert('Error generating landing page.');
+      }
+    );
   }
 }

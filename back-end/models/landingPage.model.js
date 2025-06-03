@@ -2,11 +2,8 @@ const mongoose = require('mongoose');
 
 
 const LandingPageSchema = new mongoose.Schema({
-  templateName: String,
-  lnadingPageId: String,
-  storeID: String,
-  productID: Number,
-  features: String
+        lp_Name: { type: String , required: true},
+        path: { type: String }
 });
 
 module.exports = mongoose.model('LandingPage', LandingPageSchema);

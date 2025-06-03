@@ -16,15 +16,47 @@ exports.readData = async(req, res) => {
 
 // add data
 exports.createData = async(req, res) => {
-    try{
-        let lastRecod = await Order.findOne({ societeCode: req.body.societeCode }).sort({'_id': -1});
-        req.body.number = lastRecod?.number ? lastRecod.number + 1 : 1;
+  try {
+      const { name, phone, city, quantity, productId } = req.body;
 
-        await Order.create(req.body);
-        res.status(200).json(true);
-    }
-    catch(err){
-        res.status(500).json(err.message);
+      // Validation des données
+      if (!name || !phone) {
+          return res.status(400).json({ error: 'Nom et téléphone sont obligatoires' });
+      }
+      let productDetails = await Purchase.findOne({'_id': req.body.productId});
+      
+      //console.log('PRODUCT IS :', productDetails);
+      
+      let lastRecod = await Order.findOne({}).sort({'_id': -1});
+      RecodNumber = lastRecod?.number ? lastRecod.number + 1 : 1;
+
+      let orderData = {
+        //location: 
+        //date: 
+        //timeStart:
+        //timeEnd:
+        //description: 
+        number: RecodNumber,
+        name: req.body.name,
+        city: req.body.city,
+        date: new Date(),
+        phone: req.body.phone,
+        quantity: req.body.quantity,
+        purchasePrice: productDetails.productPrice,
+        salePrice: productDetails.promoPrice,
+        //status: promoPrice,
+        //isConfirmed:
+        //cancellationReason:
+        societeCode: productDetails.societeCode
+        //orderDetails: orderDetailsSchema,
+      }
+      await Order.create(orderData);
+      res.status(200).json(true);
+      // Réponse de succès
+
+    } catch (error) {
+      console.error('Erreur serveur:', error);
+      res.status(500).json({ error: 'Erreur interne du serveur' });
     }
 };
 

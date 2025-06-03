@@ -59,8 +59,8 @@ export class AddInfoComponent {
       date: this.date,
       city: this.city,
       phone: this.phone,
-      purchase: this.purchase,
-      sale: this.sale,
+      purchasePrice: this.purchase,
+      salePrice: this.sale,
       status: 'In progress',
       isConfirmed: false,
       societeCode: this.username

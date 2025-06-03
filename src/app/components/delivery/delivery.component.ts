@@ -38,8 +38,8 @@ export class DeliveryComponent implements OnChanges {
     city: '',
     date: '',
     phone: '',
-    purchase: 0,
-    sale: 0,
+    purchasePrice: 0,
+    salePrice: 0,
     status: '',
     isConfirmed: false,
     orderDetails: [],
@@ -271,7 +271,7 @@ export class DeliveryComponent implements OnChanges {
         date: x1.date,
         city: x1.city,
         phone: x1.phone,
-        purchase: x1.purchase,
+        purchase: x1.purchasePrice,
         status: x1.status,
       }
 

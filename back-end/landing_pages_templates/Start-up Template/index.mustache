@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{title}}</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="product-container">
+        <header>
+            <h1>{{p_Name}}</h1>
+            <p class="subtitle">{{title}}</p>
+        </header>
+
+        <section class="product-showcase">
+            <div class="gallery">
+                <img src="../../uploads/{{img1}}" alt="{{p_Name}}" class="active">
+                <img src="../../uploads/{{img2}}" alt="{{p_Name}} feature">
+                <img src="../../uploads/{{img3}}" alt="{{p_Name}} in use">
+            </div>
+            <div class="product-details">
+                <h2>{{description}}</h2>
+                <ul class="features">
+                    <li>{{feature1}}</li>
+                    <li>{{feature2}}</li>
+                    <li>{{feature3}}</li>
+                </ul>
+                <div><span class="price-tag">{{promoPrice}}</span> <span class="dhs">DHs</span></div>
+                <button class="buy-button"  id="buyNowBtn">Acheter maintenant</button>
+            </div>
+        </section>
+        <footer>
+            <p>&copy; 2025 {{storeName}}. All rights reserved.</p>
+        </footer>
+    </div>
+</body>
+</html>

@@ -73,8 +73,8 @@
         <td>{{ item.date | date:'dd/MM/yyyy' }}</td>
         <td>{{ item.city }}</td>
         <td>{{ item.phone }}</td>
-        <td>{{ item.purchase }} DH</td>
-        <td>{{ item.sale }} DH</td>
+        <td>{{ item.purchasePrice }} DH</td>
+        <td>{{ item.salePrice }} DH</td>
         <td>
           <p-tag [severity]="getSeverity(item.status)" [value]="item.status"></p-tag>
         </td>
@@ -147,13 +147,13 @@
                 <span class="input-group-text" id="basic-addon1">
                     <i class="fa-solid fa-money-bill"></i>
                 </span>
-                <input type="text" name="purchaseEdit" [(ngModel)]="orderUpdate.purchase" class="form-control" placeholder="The Purchase Price" aria-label="Username" aria-describedby="basic-addon1">
+                <input type="text" name="purchasePriceEdit" [(ngModel)]="orderUpdate.purchasePrice" class="form-control" placeholder="The Purchase Price" aria-label="Username" aria-describedby="basic-addon1">
             </div>
             <div class="input-group mb-3">
                 <span class="input-group-text" id="basic-addon1">
                     <i class="fa-solid fa-money-bill"></i>
                 </span>
-                <input type="text" name="saleEdit" [(ngModel)]="orderUpdate.sale" class="form-control" placeholder="Sale Price" aria-label="Username" aria-describedby="basic-addon1">
+                <input type="text" name="salePriceEdit" [(ngModel)]="orderUpdate.salePrice" class="form-control" placeholder="Sale Price" aria-label="Username" aria-describedby="basic-addon1">
             </div>
         </div>
         <div class="modal-footer">

@@ -1,17 +1,22 @@
 const fs = require('fs');
 const path = require('path');
 const multer = require('multer');
+const Mustache = require('mustache');
+
 
 const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, '../src/assets/uploads/');  // dossier uploads (à créer dans la racine)
+  destination: function (req, file, cb) {
+    cb(null, 'uploads/');
   },
-  filename: (req, file, cb) => {
-    cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname));
+  filename: function (req, file, cb) {
+    const ext = path.extname(file.originalname);
+    const baseName = path.basename(file.originalname, ext).replace(/\s+/g, '-').toLowerCase();
+    const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1e9);
+    cb(null, `${file.fieldname}-${baseName}-${uniqueSuffix}${ext}`);
   }
 });
 
-const upload = multer({ storage: storage });
+const upload = multer({ storage });
 
 module.exports = app => {
     //const fs = require('fs');
@@ -29,7 +34,8 @@ module.exports = app => {
 
     app.get('/orders', ordersController.readData); // Read Data
 
-    app.post('/orders', ordersController.createData); // Create Data
+    //app.post('/orders', ordersController.createData); // Create Data
+    app.post('/api/orders', ordersController.createData);
     
     app.put('/orders/:id', ordersController.updateData); // Update Data
     
@@ -54,7 +60,7 @@ module.exports = app => {
  
      //#region Purchase
      app.get('/purchases', purchasesController.readData); // Read Data
- 
+
      //app.post('/purchases', purchasesController.createData); // Create Data
      app.post('/purchases', upload.fields([  // Create Data
         { name: 'productImg1', maxCount: 1 },
@@ -76,7 +82,7 @@ module.exports = app => {
     //#endregion DeliveryMan    
     
     //#region Stores
-    app.get('/store', storeController.readData); // Read Data
+    app.get('/store', storeController.readData); // Read Data 
     app.post('/store', storeController.createData); // Create Data
     app.put('/store/:id', storeController.updateData); // Update Data
     app.delete('/store/:id', storeController.deleteData); // Delete Data
@@ -105,7 +111,7 @@ module.exports = app => {
             res.json(templates);
         });
     });
-    app.post('/save-landing', landingCtrl.saveLandingPage);
+    app.post('/landing-pages/generate', landingCtrl.generateLandingPage);
 
 
     // profile 
