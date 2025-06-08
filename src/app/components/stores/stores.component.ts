@@ -66,8 +66,10 @@ export class StoresComponent {
     return this.productList.filter(p => p.storeId === this.selectedStoreId);
   }
 
+  
+
   onChangeStoreId(storeId) {
-    console.log('storeId: ', storeId);
+    //console.log('storeId: ', storeId);
     this.selectedStoreId = storeId;
   }
 }

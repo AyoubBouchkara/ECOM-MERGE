@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { NgChartsModule } from 'ng2-charts';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
@@ -129,6 +130,7 @@ const appRoutes: Routes = [
   imports: [
     CheckboxModule,
     BrowserModule,
+    NgChartsModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
@@ -152,7 +154,7 @@ const appRoutes: Routes = [
     ConfirmationService, 
     MessageService,
     { provide: JWT_OPTIONS, useValue: JWT_OPTIONS },
-    JwtHelperService    
+    JwtHelperService,
   ],
   bootstrap: [AppComponent]
 })

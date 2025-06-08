@@ -38,8 +38,8 @@ export class AddPurchasesComponent implements OnInit {
       feature2_P: [''],
       feature3_P: [''],
       quantityP: [0, [Validators.required, Validators.min(1)]],
-      priceP: [0, [Validators.required, Validators.min(0)]],
-      promoPriceP: [0, [Validators.min(0)]],
+      purchasePrice: [0, [Validators.required, Validators.min(0)]],
+      salePrice: [0, [Validators.min(0)]],
       stores: ['']
     });
   }
@@ -60,7 +60,7 @@ export class AddPurchasesComponent implements OnInit {
 
     const formValue = this.purchasesForm.value;
     const formData = new FormData();
-    const totalPrice = parseFloat(formValue.priceP) *  parseFloat(formValue.quantityP);
+    const totalPrice = parseFloat(formValue.purchasePrice) *  parseFloat(formValue.quantityP);
 
     formData.append('productName', formValue.nameP);
     formData.append('productTitle', formValue.titleP);
@@ -69,8 +69,8 @@ export class AddPurchasesComponent implements OnInit {
     formData.append('productFeature2', formValue.feature2_P);
     formData.append('productFeature3', formValue.feature3_P);
     formData.append('productquantity', formValue.quantityP);
-    formData.append('productPrice', formValue.priceP);
-    formData.append('promoPrice', formValue.promoPriceP);
+    formData.append('purchasePrice', formValue.purchasePrice);
+    formData.append('salePrice', formValue.salePrice);
     formData.append('societeCode', this.username);
     formData.append('totalP', totalPrice.toString());
     formData.append('storeId', this.selectedStore._id);

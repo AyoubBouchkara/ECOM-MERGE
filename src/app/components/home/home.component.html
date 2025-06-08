@@ -41,5 +41,12 @@
             <a routerLink="addErp" class="text-secondary">More Info</a>
         </div>
     </div>
+    <div style="display: block; max-width: 400px;">
+        <canvas baseChart
+            [type]="'pie'"
+            [data]="pieChartData"
+            [options]="pieChartOptions">
+        </canvas>
+    </div>
 
 </div>

@@ -67,7 +67,7 @@ module.exports = app => {
         { name: 'productImg2', maxCount: 1 },
         { name: 'productImg3', maxCount: 1 }
     ]), purchasesController.createData);
-          
+              
      app.put('/purchases/:id', purchasesController.updateData); // Update Data
           
      app.delete('/purchases/:id', purchasesController.deleteData); // Delete Data
@@ -114,7 +114,7 @@ module.exports = app => {
     app.post('/landing-pages/generate', landingCtrl.generateLandingPage);
 
 
-    // profile 
+    // profile
 
     app.get('/payment-modes', paymentModeController.readData); // Read all payment modes
     app.post('/payment-modes', paymentModeController.createData); // Create a new payment mode

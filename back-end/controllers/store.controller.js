@@ -6,6 +6,7 @@ exports.readData = async (req, res) => {
         const sCode = req.query.sCode;
         const stores = await Store.find({ societeCode: sCode }).sort({ _id: -1 }).lean();
         res.status(200).json(stores);
+        //cosole .log(req, res) 
     } catch (err) {
         res.status(500).json(err.message);
     }

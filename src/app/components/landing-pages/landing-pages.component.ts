@@ -115,7 +115,7 @@ export class LandingPagesComponent implements OnInit {
     const template = this.selectedTemplate;
     const formData = {
       p_id : product._id,
-      lp_Name: this.landingForm.get('lp_Name')?.value,  // 🆕 inclure le nom de LP
+      lp_Name: this.landingForm.get('lp_Name')?.value,
       p_Name: product.productName,
       title: product.productTitle,
       description: product.productDescription,
@@ -140,7 +140,7 @@ export class LandingPagesComponent implements OnInit {
     this.http.post('http://localhost:3000/landing-pages/generate', formData).subscribe(
       (res: any) => {
         alert('Landing page generated successfully!');
-        const landingPageUrl = `http://localhost:3000${res.url}`;
+        const landingPageUrl = `${res.url}`;
         window.open(landingPageUrl, '_blank'); // Open in a new tab
       },
       err => {

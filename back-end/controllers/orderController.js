@@ -31,24 +31,16 @@ exports.createData = async(req, res) => {
       RecodNumber = lastRecod?.number ? lastRecod.number + 1 : 1;
 
       let orderData = {
-        //location: 
-        //date: 
-        //timeStart:
-        //timeEnd:
-        //description: 
         number: RecodNumber,
         name: req.body.name,
         city: req.body.city,
         date: new Date(),
         phone: req.body.phone,
         quantity: req.body.quantity,
-        purchasePrice: productDetails.productPrice,
-        salePrice: productDetails.promoPrice,
-        //status: promoPrice,
-        //isConfirmed:
-        //cancellationReason:
+        purchasePrice: productDetails.purchasePrice,
+        salePrice: productDetails.salePrice,
+        status: "In progress",
         societeCode: productDetails.societeCode
-        //orderDetails: orderDetailsSchema,
       }
       await Order.create(orderData);
       res.status(200).json(true);
@@ -104,8 +96,8 @@ exports.calculProfits = async(req, res) => {
         {
           $group: {
             _id: null,
-            saleTotal: { $sum: { $toDouble: "$sale" } },
-            purchasesTotal: { $sum: { $toDouble: "$purchase" } }
+            saleTotal: { $sum: { $toDouble: "$salePrice" } },
+            purchasesTotal: { $sum: { $toDouble: "$purchasePrice" } }
           }
         }
       ]);

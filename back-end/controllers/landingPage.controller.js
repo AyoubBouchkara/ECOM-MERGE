@@ -53,7 +53,7 @@ exports.generateLandingPage = async (req, res) => {
     const lpPath = path.join(lp_folder, 'index.html');
     fs.writeFileSync(lpPath, renderedHTML);
 
-    // 🔥 Copy static files from template folder to generated folder
+    // Copy static files from template folder to generated folder
     const filesToCopy = ['styles.css', 'script.js', 'forme.html'];
     filesToCopy.forEach(file => {
       const src = path.join(templateFolderPath, file);
@@ -63,16 +63,17 @@ exports.generateLandingPage = async (req, res) => {
       }
     });
 
-    // 🔥 Copy 'assets' folder recursively
+    // Copy 'assets' folder recursively
     const assetsSource = path.join(templateFolderPath, 'assets');
     const assetsTarget = path.join(lp_folder, 'assets');
     if (fs.existsSync(assetsSource)) {
       copyFolderRecursiveSync(assetsSource, assetsTarget);
     }
 
-    const landingPageUrl = `/landing_pages_generated/${lp_Name}/index.html`;
+    const landingPageUrl = `http://localhost:3000/landing_pages_generated/${lp_Name}/index.html`;
     // Save in DB
     const newLanding = new LandingPage({
+        storeId,
         lp_Name,
         path: landingPageUrl
     });
