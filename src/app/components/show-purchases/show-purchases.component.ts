@@ -20,10 +20,14 @@ export class ShowPurchasesComponent {
   constructor(private mainService: MainService){}
 
   ngOnInit(): void{
+    this.getPurchasesList();
+  }
+
+  getPurchasesList() {
     this.mainService.getPurchases().subscribe((purchases) => {
       this.purchases = purchases;
     });
-  } 
+  }
 
   ngOnChanges(): void{
     if(this.pr == 'clear'){

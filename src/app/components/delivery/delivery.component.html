@@ -1,48 +1,50 @@
-<div class="first-section container">
-  <div class="row">
-    <div class="col-lg-6 recap-container">
-      <div class="recap">
-        <div class="recap-number">{{ totalRecords }}</div>
-        <div class="recap-libelle my-grey">Total records</div>
+  <div class="container mt-4">
+  <h2 class="text-center fw-bold text-uppercase text-primary mb-4">
+    Delivery
+  </h2>
+</div>
+<div class="first-section container py-4">
+
+
+  <div class="row align-items-center">
+    <div class="col-lg-6 recap-container d-flex gap-4 flex-wrap">
+      <div class="recap-card bg-light shadow-sm">
+        <div class="recap-number text-dark">{{ totalRecords }}</div>
+        <div class="recap-label text-muted">Total records</div>
       </div>
-      <!--div class="recap">
-        <div class="recap-number my-green">150</div>
-        <div class="recap-libelle my-green">Confirmed</div>
-      </div>
-      <div class="recap">
-        <div class="recap-number my-reed">150</div>
-        <div class="recap-libelle my-reed">Canceled</div>
-      </div-->
     </div>
-  
-    <div class="col-lg-6 title actions">
-      <div class="add">
-          <img 
-              (click)="downloadExel()"
-              src="https://cloud.digiparc.com/assets/icon40/excel.svg"
-              alt="add" />
+
+    <div class="col-lg-6 d-flex justify-content-end gap-3 action-icons">
+      <div class="icon-wrapper" (click)="downloadExel()">
+        <img src="https://cloud.digiparc.com/assets/icon40/excel.svg" alt="excel" />
       </div>
-      <div class="reload">
-         <img 
-              (click)="clear()"
-              src="https://cloud.digiparc.com/assets/icon40/refresh.svg" alt="reload" />
+      <div class="icon-wrapper" (click)="clear()">
+        <img src="https://cloud.digiparc.com/assets/icon40/refresh.svg" alt="refresh" />
       </div>
     </div>
   </div>
 </div>
 
-<div class="showErp-container container">
-    <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#exampleModal">
-        Filter
+<div class="showErp-container container py-3">
+  <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-3">
+    <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+      <i class="fa fa-filter me-1"></i> Filter
     </button>
-    <div class="search input-group mb-3">
-        <span class="input-group-text" id="basic-addon1">
-            <i class="fa-solid fa-magnifying-glass"></i>
-        </span>
-        <input type="text" name="price" [(ngModel)]="search" (ngModelChange)="filter()"
-        class="form-control" placeholder="Phone Number" aria-label="Username" 
-        aria-describedby="basic-addon1">
+
+    <div class="search input-group w-auto">
+      <span class="input-group-text bg-white">
+        <i class="fa-solid fa-magnifying-glass"></i>
+      </span>
+      <input
+        type="text"
+        name="price"
+        [(ngModel)]="search"
+        (ngModelChange)="filter()"
+        class="form-control"
+        placeholder="Phone Number"
+      />
     </div>
+  </div>
     
 <table>
     <tr>

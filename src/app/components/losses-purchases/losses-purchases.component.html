@@ -1,62 +1,114 @@
-<div class="showErp-container showErp-container-edit container">
-    <button type="button" class="btn btn-info float-end" data-bs-toggle="modal" data-bs-target="#filter">
-        Filter
-    </button>
-    <div class="row">
-        <div class="ls-pr col-lg-6">
-            <app-show-losses [ls]="ls" (dltL)="deleteLosses()"></app-show-losses>
-        </div>
-        <div class="ls-pr col-lg-6">
-            <app-show-purchases [pr]="pr" (dltP)="deletePurchase()"></app-show-purchases>
-        </div>
-    </div>
+<div class="erp-container container py-4">
+  <div class="container mt-4">
+  <h2 class="text-center fw-bold text-uppercase text-primary mb-4">
+    Management of Losses and Bulk Purchases
+  </h2>
 </div>
 
-<!--Success Section Start-->
-<div *ngIf="successShow" class="alert alert-success alert-dismissible fade show" role="alert">
-    <i class="fa-solid fa-check"></i>
-    deleted successfully !!
-    <button type="button" class="btn-close" (click)="toggleSuccess()"></button>
-  </div>
-<!--Success Section End-->     
-
-
-
- <!-- Modal -->
- <div class="modal fade" id="filter" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Filter By Date</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+  <div class="row g-4">
+    <!-- Add Losses -->
+    <div class="col-lg-6">
+      <div class="card shadow-sm rounded p-3">
+        <div class="d-flex justify-content-center mb-3">
+          <input 
+            class="btn px-4 py-2 fw-semibold"
+            [ngClass]="lossesShow ? 'btn-danger' : 'btn-info'" 
+            type="button" 
+            [value]="lossesShow ? 'Close' : 'Add Losses'"
+            (click)="toggleLosses()" />
         </div>
-        <div class="modal-body">
-            <strong>Losses :</strong><br /><br />
-            <div class="input-group mb-3">
-                <span class="input-group-text" id="basic-addon1">
-                    <i class="fa-solid fa-magnifying-glass"></i>
-                </span>
-                <input type="date" name="losses" [(ngModel)]="losses" class="form-control" placeholder="Phone Number" aria-label="Username" aria-describedby="basic-addon1">
-            </div>
-            <strong>Purchases :</strong><br /><br />
-            <div class="input-group mb-3">
-                <span class="input-group-text" id="basic-addon1">
-                    <i class="fa-solid fa-magnifying-glass"></i>
-                </span>
-                <input type="date" name="purchases" [(ngModel)]="purchases" class="form-control" placeholder="Phone Number" aria-label="Username" aria-describedby="basic-addon1">
-            </div>
+        <app-add-losses 
+          [lossesShow]="lossesShow"
+          (addLosses)="AddLosses($event)">
+        </app-add-losses>
+      </div>
+    </div>
+
+    <!-- Add Purchases -->
+    <div class="col-lg-6">
+      <div class="card shadow-sm rounded p-3">
+        <div class="d-flex justify-content-center mb-3">
+          <input 
+            class="btn px-4 py-2 fw-semibold"
+            [ngClass]="purchasesShow ? 'btn-danger' : 'btn-info'" 
+            type="button" 
+            [value]="purchasesShow ? 'Close' : 'Add Bulk Purchases'"
+            (click)="togglePurchases()" />
         </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-info" (click)="clear()" data-bs-dismiss="modal">Clear</button>
-          <button type="button" class="btn btn-success text-white" data-bs-dismiss="modal" (click)="filter()">Filter</button>
-        </div>
+        <app-add-purchases
+          [purchasesShow]="purchasesShow"
+          (addP)="addPurchases($event)">
+        </app-add-purchases>
       </div>
     </div>
   </div>
- 
+</div>
+
+<!-- Success Alert -->
+<div *ngIf="successShow" 
+     class="alert alert-success alert-dismissible fade show mt-4 d-flex justify-content-between align-items-center ms-auto me-3" 
+     style="max-width: 400px;" 
+     role="alert">
+     
+  <div>
+    <i class="fa-solid fa-check-circle me-2"></i>
+    <strong>{{ successText }}</strong>
+  </div>
+
+  <button type="button" class="btn-close ms-2" (click)="toggleSuccess()" aria-label="Close"></button>
+</div>
 
 
+<!-- Show Section -->
+<div class="showErp-container container mt-5">
+  <div class="d-flex justify-content-end mb-3">
+    <button type="button" class="btn btn-outline-info" data-bs-toggle="modal" data-bs-target="#filter">
+      <i class="fa-solid fa-filter me-2"></i> Filter
+    </button>
+  </div>
+  <div class="row g-4">
+    <div class="col-lg-6">
+      <app-show-losses [ls]="ls" (dltL)="deleteLosses()"></app-show-losses>
+    </div>
+    <div class="col-lg-6">
+      <app-show-purchases [pr]="pr" (dltP)="deletePurchase()"></app-show-purchases>
+    </div>
+  </div>
+</div>
 
+<!-- Delete Alert -->
+<!--div  class="alert alert-success alert-dismissible fade show mx-3 mt-4" role="alert">
+  <i class="fa-solid fa-trash-can me-2"></i>
+  Deleted successfully!
+  <button type="button" class="btn-close" (click)="toggleSuccess()" aria-label="Close"></button>
+</div-->
 
+<!-- Filter Modal -->
+<div class="modal fade" id="filter" tabindex="-1" aria-labelledby="filterLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content shadow">
+      <div class="modal-header bg-light">
+        <h5 class="modal-title" id="filterLabel">Filter By Date</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <label class="fw-semibold mb-2">Losses</label>
+        <div class="input-group mb-4">
+          <span class="input-group-text"><i class="fa-solid fa-calendar-days"></i></span>
+          <input type="date" name="losses" [(ngModel)]="losses" class="form-control">
+        </div>
 
+        <label class="fw-semibold mb-2">Purchases</label>
+        <div class="input-group mb-2">
+          <span class="input-group-text"><i class="fa-solid fa-calendar-days"></i></span>
+          <input type="date" name="purchases" [(ngModel)]="purchases" class="form-control">
+        </div>
+      </div>
+      <div class="modal-footer justify-content-between">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-outline-danger" (click)="clear()" data-bs-dismiss="modal">Clear</button>
+        <button type="button" class="btn btn-success text-white" (click)="filter()" data-bs-dismiss="modal">Filter</button>
+      </div>
+    </div>
+  </div>
+</div>

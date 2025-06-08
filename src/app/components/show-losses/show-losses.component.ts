@@ -23,6 +23,10 @@ export class ShowLossesComponent implements OnChanges {
   constructor(private mainService: MainService){}
 
   ngOnInit(): void{
+    this.getLossesList();
+  }
+
+  getLossesList() {
     this.mainService.getLosses().subscribe((losses) => {
       this.losses = losses;
     });

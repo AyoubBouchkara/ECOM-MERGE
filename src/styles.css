@@ -147,6 +147,90 @@ body{
 /*Erp Show End*/
 
 /*Losses And Purchases Start*/
+/* Titres généraux */
+h2, h4 {
+  font-family: 'Segoe UI', sans-serif;
+}
+
+h2 {
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+h4 {
+  font-weight: 600;
+  color: #495057;
+}
+
+/* Boutons stylisés */
+.btn {
+  border-radius: 0.6rem;
+  font-weight: 600;
+  transition: all 0.2s ease-in-out;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  opacity: 0.9;
+}
+
+/* Cartes propres */
+.card {
+  border: none;
+  border-radius: 1rem;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+  background-color: #fff;
+}
+
+/* Alerts plus visibles */
+.alert {
+  font-weight: 500;
+  border-left: 4px solid #198754;
+  border-radius: 0.5rem;
+}
+
+/* Modals */
+.modal-content {
+  border-radius: 1rem;
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Tableau général (si tu utilises Bootstrap tables) */
+table th {
+  font-weight: bold;
+  background-color: #f1f1f1;
+  text-align: center;
+}
+
+table td {
+  vertical-align: middle;
+  text-align: center;
+}
+
+.alert.alert-success.alert-dismissible.fade.show.mt-4.d-flex.justify-content-between.align-items-center.ms-auto.me-3 {
+    position: fixed;
+    top: 57px;
+    height: 63px;
+}
+
+
+.card {
+  border-radius: 1rem;
+  background-color: #f8f9fa;
+}
+
+.btn {
+  transition: all 0.2s ease-in-out;
+}
+
+.btn:hover {
+  transform: scale(1.03);
+}
+
+.alert i {
+  font-size: 1.2rem;
+}
+
 .ls-pr{
     margin: 50px auto;
 }
@@ -397,6 +481,74 @@ body{
   background-color: #064bb3;
 }
 /*register page new css end*/
+
+/*Chart css start*/
+.chart-container {
+  max-width: 400px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+canvas {
+  height: auto !important;
+  max-height: 300px;
+}
+/*Chart css end*/
+
+.recap-card {
+  padding: 20px;
+  border-radius: 12px;
+  min-width: 150px;
+  text-align: center;
+  transition: transform 0.2s ease;
+  background-color: #f8f9fa;
+}
+
+.recap-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+}
+
+.recap-number {
+  font-size: 2rem;
+  font-weight: 600;
+}
+
+.recap-label {
+  font-size: 1rem;
+  margin-top: 6px;
+}
+
+.icon-wrapper img {
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.icon-wrapper img:hover {
+  transform: scale(1.1);
+}
+
+.search input {
+  min-width: 220px;
+}
+
+@media (max-width: 768px) {
+  .recap-container {
+    justify-content: center;
+  }
+
+  .action-icons {
+    justify-content: center !important;
+    margin-top: 20px;
+  }
+
+  .search input {
+    width: 100%;
+  }
+}
+
 
 @media(max-width: 992px){
     .first-section{
