@@ -153,11 +153,11 @@
     document.getElementById('buyConfirme').addEventListener('click', () => {
         async function submitOrder() {
             const orderData = {
-                productId: path.get("idp"),
-                name: document.getElementById('clientName').value,
-                phone: document.getElementById('phone').value,
+                clientName: document.getElementById('clientName').value,
+                clientPhone: document.getElementById('phone').value,
                 city: document.getElementById('city').value,
                 quantity: document.getElementById('quantity').value,
+                productId: path.get("idp")
             };
 
             try {
@@ -181,7 +181,7 @@
             }
         }
 
-        // ✅ Appel de la fonction ici !
+        // Appel de la fonction ici !
         submitOrder();
     });
 

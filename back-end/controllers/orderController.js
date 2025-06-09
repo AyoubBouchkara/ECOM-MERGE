@@ -17,10 +17,9 @@ exports.readData = async(req, res) => {
 // add data
 exports.createData = async(req, res) => {
   try {
-      const { name, phone, city, quantity, productId } = req.body;
-
+      const { clientName, clientPhone, city, quantity, productId } = req.body;
       // Validation des données
-      if (!name || !phone) {
+      if (!clientName || !clientPhone) {
           return res.status(400).json({ error: 'Nom et téléphone sont obligatoires' });
       }
       let productDetails = await Purchase.findOne({'_id': req.body.productId});
@@ -29,11 +28,10 @@ exports.createData = async(req, res) => {
       
       let lastRecod = await Order.findOne({}).sort({'_id': -1});
       RecodNumber = lastRecod?.number ? lastRecod.number + 1 : 1;
-
       let orderData = {
         number: RecodNumber,
-        name: req.body.name,
-        city: req.body.city,
+        name: req.body.clientName,
+        city: req.body.clientPhone,
         date: new Date(),
         phone: req.body.phone,
         quantity: req.body.quantity,
