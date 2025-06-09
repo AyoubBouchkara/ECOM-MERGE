@@ -38,6 +38,31 @@ body{
     gap: 2rem; 
 }
 
+/* Landing page */
+.lp-dorpsDown-container{
+  width: 100%;
+}
+.custom-dropdown {
+  width: 100% !important;
+  margin-bottom: 10px;
+}
+.custom-dropdown .p-dropdown {
+  width: 100%;
+}
+.lp-name-inpt{
+  width: 100%;
+  height: 45px;
+  padding-left: 18px;
+  border-radius: 10px;
+  border: 1px solid #ced4da;
+}
+.lp-name-inpt:focus{
+  border: #0755c2;
+  box-shadow: 0 0 0 0.2rem rgba(7, 85, 194, 0.25);
+}
+
+/*  */
+
 .erp-form {
     width: 300px; /* ou une autre largeur fixe */
     padding: 1rem;

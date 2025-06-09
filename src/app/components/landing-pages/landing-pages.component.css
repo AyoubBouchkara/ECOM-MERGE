@@ -27,7 +27,7 @@
   background-color: #1149ff; /* green */
   color: white;
 }
-.card {
+.lp-card {
   border: 1px solid #ccc;
   border-radius: 8px;
   padding: 12px;
@@ -39,13 +39,14 @@
 .preview-section {
   margin-top: 10px;
   border: 1px solid #eeee;
-  height: 500px;
+  height: auto;
   overflow: hidden;
 }
 .preview-section img{
   height: auto;
   width: 100%;
 }
+
 /*
 
 .customization-panel {

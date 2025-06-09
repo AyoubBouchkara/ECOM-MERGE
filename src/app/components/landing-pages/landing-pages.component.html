@@ -1,5 +1,5 @@
 <div class="templates-container">
-  <div *ngFor="let template of templates" class="card">
+  <div *ngFor="let template of templates" class="lp-card">
     <label class="template-option">
       <input 
         type="radio"
@@ -34,31 +34,26 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body" style="text-align: center;">
-        <div class="input-group mb-3">
+        <div class="lp-dorpsDown-container">
           <p-dropdown 
             [options]="storeList" 
             [(ngModel)]="selectedStore"
             (onChange)="onStoreChange($event)"
             optionLabel="name" 
-            placeholder="Select store"
-            class="form-control"
-          >
+            placeholder="-- Select store --"
+            styleClass="custom-dropdown">
           </p-dropdown>
-        </div>
-        <div class="input-group mb-3">
           <p-dropdown 
             [options]="productList"
             [(ngModel)]="selectedProduct"
             (onChange)="onProductChange($event.value)"
             optionLabel="productName"
-            placeholder="Choose a product"
-            class="form-control"
-            style="width: 100%;"
-          >
+            placeholder="-- Choose product --"
+            styleClass="custom-dropdown">
           </p-dropdown>
         </div>
         <form [formGroup]="landingForm" class="input-group mb-3">
-          <input type="text" formControlName="lp_Name" class="form-control" placeholder="Nom de la landing page" />
+          <input type="text" formControlName="lp_Name" class="lp-name-inpt" placeholder="Landing page name" />
         </form>
         <button class="btn btn-primary" (click)="generateLandingPage()">Generate Landing Page</button>
       </div>
