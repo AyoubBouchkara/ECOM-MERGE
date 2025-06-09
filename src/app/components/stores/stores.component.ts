@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { count } from 'rxjs';
 import { MainService } from 'src/app/services/main.service';
 
 @Component({
@@ -62,6 +63,7 @@ export class StoresComponent {
   getProductList() {
     this.mainService.getPurchases().subscribe(vl => this.productList = vl);
   }
+
   getLandingPage() {
     this.mainService.getLandingPage().subscribe(res => this.landingPage = res)
   }
@@ -70,10 +72,13 @@ export class StoresComponent {
     if (!this.selectedStoreId) { return null; }
     return this.productList.filter(p => p.storeId === this.selectedStoreId);
   }
-
+  
   get filteredLandingPage() {
+    const productId = Object.entries(this.productList.map(product => product._id));
     if (!this.selectedStoreId) { return []; }
-    return this.landingPage.filter(lp => lp.storeId === this.selectedStoreId);
+    for(var i=0; i<productId.length;i++){
+        return this.landingPage.filter(lp => lp.p_id === this.productList[i]._id); // && lp.p_id === 
+    }
   }
 
   onChangeStoreId(storeId) {

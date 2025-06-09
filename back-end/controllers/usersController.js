@@ -44,7 +44,6 @@ router.post('/login', async(req, res) => {
     const password = req.body.password;
 
     const user = await Users.findOne( { $or: [{name: username}, {userName: username} ]}).lean();
-    console.log('user: ', user);
     if (user)
         var nameCompare = user.isDeliveryMan ? user.userName : user.name;
 
