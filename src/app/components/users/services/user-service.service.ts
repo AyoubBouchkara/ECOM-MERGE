@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { users } from '../user';
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 @Injectable({
   providedIn: 'root'
@@ -9,15 +10,22 @@ import { users } from '../user';
 export class UserServiceService {
   private apiUrl = 'http://localhost:3000/';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private jwt: JwtHelperService,) { }
+
+  getUsername(){
+    const token = this.jwt.decodeToken(localStorage.getItem('token'));
+    return token?.name || '';
+  }
 
   /****************Read-users********************/
   onRead(): Observable<users[]>{
-    return this.http.get<users[]>(this.apiUrl + 'users');
+    let params = { sCode: this.getUsername() };
+    return this.http.get<users[]>(this.apiUrl + 'users', { params });
   }
 
   /****************Register********************/
   onRegister(data): Observable<users>{
+    console.log('data: ', data);
     return this.http.post<users>(this.apiUrl+ 'register', data);
   } 
 
@@ -27,7 +35,7 @@ export class UserServiceService {
   }
 
   /****************Delete-users********************/
-  onDelete(data): Observable<users>{
-    return this.http.delete<users>(this.apiUrl + 'users/'+ data._id);
+  onDelete(id): Observable<users>{
+    return this.http.delete<users>(this.apiUrl + 'users/'+ id);
   }
 }

@@ -39,4 +39,9 @@ export class GuardService {
     return decodeToken.isAdmin;
   }
 
+  isDeliveryMan(): boolean{
+    const decodeToken = this.jwtHelper.decodeToken(localStorage.getItem('token'));
+    return decodeToken.isDeliveryMan;
+  }
+
 }

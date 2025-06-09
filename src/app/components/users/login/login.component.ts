@@ -28,7 +28,10 @@ export class LoginComponent {
     this.authService.login(data).subscribe(
       todos => {
         localStorage.setItem('token', todos.token);
-        this.router.navigate(['/']);  
+        if (this.authService.isAdmin())
+          this.router.navigate(['/']);
+        else if (this.authService.isDeliveryMan())
+          this.router.navigate(['/delivery']);
       },
       error =>{
         this.messageService.add({ severity: 'error', summary: 'Error', detail: error.error.message});

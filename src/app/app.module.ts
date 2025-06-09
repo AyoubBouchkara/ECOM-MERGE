@@ -39,6 +39,8 @@ import { LoginComponent } from './components/users/login/login.component';
 import { RegisterComponent } from './components/users/register/register.component';
 import { JwtHelperService, JWT_OPTIONS  } from '@auth0/angular-jwt';
 import { LoginGuard } from './guards/login.guard';
+import { IsAdminGuard } from './guards/is-admin.guard';
+import { IsDeliveryManGuard } from './guards/is-delivery-man.guard';
 import { StoresComponent } from './components/stores/stores.component';
 import { DeliveryManComponent } from './components/delivery-man/delivery-man.component';
 // import { ProfileComponent } from './components/profile/profile.component';
@@ -51,47 +53,47 @@ const appRoutes: Routes = [
   { 
     path: '', 
     component: HomeComponent,
-    canActivate: [LoginGuard]
+    canActivate: [LoginGuard, IsAdminGuard],
   },
   { 
     path: 'profile', 
     component: ProfileComponent,
-    canActivate: [LoginGuard]
+    canActivate: [LoginGuard, IsDeliveryManGuard]
   },
   { 
     path: 'stores', 
     component: StoresComponent,
-    canActivate: [LoginGuard]
+    canActivate: [LoginGuard, IsAdminGuard]
   },{ 
     path: 'Deliveryman', 
     component: DeliveryManComponent,
-    canActivate: [LoginGuard]
+    canActivate: [LoginGuard, IsAdminGuard]
   },
   
   { 
     path: 'landpages', 
     component: LandingPagesComponent,
-    canActivate: [LoginGuard]
+    canActivate: [LoginGuard, IsAdminGuard]
   },
   {
     path: 'addErp',
     component: HomeErpComponent,
-    canActivate: [LoginGuard]
+    canActivate: [LoginGuard, IsAdminGuard]
   },
   {
     path: 'erp',
     component: ErpComponent,
-    canActivate: [LoginGuard]
+    canActivate: [LoginGuard, IsAdminGuard]
   },
   {
     path: 'losses-purchasses',
     component: LossesPurchasesComponent,
-    canActivate: [LoginGuard]
+    canActivate: [LoginGuard, IsAdminGuard]
   },
   {
     path: 'delivery',
     component: DeliveryComponent,
-    canActivate: [LoginGuard]
+    canActivate: [LoginGuard, IsDeliveryManGuard]
   },
   {
     path: 'login',

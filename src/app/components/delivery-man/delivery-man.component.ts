@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MainService } from 'src/app/services/main.service';
+import { UserServiceService } from '../users/services/user-service.service';
+import { users } from '../users/user';
+
 
 @Component({
   selector: 'app-delivery-man',
@@ -15,14 +18,16 @@ export class DeliveryManComponent implements OnInit {
   successMessage: string = '';
   successShow: boolean = false;
 
-  constructor(private deliveryManService: MainService) {}
+  constructor(private deliveryManService: MainService, private userService: UserServiceService,
+      private mainService: MainService
+  ) {}
 
   ngOnInit(): void {
     this.loadDeliveryMen();
   }
 
   loadDeliveryMen() {
-    this.deliveryManService.getDeliveryMen().subscribe(
+    this.userService.onRead().subscribe(
       (data) => {
         this.deliveryMen = data;
       },
@@ -33,7 +38,11 @@ export class DeliveryManComponent implements OnInit {
   }
 
   createDeliveryMan() {
-    this.deliveryManService.createDeliveryMan(this.deliveryMan).subscribe(
+    this.deliveryMan.isDeliveryMan = true;
+    this.deliveryMan.isAdmin = false;
+    this.deliveryMan.name = this.mainService.getUsername();
+    console.log('this.deliveryMan: ', this.deliveryMan);
+    this.userService.onRegister(this.deliveryMan).subscribe(
       () => {
         this.loadDeliveryMen();
         this.deliveryMan = {};
@@ -54,7 +63,7 @@ export class DeliveryManComponent implements OnInit {
   }
 
   updateDeliveryMan() {
-    this.deliveryManService.updateDeliveryMan(this.currentId, this.deliveryMan).subscribe(
+    this.userService.onUpdate(this.deliveryMan).subscribe(
       () => {
         this.loadDeliveryMen();
         this.editing = false;
@@ -70,7 +79,7 @@ export class DeliveryManComponent implements OnInit {
   }
 
   deleteDeliveryMan(id: string) {
-    this.deliveryManService.deleteDeliveryMan(id).subscribe(
+    this.userService.onDelete(id).subscribe(
       () => {
         this.loadDeliveryMen();
         this.successMessage = 'Delivery man deleted successfully!';

@@ -22,7 +22,7 @@ export class RegisterComponent {
       name: this.name,
       email: this.email,
       password: this.password,
-      isAdmin: false
+      isAdmin: true
     }
     
     this.userService.onRegister(data).subscribe(
