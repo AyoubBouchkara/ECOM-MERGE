@@ -18,5 +18,25 @@ export class LoginGuard{
       return false;
     }
   }
+
+  isAdmin(): boolean {
+    if(this.userService.isAdmin()){
+      return true;
+    }
+    else{
+      this.router.navigate(['/login']);
+      return false;
+    }
+  }
+
+  isDeliveryMan(): boolean {
+    if(this.userService.isDeliveryMan()){
+      return true;
+    }
+    else{
+      this.router.navigate(['/login']);
+      return false;
+    }
+  }
   
 }

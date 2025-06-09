@@ -9,6 +9,8 @@ import { GuardService } from 'src/app/guards/services/guard.service';
 })
 export class HeaderComponent {
   username;
+  isAdmin;
+  isDeliveryMan;
 
   constructor(
     private jwt: JwtHelperService,
@@ -18,9 +20,14 @@ export class HeaderComponent {
   ngOnInit(){
     const token = this.jwt.decodeToken(localStorage.getItem('token'));
     this.username = token.name;
+    this.isAdmin = this.authService.isAdmin();
+    this.isDeliveryMan = token.isDeliveryMan;
+    if (this.isDeliveryMan)
+      this.username = token.userName;
   }
 
   logOut(){
     this.authService.logout();
   }
+
 }

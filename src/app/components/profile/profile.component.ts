@@ -22,7 +22,7 @@ export class ProfileComponent implements OnInit {
     const token = localStorage.getItem('token');
     if (token && !this.jwtHelper.isTokenExpired(token)) {
       const decodedToken = this.jwtHelper.decodeToken(token);
-      this.username = decodedToken.name;
+      this.username = decodedToken.isDeliveryMan ? decodedToken.userName : decodedToken.name;
       this.email = decodedToken.email;
       this.id = decodedToken.id;
     } else {
