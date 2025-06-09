@@ -112,6 +112,7 @@ module.exports = app => {
         });
     });
     app.post('/landing-pages/generate', landingCtrl.generateLandingPage);
+    app.get('/landing-pages/getLink', landingCtrl.getLandingPageLink);
 
 
     // profile

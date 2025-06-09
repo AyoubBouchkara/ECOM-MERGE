@@ -5,6 +5,7 @@ import { Store } from '../Models/store.model';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Purchases } from '../purchases';
+import { LandingPage } from '../landingPage';
 import { JwtHelperService } from '@auth0/angular-jwt';
 
 const httpOptions = {
@@ -23,6 +24,7 @@ export class MainService {
   private apiUrlLosses = ' http://localhost:3000/losses/';
   private Url = 'http://localhost:3000/purchases/';
   private storeApi = 'http://localhost:3000/store/';
+  private lpApi = 'http://localhost:3000/landing-pages/getLink/';
 
   constructor(
     private http: HttpClient,
@@ -83,6 +85,11 @@ export class MainService {
   getPurchases(): Observable<Purchases[]>{
     let params = { sCode: this.getUsername() };
     return this.http.get<Purchases[]>(this.Url, { params });
+  }
+
+  getLandingPage(): Observable<LandingPage[]>{
+    let params = { sCode: this.getUsername() };
+    return this.http.get<LandingPage[]>(this.lpApi, { params });
   }
 
   addPurchases(data: FormData): Observable<any> {

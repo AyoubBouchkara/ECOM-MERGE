@@ -137,22 +137,20 @@
           <!-- Product Card -->
 
           <div class="col-6 col-md-4 col-lg-3"  *ngFor="let pr of filteredProducts">
-            <div
-              class="border rounded-4 shadow-sm h-100 d-flex flex-column align-items-center p-3 bg-light hover-shadow">
+            <div class="border rounded-4 shadow-sm h-100 d-flex flex-column p-3 bg-light hover-shadow">
               <img [src]="'http://localhost:3000/uploads/'+ pr.productImg1" alt="Product Image" class="img-fluid rounded mb-2"
                 style="max-height: 130px; object-fit: cover; width: 100%;" />
-              <h6 class="text-center fw-semibold mb-1 text-primary">{{ pr.productName }}</h6>
-              <h6>links :</h6>
-              <div *ngIf="pr.landingPages?.length">
-                <ul class="list-unstyled mt-2">
-                  <li *ngFor="let link of pr.landingPages">
-                    <a [href]="link" target="_blank" class="text-decoration-none">
-                      🔗 Voir la page
+              <h6 class="text-center fw-semibold mb-1 text-dark">{{ pr.productName }}</h6>
+              <div *ngFor="let lp of filteredLandingPage">
+                <ul class="list-unstyled mt-2" id="listLandingPages">
+                  <li>
+                    <a [href]="lp.path" target="_blank" class="text-decoration-none">
+                      {{ lp.lp_Name }}
                     </a>
                   </li>
                 </ul>
               </div>
-              <div *ngIf="!pr.landingPages?.length">
+              <div *ngIf="!filteredLandingPage?.length">
                 <small class="text-muted">Aucune landing page</small>
               </div>
             </div>
