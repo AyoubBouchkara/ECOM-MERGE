@@ -46,12 +46,12 @@
   height: auto;
   width: 100%;
 }
-/**/
+/*
 
 .customization-panel {
-  position: fixed; /* ou absolute selon besoin */
-  top: 80px; /* ajuste selon ta barre/header */
-  right: 20px; /* à droite */
+  position: fixed; ou absolute selon besoin
+  top: 80px;  ajuste selon ta barre/header 
+  right: 20px; à droite 
   width: 300px;
   background-color: #f9f9f9;
   border: 1px solid #ddd;
@@ -110,3 +110,4 @@
 .generate-button:hover {
   background-color: #0056b3;
 }
+*/

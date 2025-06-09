@@ -14,6 +14,7 @@ export class StoresComponent {
   successShow;
   storeId;
   productList;
+  landingPage;
   selectedStoreId;
 
   constructor(private mainService: MainService) {}
@@ -21,6 +22,7 @@ export class StoresComponent {
   ngOnInit() {
     this.getStores();
     this.getProductList();
+    this.getLandingPage();
   }
 
   getStores(): void {
@@ -60,13 +62,19 @@ export class StoresComponent {
   getProductList() {
     this.mainService.getPurchases().subscribe(vl => this.productList = vl);
   }
+  getLandingPage() {
+    this.mainService.getLandingPage().subscribe(res => this.landingPage = res)
+  }
 
   get filteredProducts() {
     if (!this.selectedStoreId) { return null; }
     return this.productList.filter(p => p.storeId === this.selectedStoreId);
   }
 
-  
+  get filteredLandingPage() {
+    if (!this.selectedStoreId) { return []; }
+    return this.landingPage.filter(lp => lp.storeId === this.selectedStoreId);
+  }
 
   onChangeStoreId(storeId) {
     //console.log('storeId: ', storeId);

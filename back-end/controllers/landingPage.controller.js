@@ -74,6 +74,7 @@ exports.generateLandingPage = async (req, res) => {
     // Save in DB
     const newLanding = new LandingPage({
         storeId,
+        p_id,
         lp_Name,
         path: landingPageUrl
     });
@@ -90,3 +91,13 @@ exports.generateLandingPage = async (req, res) => {
     res.status(500).json({ error: 'Failed to generate landing page' });
   }
 };
+exports.getLandingPageLink = async (req, res) =>{
+  try{
+      const sCode = req.query.sCode;
+      const infos = await LandingPage.find();//.sort({ _id: -1 }).lean()
+      res.status(200).json(infos);
+  }
+  catch(err){
+      res.status(500).json(err.message);
+  }
+}

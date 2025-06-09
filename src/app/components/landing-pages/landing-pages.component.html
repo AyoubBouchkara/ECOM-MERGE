@@ -3,6 +3,8 @@
     <label class="template-option">
       <input 
         type="radio"
+        data-bs-toggle="modal" 
+        data-bs-target="#CustomizationToggle"
         name="selectedTemplate"
         [value]="template"
         [(ngModel)]="selectedTemplate"
@@ -15,29 +17,51 @@
     <div class="preview-section">
       <img [src]="safeUrls[template.name]" class="card-img-top" alt="Preview">
     </div>
-  </div>
+  </div> 
 </div>
+
 <!-- Customization toggle window -->
-<div class="customization-panel" *ngIf="selectedTemplate">
-  <h3>Customize Template: {{selectedTemplate.name}}</h3>
-  <label>Select Store:</label>
-  <p-dropdown 
-    [options]="storeList" 
-    [(ngModel)]="selectedStore"
-    (onChange)="onStoreChange($event)"
-    optionLabel="name" 
-    placeholder="Sélectionne un store">
-  </p-dropdown>
-  <label>Select Product:</label>
-  <p-dropdown 
-    [options]="productList"
-    [(ngModel)]="selectedProduct"
-    (onChange)="onProductChange($event.value)"
-    optionLabel="productName"
-    placeholder="Choisir un produit">
-  </p-dropdown>
-  <form [formGroup]="landingForm">
-    <input type="text" formControlName="lp_Name" placeholder="Nom de la landing page" />
-  </form>
-  <button class="generate-button" (click)="generateLandingPage()">Generate Landing Page</button>
+<div class="modal fade" id="CustomizationToggle" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title w-100 text-center" id="exampleModalLabel">
+          Customize Template : 
+          <span style="color: rgb(65, 65, 255); font-weight: bold;">
+            {{selectedTemplate?.name}}
+          </span>
+        </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body" style="text-align: center;">
+        <div class="input-group mb-3">
+          <p-dropdown 
+            [options]="storeList" 
+            [(ngModel)]="selectedStore"
+            (onChange)="onStoreChange($event)"
+            optionLabel="name" 
+            placeholder="Select store"
+            class="form-control"
+          >
+          </p-dropdown>
+        </div>
+        <div class="input-group mb-3">
+          <p-dropdown 
+            [options]="productList"
+            [(ngModel)]="selectedProduct"
+            (onChange)="onProductChange($event.value)"
+            optionLabel="productName"
+            placeholder="Choose a product"
+            class="form-control"
+            style="width: 100%;"
+          >
+          </p-dropdown>
+        </div>
+        <form [formGroup]="landingForm" class="input-group mb-3">
+          <input type="text" formControlName="lp_Name" class="form-control" placeholder="Nom de la landing page" />
+        </form>
+        <button class="btn btn-primary" (click)="generateLandingPage()">Generate Landing Page</button>
+      </div>
+    </div>
+  </div>
 </div>
