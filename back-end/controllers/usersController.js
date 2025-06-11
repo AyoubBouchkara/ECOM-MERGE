@@ -51,7 +51,8 @@ router.post('/login', async(req, res) => {
             const passwordMatch = await bcrypt.compare(password, user.password);
             if(passwordMatch){
                 // Generate a JWT token
-                const token = jwt.sign({id: user._id, name: user.name, userName: user.userName, email: user.email, isAdmin: user.isAdmin, isDeliveryMan: user.isDeliveryMan }, 'secret', { expiresIn: '1h' });
+                const token = jwt.sign({id: user._id, name: user.name, userName: user.userName, email: user.email, isAdmin: user.isAdmin, isDeliveryMan: user.isDeliveryMan,phone: user.phone, 
+    Address: user.Address }, 'secret', { expiresIn: '1h' });
                 return res.status(200).json({ token });
             }
         }
@@ -60,23 +61,29 @@ router.post('/login', async(req, res) => {
 });
 
 router.put('/users/:id', async(req, res) => {
-    try{
-        const {id} = req.params;
+    try {
+        const { id } = req.params;
+
         const data = {
-            id: req.body._id,
             name: req.body.name,
             email: req.body.email,
-            password: await bcrypt.hash(req.body.password, 10),
-            isAdmin: req.body.isAdmin
+            isAdmin: req.body.isAdmin,
+            phone: req.body.phone,
+            Address: req.body.Address
+        };
+
+        // Only update password if provided
+        if (req.body.password && req.body.password.trim() !== '') {
+            data.password = await bcrypt.hash(req.body.password, 10);
         }
 
         await Users.findByIdAndUpdate(id, data);
         res.status(200).json('Update With Success!!');
-    }
-    catch(err){
+    } catch (err) {
         res.status(500).json(err.message);
     }
 });
+
 
 router.delete('/users/:id', async(req, res) => {
     try{

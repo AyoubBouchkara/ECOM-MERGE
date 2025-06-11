@@ -3,6 +3,9 @@
 @import "primeicons/primeicons.css";
 
 body{
+  
+  padding-top: 70px; /* adjust if navbar height changes */
+
     background: rgb(245, 245, 245);
     font-family: var(--font-family);
 }

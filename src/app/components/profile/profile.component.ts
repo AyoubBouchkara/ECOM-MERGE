@@ -1,6 +1,8 @@
-// src/app/profile/profile.component.ts
 import { Component, OnInit } from '@angular/core';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { HttpClient } from '@angular/common/http';
+
+declare var window: any; // For using Bootstrap modal JS API
 
 @Component({
   selector: 'app-profile',
@@ -10,9 +12,17 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 export class ProfileComponent implements OnInit {
   username: string | undefined;
   email: string | undefined;
+  phone: string | undefined;
+  address: string | undefined;
   id: string | undefined;
 
-  constructor(private jwtHelper: JwtHelperService) {}
+  editUsername: string = '';
+  editEmail: string = '';
+  editPhone: string = '';
+  editAddress: string = '';
+  editPassword: string = '';
+
+  constructor(private jwtHelper: JwtHelperService, private http: HttpClient) {}
 
   ngOnInit(): void {
     this.getUserInfo();
@@ -22,12 +32,62 @@ export class ProfileComponent implements OnInit {
     const token = localStorage.getItem('token');
     if (token && !this.jwtHelper.isTokenExpired(token)) {
       const decodedToken = this.jwtHelper.decodeToken(token);
+      console.log(decodedToken)
       this.username = decodedToken.isDeliveryMan ? decodedToken.userName : decodedToken.name;
       this.email = decodedToken.email;
+      this.phone = decodedToken.phone;
+      this.address = decodedToken.Address;
       this.id = decodedToken.id;
     } else {
-      // Handle token expiration or absence
       console.error('Token is invalid or expired');
     }
+  }
+
+  openEditModal(): void {
+    this.editUsername = this.username || '';
+    this.editEmail = this.email || '';
+    this.editPhone = this.phone || '';
+    this.editAddress = this.address || '';
+    this.editPassword = '';
+
+    const editModal = new window.bootstrap.Modal(document.getElementById('editProfileModal'));
+    editModal.show();
+  }
+
+  updateProfile(): void {
+    if (!this.id) {
+      console.error('User ID not found');
+      return;
+    }
+
+    const updatePayload: any = {
+      name: this.editUsername,
+      email: this.editEmail,
+      phone: this.editPhone,
+      Address: this.editAddress
+    };
+
+    if (this.editPassword && this.editPassword.trim() !== '') {
+      updatePayload.password = this.editPassword;
+    }
+    
+    this.http.put(`http://localhost:3000/users/${this.id}`, updatePayload).subscribe({
+      next: (res) => {
+        console.log('Profile updated successfully');
+        alert('Profile updated successfully!');
+        // Update local fields
+        this.username = this.editUsername;
+        this.email = this.editEmail;
+        this.phone = this.editPhone;
+        this.address = this.editAddress;
+        // Close modal
+        const editModal = window.bootstrap.Modal.getInstance(document.getElementById('editProfileModal'));
+        editModal.hide();
+      },
+      error: (err) => {
+        console.error('Error updating profile:', err);
+        alert('Failed to update profile');
+      }
+    });
   }
 }

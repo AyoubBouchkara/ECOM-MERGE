@@ -1,51 +1,58 @@
 <!--Start Our NavBar-->
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="container-fluid">
-      <a class="navbar-brand" [routerLink]="isDeliveryMan ? '/delivery' : '/'">ECOM<em class='text-info'> MERGE</em></a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav">
-          <li class="nav-item" *ngIf="isAdmin">
-            <a 
-              class='nav-link'
-              routerLink='/'
-              routerLinkActive="active" 
-              [routerLinkActiveOptions]="{exact:true}"
-            >
-              Home
-            </a>
-          </li>
-           <li class="nav-item" *ngIf="isAdmin">
-            <a class='nav-link' routerLink="Deliveryman" routerLinkActive="active">DeliveryMan</a> 
-          </li>
-          <li class="nav-item" *ngIf="isAdmin">
-            <a class='nav-link' routerLink="stores" routerLinkActive="active">Stores</a> 
-          </li>
-          <li class="nav-item" *ngIf="isAdmin">
-            <a class='nav-link' routerLink="landpages" routerLinkActive="active">Landing pages</a> 
-          </li>
-          <li class="nav-item" *ngIf="isAdmin">
-            <a class='nav-link' routerLink="addErp" routerLinkActive="active">Orders</a> 
-          </li>
-          <li class="nav-item" *ngIf="isAdmin || isDeliveryMan">
-            <a class='nav-link' routerLink="delivery" routerLinkActive="active">Delivery</a> 
-          </li>
-          <li class="nav-item" *ngIf="isAdmin">
-            <a class='nav-link' routerLink="losses-purchasses" routerLinkActive="active">Catalog</a> 
-          </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              {{username}}
-            </a>
-            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <li ><a class="dropdown-item" routerLink="profile">Profile</a></li>
-              <li><a class="dropdown-item" routerLink="login" (click)="logOut()">Log out</a></li>
-            </ul>
-          </li>
-        </ul>
-      </div>
+<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm py-3 fixed-top">
+  <div class="container-fluid">
+    <a class="navbar-brand fw-bold text-dark d-flex align-items-center" [routerLink]="isDeliveryMan ? '/delivery' : '/'">
+      ECOM<em class='text-info ms-1'>MERGE</em>
+    </a>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item" *ngIf="isAdmin">
+          <a class="nav-link fw-medium" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+            Home
+          </a>
+        </li>
+        <li class="nav-item" *ngIf="isAdmin">
+          <a class="nav-link fw-medium" routerLink="Deliveryman" routerLinkActive="active">DeliveryMan</a>
+        </li>
+        <li class="nav-item" *ngIf="isAdmin">
+          <a class="nav-link fw-medium" routerLink="stores" routerLinkActive="active">Stores</a>
+        </li>
+        <li class="nav-item" *ngIf="isAdmin">
+          <a class="nav-link fw-medium" routerLink="landpages" routerLinkActive="active">Landing pages</a>
+        </li>
+        <li class="nav-item" *ngIf="isAdmin">
+          <a class="nav-link fw-medium" routerLink="addErp" routerLinkActive="active">Orders</a>
+        </li>
+        <li class="nav-item" *ngIf="isAdmin || isDeliveryMan">
+          <a class="nav-link fw-medium" routerLink="delivery" routerLinkActive="active">Delivery</a>
+        </li>
+        <li class="nav-item" *ngIf="isAdmin">
+          <a class="nav-link fw-medium me-3" routerLink="losses-purchasses" routerLinkActive="active">Catalog</a>
+        </li>
+      </ul>
+
+      <!-- Profile Dropdown on right -->
+      <ul class="navbar-nav ">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="navbarDropdown" role="button"
+            data-bs-toggle="dropdown" aria-expanded="false">
+            <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" alt="avatar"
+              class="rounded-circle" style="width: 36px; height: 36px; object-fit: cover;">
+          </a>
+          <ul class="dropdown-menu dropdown-menu-end shadow-sm" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item" routerLink="profile">Profile</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item text-danger" routerLink="login" (click)="logOut()">Log out</a></li>
+          </ul>
+        </li>
+      </ul>
     </div>
+  </div>
 </nav>
 <!--End Our NavBar-->
