@@ -15,7 +15,7 @@
       </span>
     </label>
     <div class="preview-section">
-      <img [src]="safeUrls[template.name]" class="card-img-top" alt="Preview">
+      <img [src]="safeUrls[template.name]" class="card-img-top" alt="Aperçu">
     </div>
   </div> 
 </div>
@@ -26,12 +26,12 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title w-100 text-center" id="exampleModalLabel">
-          Customize Template : 
+          Personnaliser le Modèle : 
           <span style="color: rgb(65, 65, 255); font-weight: bold;">
             {{selectedTemplate?.name}}
           </span>
         </h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fermer"></button>
       </div>
       <div class="modal-body" style="text-align: center;">
         <div class="lp-dorpsDown-container">
@@ -40,7 +40,7 @@
             [(ngModel)]="selectedStore"
             (onChange)="onStoreChange($event)"
             optionLabel="name" 
-            placeholder="-- Select store --"
+            placeholder="-- Sélectionner un magasin --"
             styleClass="custom-dropdown">
           </p-dropdown>
           <p-dropdown 
@@ -48,14 +48,14 @@
             [(ngModel)]="selectedProduct"
             (onChange)="onProductChange($event.value)"
             optionLabel="productName"
-            placeholder="-- Choose product --"
+            placeholder="-- Choisir un produit --"
             styleClass="custom-dropdown">
           </p-dropdown>
         </div>
         <form [formGroup]="landingForm" class="input-group mb-3">
-          <input type="text" formControlName="lp_Name" class="lp-name-inpt" placeholder="Landing page name" />
+          <input type="text" formControlName="lp_Name" class="lp-name-inpt" placeholder="Nom de la page de destination" />
         </form>
-        <button class="btn btn-primary" (click)="generateLandingPage()">Generate Landing Page</button>
+        <button class="btn btn-primary" (click)="generateLandingPage()">Générer la Page de Destination</button>
       </div>
     </div>
   </div>

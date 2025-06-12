@@ -1,9 +1,9 @@
 <div class="erp-container container py-4">
   <div class="container mt-4">
-  <h2 class="text-center fw-bold text-uppercase text-primary mb-4">
-    Management of Losses and Bulk Purchases
-  </h2>
-</div>
+    <h2 class="text-center fw-bold text-uppercase text-primary mb-4">
+      Gestion des Pertes et Achats en Gros
+    </h2>
+  </div>
 
   <div class="row g-4">
     <!-- Add Losses -->
@@ -14,7 +14,7 @@
             class="btn px-4 py-2 fw-semibold"
             [ngClass]="lossesShow ? 'btn-danger' : 'btn-info'" 
             type="button" 
-            [value]="lossesShow ? 'Close' : 'Add Losses'"
+            [value]="lossesShow ? 'Fermer' : 'Ajouter des Pertes'"
             (click)="toggleLosses()" />
         </div>
         <app-add-losses 
@@ -32,7 +32,7 @@
             class="btn px-4 py-2 fw-semibold"
             [ngClass]="purchasesShow ? 'btn-danger' : 'btn-info'" 
             type="button" 
-            [value]="purchasesShow ? 'Close' : 'Add Bulk Purchases'"
+            [value]="purchasesShow ? 'Fermer' : 'Ajouter des Achats en Gros'"
             (click)="togglePurchases()" />
         </div>
         <app-add-purchases
@@ -55,15 +55,14 @@
     <strong>{{ successText }}</strong>
   </div>
 
-  <button type="button" class="btn-close ms-2" (click)="toggleSuccess()" aria-label="Close"></button>
+  <button type="button" class="btn-close ms-2" (click)="toggleSuccess()" aria-label="Fermer"></button>
 </div>
-
 
 <!-- Show Section -->
 <div class="showErp-container container mt-5">
   <div class="d-flex justify-content-end mb-3">
     <button type="button" class="btn btn-outline-info" data-bs-toggle="modal" data-bs-target="#filter">
-      <i class="fa-solid fa-filter me-2"></i> Filter
+      <i class="fa-solid fa-filter me-2"></i> Filtrer
     </button>
   </div>
   <div class="row g-4">
@@ -76,38 +75,31 @@
   </div>
 </div>
 
-<!-- Delete Alert -->
-<!--div  class="alert alert-success alert-dismissible fade show mx-3 mt-4" role="alert">
-  <i class="fa-solid fa-trash-can me-2"></i>
-  Deleted successfully!
-  <button type="button" class="btn-close" (click)="toggleSuccess()" aria-label="Close"></button>
-</div-->
-
 <!-- Filter Modal -->
 <div class="modal fade" id="filter" tabindex="-1" aria-labelledby="filterLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content shadow">
       <div class="modal-header bg-light">
-        <h5 class="modal-title" id="filterLabel">Filter By Date</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <h5 class="modal-title" id="filterLabel">Filtrer par Date</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fermer"></button>
       </div>
       <div class="modal-body">
-        <label class="fw-semibold mb-2">Losses</label>
+        <label class="fw-semibold mb-2">Pertes</label>
         <div class="input-group mb-4">
           <span class="input-group-text"><i class="fa-solid fa-calendar-days"></i></span>
           <input type="date" name="losses" [(ngModel)]="losses" class="form-control">
         </div>
 
-        <label class="fw-semibold mb-2">Purchases</label>
+        <label class="fw-semibold mb-2">Achats</label>
         <div class="input-group mb-2">
           <span class="input-group-text"><i class="fa-solid fa-calendar-days"></i></span>
           <input type="date" name="purchases" [(ngModel)]="purchases" class="form-control">
         </div>
       </div>
       <div class="modal-footer justify-content-between">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-outline-danger" (click)="clear()" data-bs-dismiss="modal">Clear</button>
-        <button type="button" class="btn btn-success text-white" (click)="filter()" data-bs-dismiss="modal">Filter</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+        <button type="button" class="btn btn-outline-danger" (click)="clear()" data-bs-dismiss="modal">Effacer</button>
+        <button type="button" class="btn btn-success text-white" (click)="filter()" data-bs-dismiss="modal">Filtrer</button>
       </div>
     </div>
   </div>
