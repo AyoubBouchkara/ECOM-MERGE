@@ -5,6 +5,7 @@ const orderDetailsSchema = mongoose.Schema({
     date: {type: Date},
     timeStart: { type: String },
     timeEnd: { type: String },
+    deliveryManId: { type: String },
     description: { type: String }
 });
 
@@ -22,7 +23,8 @@ const ordersSchema = mongoose.Schema(
         isConfirmed: { type: Boolean },
         orderDetails: orderDetailsSchema,
         cancellationReason: { type: String },
-        societeCode: { type: String }
+        deliveryManId: { type: String },
+        societeCode: { type: String },
     },
     { timestamps: true }
 )

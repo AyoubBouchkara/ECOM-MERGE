@@ -6,6 +6,9 @@ import * as ExcelJS from 'exceljs';
 import * as fs from 'file-saver';
 import { Workbook } from 'exceljs';
 import { formatDate } from '@angular/common';
+import { UserService } from '../users/login/services/user.service';
+import { UserServiceService } from '../users/services/user-service.service';
+import { GuardService } from 'src/app/guards/services/guard.service';
 
 @Component({
   selector: 'app-show-erp',
@@ -33,6 +36,8 @@ export class ShowErpComponent {
   //checked: boolean;
   confirmedOrderDate;
   confirmedOrderLocation;
+  deliveryManList;
+  selectedDeliveryMan;
   timeStart;
   timeEnd;
   orderUpdate: Pcinfo = {
@@ -45,14 +50,15 @@ export class ShowErpComponent {
     status: '',
     isConfirmed: false,
     orderDetails: [],
-    societeCode: ''
+    societeCode: '',
+    deliveryManId: ''
   };
   orderDetail = {
     location: '',
     date: Date,
     timeStart: '',
     timeEnd: '',
-    description: ''
+    description: '',
   };
   statusList = [
     { libelle: 'Delivered' },
@@ -64,7 +70,9 @@ export class ShowErpComponent {
   totalCanceled = 0;
 
   constructor(private mainService: MainService,
-    private confirmationService: ConfirmationService
+    private confirmationService: ConfirmationService,
+    private userService: UserServiceService,
+    private guardService: GuardService
   ) { }
 
   visible: boolean = false;
@@ -75,7 +83,7 @@ export class ShowErpComponent {
       date: Date,
       timeStart: '',
       timeEnd: '',
-      description: ''
+      description: '',
     };
     this.orderUpdate = null;
     this.orderUpdate = item;
@@ -84,12 +92,28 @@ export class ShowErpComponent {
   itemsCopy;
   ngOnInit(): void {
     this.visible = false;
+    this.getOrdersList();
+    this.getDeliveryMenList();
+  }
+
+  getOrdersList() {
     this.mainService.getOrders().subscribe((items) => {
       this.items = items;
       this.itemsCopy = this.items;
       this.calculRecap(this.items);
       this.items.sort((a, b) => b._id - a._id);
     });
+  }
+
+  getDeliveryMenList() {
+    this.userService.onRead().subscribe(
+      (data) => {
+        this.deliveryManList = data;
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
   }
 
   calculRecap(data){
@@ -109,12 +133,11 @@ export class ShowErpComponent {
       this.orderUpdate.status = 'Confirmed';
     }
     this.visible = false;
-    console.log('orderDetail', this.orderDetail);
+
     this.mainService.updatePurchase(this.orderUpdate, this.orderUpdate._id).subscribe(() => {
       this.ngOnInit();
+      this.successShow = true;
     });
-
-    this.successShow = true;
   }
 
   toggleSuccess(): void {

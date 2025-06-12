@@ -11,5 +11,6 @@ export interface Pcinfo{
     isConfirmed: boolean,
     cancellationReason?: string,
     orderDetails?: any,
+    deliveryManId?: string,
     societeCode: string,
 }

@@ -6,6 +6,7 @@ const Losses = require('../models/losses.model.js');
 exports.readData = async(req, res) => {
     try{
         const sCode = req.query.sCode;
+        console.log('enteeeeeeeer');
         const infos = await Order.find({ societeCode: sCode }).sort({ _id: -1 }).lean();
         res.status(200).json(infos);
     }
@@ -236,8 +237,8 @@ exports.getDataForDelivery = async(req, res) => {
         societeCode: sCode,
         $or: [ { status: 'Confirmed' }, { status: "Delivered" }, {$and: [ { status: "Canceled" }, { isConfirmed: true } ] }], 
         isConfirmed: true }).sort({ _id: -1 }).lean();
-
-      res.status(200).json(infos);
+        
+        res.status(200).json(infos);
   }
   catch(err){
       res.status(500).json(err.message);

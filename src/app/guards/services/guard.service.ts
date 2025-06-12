@@ -44,4 +44,9 @@ export class GuardService {
     return decodeToken.isDeliveryMan;
   }
 
+  getDeliveryManId(): string {
+    const decodeToken = this.jwtHelper.decodeToken(localStorage.getItem('token'));
+    return decodeToken.id;
+  }
+
 }

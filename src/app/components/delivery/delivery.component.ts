@@ -7,6 +7,7 @@ import { Workbook } from 'exceljs';
 import * as ExcelJS from 'exceljs';
 import * as fs from 'file-saver';
 import { jsPDF } from "jspdf";
+import { GuardService } from 'src/app/guards/services/guard.service';
 
 @Component({
   selector: 'app-delivery',
@@ -60,7 +61,8 @@ export class DeliveryComponent implements OnChanges {
   totalRecords = 0;
 
   constructor(private mainService: MainService,
-    private confirmationService: ConfirmationService
+    private confirmationService: ConfirmationService,
+    private guardService: GuardService
   ) { }
 
   confirmOrderDetails(data) {
@@ -78,7 +80,13 @@ export class DeliveryComponent implements OnChanges {
   ngOnInit(): void {
     this.visible = false;
     this.mainService.getDataForDelivery().subscribe((items) => {
-      this.items = items;
+
+      if (this.guardService.isAdmin())
+        this.items = items;
+      else        
+        this.items = items.filter(vl => vl.deliveryManId?.toString() == this.guardService.getDeliveryManId()?.toString())
+
+
       this.itemsCopy = this.items;
       this.calculRecap(this.items);
       this.items.sort((a, b) => b._id - a._id);
