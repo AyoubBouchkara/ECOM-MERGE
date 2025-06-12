@@ -51,7 +51,16 @@
             placeholder="-- Choisir un produit --"
             styleClass="custom-dropdown">
           </p-dropdown>
-        </div>
+          <div class="payment-mode-container" *ngFor="let mode of PaymentModeList">
+              <label  class="custom-checkbox">
+                <input 
+                  type="checkbox" 
+                  [value]="mode" 
+                  (change)="onPaymentModeChange(mode, $event)" 
+                />
+                <span>{{ mode }}</span>
+              </label>
+          </div>
         <form [formGroup]="landingForm" class="input-group mb-3">
           <input type="text" formControlName="lp_Name" class="lp-name-inpt" placeholder="Nom de la page de destination" />
         </form>

@@ -103,6 +103,12 @@ header h1 {
   margin: 20px 0;
   font-weight: bold;
 }
+#list-mode-payment{
+    display: inline-block;
+}
+#list-mode-payment{
+    display: inline-block;
+}
 
 .buy-button {
     background: #27ae60;

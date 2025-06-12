@@ -28,20 +28,20 @@ exports.generateLandingPage = async (req, res) => {
     const {
       p_id, p_Name, title, description, feature1, feature2, feature3,
       img1, img2, img3, quantity, Price, promoPrice, totalP,
-      dateP, storeId, dateCreation, societeCode, templateName, storeName, lp_Name
+      dateP, storeId, dateCreation, societeCode, templateName, storeName, lp_Name, selectedPaymentModes
     } = req.body;
 
     const templateFolderPath = path.join(__dirname, `../landing_pages_templates/${templateName}`);
     const templatePath = path.join(templateFolderPath, 'index.mustache');
     const template = fs.readFileSync(templatePath, 'utf8');
-
     const view = {
       p_id, p_Name, title, description,
       feature1, feature2, feature3,
       img1, img2, img3,
       quantity, Price, promoPrice, totalP,
-      dateP, dateCreation, storeName, lp_Name
+      dateP, dateCreation, storeName, lp_Name, selectedPaymentModes
     };
+      
     const renderedHTML = Mustache.render(template, view);
     const outputDir = path.join(__dirname, '../landing_pages_generated');
     if (!fs.existsSync(outputDir)) fs.mkdirSync(outputDir);
@@ -91,6 +91,7 @@ exports.generateLandingPage = async (req, res) => {
     res.status(500).json({ error: 'Failed to generate landing page' });
   }
 };
+
 exports.getLandingPageLink = async (req, res) =>{
   try{
       const sCode = req.query.sCode;

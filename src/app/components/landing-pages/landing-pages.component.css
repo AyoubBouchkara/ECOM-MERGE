@@ -47,6 +47,41 @@
   width: 100%;
 }
 
+/* ---- */
+.payment-mode-container{
+  display: inline-block;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+.custom-checkbox {
+  margin-inline-start: 8px;
+  display: inline-block;
+  padding: 10px;
+  border: 2px solid #ccc; /* Bordure par défaut */
+  border-radius: 5px; /* Coins arrondis */
+  cursor: pointer; /* Curseur de pointeur au survol */
+  transition: background-color 0.3s, border-color 0.3s; /* Transition pour l'effet de changement de couleur */
+}
+
+.custom-checkbox input {
+  display: none; /* Masquer la case à cocher */
+}
+
+.custom-checkbox input:checked + span {
+  background-color: #2b5dff; /* Couleur de fond lorsque coché */
+  color: white; /* Couleur du texte lorsque coché */
+  padding: 10px; /* Assurez-vous que le padding est appliqué */
+  border-radius: 5px; /* Gardez les coins arrondis */
+}
+
+/* Optionnel : Style pour le texte */
+.custom-checkbox span {
+  display: inline-block; /* Permet d'appliquer des styles */
+}
+
+
+/* ---- */
+
 /*
 
 .customization-panel {

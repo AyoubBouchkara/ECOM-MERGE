@@ -76,9 +76,10 @@ export class StoresComponent {
   get filteredLandingPage() {
     const productId = Object.entries(this.productList.map(product => product._id));
     if (!this.selectedStoreId) { return []; }
-    for(var i=0; i<productId.length;i++){
-        return this.landingPage.filter(lp => lp.p_id === this.productList[i]._id); // && lp.p_id === 
-    }
+    return this.landingPage.filter(lp => lp.storeId === this.selectedStoreId)
+    // for(var i=0; i<productId.length;i++){
+    //     return this.landingPage.filter(lp => lp.p_id === this.productList[i]._id); // && lp.p_id === 
+    // }
   }
 
   onChangeStoreId(storeId) {

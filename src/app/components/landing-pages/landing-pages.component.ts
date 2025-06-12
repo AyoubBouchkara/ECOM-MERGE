@@ -22,6 +22,10 @@ export class LandingPagesComponent implements OnInit {
 
   productList: any[] = [];
   selectedProduct: any;
+
+  PaymentModeList = ["Paypal", "Visa Card", "Cash On Delivery"];
+  selectedPaymentModes: string[] = []; 
+
   landingForm: FormGroup;
 
   selectedStore: any;
@@ -54,7 +58,8 @@ export class LandingPagesComponent implements OnInit {
       storeId: [''],
       dateCreation: [''],
       societeCode: [''],
-      storeName: ['']
+      storeName: [''],
+      selectedPaymentModes: ['']
     });
   }
 
@@ -96,6 +101,22 @@ export class LandingPagesComponent implements OnInit {
     this.selectedProduct = product;
   }
 
+  onPaymentModeChange(mode: string, event: Event): void {
+    const inputElement = event.target as HTMLInputElement; // Cast de Event à HTMLInputElement
+
+    if (inputElement.checked) {
+      // Ajouter le mode de paiement si coché
+      this.selectedPaymentModes.push(mode);
+    } else {
+      // Retirer le mode de paiement s'il est décoché
+      const index = this.selectedPaymentModes.indexOf(mode);
+      if (index > -1) {
+        this.selectedPaymentModes.splice(index, 1);
+      }
+    }
+  }
+
+
   selectTemplate(template: any): void {
     this.selectedTemplate = template;
   }
@@ -135,6 +156,7 @@ export class LandingPagesComponent implements OnInit {
       societeCode: product.societeCode,
       templateName: template.name,
       storeName: this.storeName,
+      selectedPaymentModes: this.selectedPaymentModes
     };
 
     this.http.post('http://localhost:3000/landing-pages/generate', formData).subscribe(
