@@ -6,7 +6,7 @@
     </a>
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Basculer la navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
 
@@ -14,26 +14,26 @@
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item" *ngIf="isAdmin">
           <a class="nav-link fw-medium" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
-            Home
+            Accueil
           </a>
         </li>
         <li class="nav-item" *ngIf="isAdmin">
-          <a class="nav-link fw-medium" routerLink="Deliveryman" routerLinkActive="active">DeliveryMan</a>
+          <a class="nav-link fw-medium" routerLink="Deliveryman" routerLinkActive="active">Livreur</a>
         </li>
         <li class="nav-item" *ngIf="isAdmin">
-          <a class="nav-link fw-medium" routerLink="stores" routerLinkActive="active">Stores</a>
+          <a class="nav-link fw-medium" routerLink="stores" routerLinkActive="active">Magasins</a>
         </li>
         <li class="nav-item" *ngIf="isAdmin">
-          <a class="nav-link fw-medium" routerLink="landpages" routerLinkActive="active">Landing pages</a>
+          <a class="nav-link fw-medium" routerLink="landpages" routerLinkActive="active">Pages de destination</a>
         </li>
         <li class="nav-item" *ngIf="isAdmin">
-          <a class="nav-link fw-medium" routerLink="addErp" routerLinkActive="active">Orders</a>
+          <a class="nav-link fw-medium" routerLink="addErp" routerLinkActive="active">Commandes</a>
         </li>
         <li class="nav-item" *ngIf="isAdmin || isDeliveryMan">
-          <a class="nav-link fw-medium" routerLink="delivery" routerLinkActive="active">Delivery</a>
+          <a class="nav-link fw-medium" routerLink="delivery" routerLinkActive="active">Livraison</a>
         </li>
         <li class="nav-item" *ngIf="isAdmin">
-          <a class="nav-link fw-medium me-3" routerLink="losses-purchasses" routerLinkActive="active">Catalog</a>
+          <a class="nav-link fw-medium me-3" routerLink="losses-purchasses" routerLinkActive="active">Catalogue</a>
         </li>
       </ul>
 
@@ -46,9 +46,9 @@
               class="rounded-circle" style="width: 36px; height: 36px; object-fit: cover;">
           </a>
           <ul class="dropdown-menu dropdown-menu-end shadow-sm" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" routerLink="profile">Profile</a></li>
+            <li><a class="dropdown-item" routerLink="profile">Profil</a></li>
             <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item text-danger" routerLink="login" (click)="logOut()">Log out</a></li>
+            <li><a class="dropdown-item text-danger" routerLink="login" (click)="logOut()">Déconnexion</a></li>
           </ul>
         </li>
       </ul>

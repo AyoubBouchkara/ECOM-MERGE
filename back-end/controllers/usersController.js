@@ -39,6 +39,7 @@ router.post('/register', async(req, res) =>{
 });
 
 /*************Login************/
+
 router.post('/login', async(req, res) => {
     let username = req.body.name;
     const password = req.body.password;
@@ -51,8 +52,11 @@ router.post('/login', async(req, res) => {
             const passwordMatch = await bcrypt.compare(password, user.password);
             if(passwordMatch){
                 // Generate a JWT token
-                const token = jwt.sign({id: user._id, name: user.name, userName: user.userName, email: user.email, isAdmin: user.isAdmin, isDeliveryMan: user.isDeliveryMan,phone: user.phone, 
-    Address: user.Address }, 'secret', { expiresIn: '1h' });
+                const token = jwt.sign(
+                    {id: user._id, name: user.name, userName: user.userName, email: user.email, 
+                    isAdmin: user.isAdmin, isDeliveryMan: user.isDeliveryMan,phone: user.phone, 
+                      Address: user.Address }, 'secret', { expiresIn: '1h' }
+                    );
                 return res.status(200).json({ token });
             }
         }
