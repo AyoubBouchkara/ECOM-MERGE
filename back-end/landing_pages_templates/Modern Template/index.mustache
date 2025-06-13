@@ -50,7 +50,36 @@
         <li>✅ {{feature2}}</li>
         <li>✅ {{feature3}}</li>
       </ul>
-      <div class="price">{{promoPrice}} DHs</div>
+      <div class="price">
+        <lable>Price : </lable><span>{{promoPrice}}</span> DHs
+      </div>
+      <hr>
+      <ul class="peyementModeListSection">
+        <h6>Payment by :</h6>
+        {{#value1}}
+          <li>
+            <input type="radio" name="payementMode" id="Paypal" value="Paypal"/>
+            <i class="fa-brands fa-cc-paypal"></i>
+            <label for="Paypal">Paypal</label>
+          </li>
+        {{/value1}}
+
+        {{#value2}}
+          <li>
+            <input type="radio" name="payementMode" id="Visa-Card" value="Visa Card"/>
+            <i class="fa-brands fa-cc-visa"></i>
+            <label for="Visa-Card">Visa Card</label>
+          </li>
+        {{/value2}}
+
+        {{#value3}}
+          <li>
+            <input type="radio" name="payementMode" id="Cash-On-Delivery" value="Cash On Delivery"/>
+            <i class="fa-solid fa-money-bills"></i>
+            <label for="Cash-On-Delivery">Cash On Delivery</label>
+          </li>
+        {{/value3}}
+      </ul>
       <button id="buyNowBtn">Buy Now</button>
     </div>
   </section>
@@ -58,6 +87,7 @@
   <footer class="footer">
     <p>&copy; 2025 {{storeName}}. All rights reserved.</p>
   </footer>
+  <script src="https://kit.fontawesome.com/18b3b89176.js" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js" integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO" crossorigin="anonymous"></script>
   <script src="script.js"></script>
 </body>

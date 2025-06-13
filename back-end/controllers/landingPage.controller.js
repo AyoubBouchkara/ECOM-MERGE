@@ -34,12 +34,15 @@ exports.generateLandingPage = async (req, res) => {
     const templateFolderPath = path.join(__dirname, `../landing_pages_templates/${templateName}`);
     const templatePath = path.join(templateFolderPath, 'index.mustache');
     const template = fs.readFileSync(templatePath, 'utf8');
+
     const view = {
       p_id, p_Name, title, description,
       feature1, feature2, feature3,
       img1, img2, img3,
-      quantity, Price, promoPrice, totalP,
-      dateP, dateCreation, storeName, lp_Name, selectedPaymentModes
+      quantity, Price, promoPrice, totalP, storeName,
+      value1: selectedPaymentModes.includes("Paypal"),
+      value2: selectedPaymentModes.includes("Visa Card"),
+      value3: selectedPaymentModes.includes("Cash On Delivery"),
     };
       
     const renderedHTML = Mustache.render(template, view);

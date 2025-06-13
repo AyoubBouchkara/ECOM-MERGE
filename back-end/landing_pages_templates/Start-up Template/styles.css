@@ -116,6 +116,24 @@ header h1 {
     transition: background 0.3s;
 }
 
+/* -- payement section */
+  .peyementModeListSection{
+    list-style: none;
+    margin-left: 0px;
+    padding-left: 0px;
+  }
+  .peyementModeListSection li{
+    margin-left: 19px;
+  }
+  .peyementModeListSection li label{
+      cursor: pointer;
+  }
+  .peyementModeListSection li label:hover{
+    font-weight: 500;
+    color: rgb(52, 52, 255);
+  }
+  /* -- payement section */
+
 .buy-button:hover {
     background: #2ecc71;
 }

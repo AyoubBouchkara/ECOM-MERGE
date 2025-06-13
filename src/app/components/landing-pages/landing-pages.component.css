@@ -56,7 +56,7 @@
 .custom-checkbox {
   margin-inline-start: 8px;
   display: inline-block;
-  padding: 10px;
+  padding: 8px;
   border: 2px solid #ccc; /* Bordure par défaut */
   border-radius: 5px; /* Coins arrondis */
   cursor: pointer; /* Curseur de pointeur au survol */
@@ -64,19 +64,18 @@
 }
 
 .custom-checkbox input {
-  display: none; /* Masquer la case à cocher */
+  display: none;
 }
 
 .custom-checkbox input:checked + span {
-  background-color: #2b5dff; /* Couleur de fond lorsque coché */
-  color: white; /* Couleur du texte lorsque coché */
-  padding: 10px; /* Assurez-vous que le padding est appliqué */
-  border-radius: 5px; /* Gardez les coins arrondis */
+  background-color: #2b5dff;
+  color: white;
+  padding: 5px;
+  border-radius: 5px;
 }
 
-/* Optionnel : Style pour le texte */
 .custom-checkbox span {
-  display: inline-block; /* Permet d'appliquer des styles */
+  display: inline-block; 
 }
 
 
