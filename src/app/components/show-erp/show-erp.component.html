@@ -82,12 +82,12 @@
         <td>{{ item.number }}</td>
         <td>{{ item.name }}</td>
         <td>{{ item.date | date:'dd/MM/yyyy' }}</td>
-        <td>{{ item.city }}</td>
         <td>{{ item.phone }}</td>
+        <td>{{ item.city }}</td>
         <td>{{ item.purchasePrice }} DH</td>
         <td>{{ item.salePrice }} DH</td>
         <td>
-          <p-tag [severity]="getSeverity(item.status)" [value]="item.status"></p-tag>
+          <p-tag [severity]="getSeverity(item.status)" [title]="item.cancellationReason ? item.cancellationReason : ''" [value]="item.status"></p-tag>
         </td>
 
         <td>
@@ -107,27 +107,20 @@
 </div>
 
 <!--Success Section Start-->
-<div *ngIf="successShow" 
-     class="alert alert-success alert-dismissible fade show mt-4 d-flex justify-content-between align-items-center ms-auto me-3" 
-     style="max-width: 400px;" 
-     role="alert">
-     
+<div *ngIf="successShow"
+  class="alert alert-success alert-dismissible fade show position-fixed bottom-0 end-0 mb-4 me-4 d-flex justify-content-between align-items-center"
+  style="max-width: 400px; z-index: 1050;"
+  role="alert">
+
   <div>
     <i class="fa-solid fa-check-circle me-2"></i>
-    <strong>Updated successfully !!</strong>
+    <strong>Mis à jour avec succès !!</strong>
   </div>
 
   <button type="button" class="btn-close ms-2" (click)="toggleSuccess()" aria-label="Close"></button>
 </div>
-<!--Success Section End-->     
 
-  <!--Success Section Start-->
-  <div *ngIf="successShow" class="alert alert-success alert-dismissible fade show" role="alert">
-      <i class="fa-solid fa-check"></i>
-      Mis à jour avec succès !!
-      <button type="button" class="btn-close" (click)="toggleSuccess()"></button>
-  </div>
-  <!--Success Section End-->     
+<!--Success Section End-->        
 
   <!-- Modal Updated -->
   <div class="modal fade" id="update" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

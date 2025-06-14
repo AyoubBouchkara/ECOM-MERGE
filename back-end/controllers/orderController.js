@@ -24,9 +24,7 @@ exports.createData = async(req, res) => {
           return res.status(400).json({ error: 'Nom et téléphone sont obligatoires' });
       }
       let productDetails = await Purchase.findOne({'_id': req.body.productId});
-      
-      console.log('PRODUCT IS :', productDetails);
-      
+            
       let lastRecod = await Order.findOne({}).sort({'_id': -1});
       RecodNumber = lastRecod?.number ? lastRecod.number + 1 : 1;
       let orderData = {
