@@ -32,14 +32,15 @@ exports.createData = async(req, res) => {
       let orderData = {
         number: RecodNumber,
         name: req.body.clientName,
-        city: req.body.clientPhone,
+        city: req.body.city,
         date: new Date(),
-        phone: req.body.phone,
+        phone: req.body.clientPhone,
         quantity: req.body.quantity,
         purchasePrice: productDetails.purchasePrice,
         salePrice: productDetails.salePrice,
         status: "In progress",
-        societeCode: productDetails.societeCode
+        societeCode: productDetails.societeCode,
+        productId: req.body.productId
       }
       await Order.create(orderData);
       res.status(200).json(true);

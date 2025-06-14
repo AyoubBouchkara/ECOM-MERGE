@@ -24,6 +24,7 @@ const ordersSchema = mongoose.Schema(
         orderDetails: orderDetailsSchema,
         cancellationReason: { type: String },
         deliveryManId: { type: String },
+        productId: { type: String },
         societeCode: { type: String },
     },
     { timestamps: true }
