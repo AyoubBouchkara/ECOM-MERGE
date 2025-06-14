@@ -37,10 +37,10 @@ export class AddPurchasesComponent implements OnInit {
       feature1_P: [''],
       feature2_P: [''],
       feature3_P: [''],
-      quantityP: [0, [Validators.required, Validators.min(1)]],
-      purchasePrice: [0, [Validators.required, Validators.min(0)]],
-      salePrice: [0, [Validators.min(0)]],
-      stores: ['']
+      quantityP: ['', [Validators.required, Validators.min(1)]],
+      purchasePrice: ['', [Validators.required, Validators.min(0)]],
+      salePrice: ['', [Validators.min(0)]],
+      stores: ['', Validators.required]
     });
   }
 

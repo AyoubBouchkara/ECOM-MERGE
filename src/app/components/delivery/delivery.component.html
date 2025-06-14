@@ -75,7 +75,7 @@
         <td>
           <p-toast></p-toast>
           <p-confirmPopup></p-confirmPopup>
-          <span *ngIf="item.status == 'Confirmé'">
+          <span *ngIf="item.status == 'Confirmed'">
             <p-button (onClick)="confirm($event, item)" icon="pi pi-check" styleClass="p-button-rounded p-button-success p-button-text"></p-button>
             <p-button (onClick)="showDialog(item)" icon="pi pi-times" styleClass="p-button-rounded p-button-danger p-button-text"></p-button>
           </span>  

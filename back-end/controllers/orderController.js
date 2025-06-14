@@ -167,8 +167,8 @@ exports.calculProfits = async(req, res) => {
         {
           $group: {
             _id: null,
-            totalSale: { $sum: { $toDouble: "$sale" } },
-            purchasesTotal: { $sum: { $toDouble: "$purchase" } }
+            totalSale: { $sum: { $toDouble: "$salePrice" } },
+            purchasesTotal: { $sum: { $toDouble: "$purchasePrice" } }
           }
         },
         {
@@ -180,6 +180,8 @@ exports.calculProfits = async(req, res) => {
           }
         }
       ]);
+
+      console.log('totalMonthAmounts: ', totalMonthAmounts);
 
       const totalDayAmounts = await Order.aggregate([
         {
@@ -195,8 +197,8 @@ exports.calculProfits = async(req, res) => {
         {
           $group: {
             _id: null,
-            totalSale: { $sum: { $toDouble: "$sale" } },
-            purchasesTotal: { $sum: { $toDouble: "$purchase" } }
+            totalSale: { $sum: { $toDouble: "$salePrice" } },
+            purchasesTotal: { $sum: { $toDouble: "$purchasePrice" } }
           }
         },
         {
@@ -220,6 +222,8 @@ exports.calculProfits = async(req, res) => {
         monthProfits: monthProfits,
         dayProfits: dayProfits
     }
+
+    console.log('data: ', data);
 
     if (data)
         res.status(200).json(data);
