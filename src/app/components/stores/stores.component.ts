@@ -73,13 +73,8 @@ export class StoresComponent {
     return this.productList.filter(p => p.storeId === this.selectedStoreId);
   }
   
-  get filteredLandingPage() {
-    const productId = Object.entries(this.productList.map(product => product._id));
-    if (!this.selectedStoreId) { return []; }
-    return this.landingPage.filter(lp => lp.storeId === this.selectedStoreId)
-    // for(var i=0; i<productId.length;i++){
-    //     return this.landingPage.filter(lp => lp.p_id === this.productList[i]._id); // && lp.p_id === 
-    // }
+  filteredLandingPage(prId) {
+    return this.landingPage.filter(vl => vl.p_id === prId);
   }
 
   onChangeStoreId(storeId) {

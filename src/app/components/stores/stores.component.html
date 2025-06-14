@@ -141,7 +141,7 @@
               <img [src]="'http://localhost:3000/uploads/'+ pr.productImg1" alt="Product Image" class="img-fluid rounded mb-2"
                 style="max-height: 130px; object-fit: cover; width: 100%;" />
               <h6 class="text-center fw-semibold mb-1 text-dark">{{ pr.productName }}</h6>
-              <div *ngFor="let lp of filteredLandingPage">
+              <div *ngFor="let lp of filteredLandingPage(pr._id)">
                 <ul class="list-unstyled mt-2" id="listLandingPages">
                   <li>
                     <a [href]="lp.path" target="_blank" class="text-decoration-none">
