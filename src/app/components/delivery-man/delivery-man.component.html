@@ -1,5 +1,15 @@
 <!-- src/app/delivery-man/delivery-man.component.html -->
 <div class="container-lg mt-4">
+   <div class="row">
+      <div class="col">
+        <nav aria-label="breadcrumb" class="bg-body-tertiary rounded-3 p-3 mb-4">
+          <ol class="breadcrumb mb-0">
+            <li class="breadcrumb-item "><a href="/">Accueil</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Aperçu des Livreurs</li>
+          </ol>
+        </nav>
+      </div>
+    </div>
   <!-- Title Above the Form -->
   <div class="title-container w-full mb-3">
     <h5 class="form-title">Créer un Livreur</h5>
@@ -47,7 +57,7 @@
 
       <input [(ngModel)]="deliveryMan.password" name="password" type="password" class="form-control" placeholder="Mot de Passe" required />
     </div>
-    <button type="submit" class="btn btn-success ">{{ editing ? 'Mettre à jour' : 'Créer' }}</button>
+    <button type="submit" class="btn btn-success ">{{ editing ? 'modifier' : 'Créer' }}</button>
     <button type="button" *ngIf="editing" (click)="cancelEdit()" class="btn btn-secondary ml-5">Annuler</button>
   </form>
 
@@ -77,7 +87,7 @@
           <td>{{ man.licenseNumber }}</td>
           <td>{{ man.email }}</td>
           <td class="">
-            <button (click)="editDeliveryMan(man)" class="btn btn-primary btn-sm">Mettre à jour</button>
+            <button (click)="editDeliveryMan(man)" class="btn btn-primary btn-sm">modifier</button>
             <button (click)="deleteDeliveryMan(man._id)" class="btn btn-danger btn-sm ms-2">Supprimer</button>
           </td>
         </tr>
