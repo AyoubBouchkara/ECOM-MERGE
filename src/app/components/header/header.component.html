@@ -35,10 +35,7 @@
         <li class="nav-item" *ngIf="isAdmin">
           <a class="nav-link fw-medium me-3" routerLink="losses-purchasses" routerLinkActive="active">Catalogue</a>
         </li>
-      </ul>
-
-      <!-- Profile Dropdown on right -->
-      <ul class="navbar-nav ">
+        
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="navbarDropdown" role="button"
             data-bs-toggle="dropdown" aria-expanded="false">
@@ -51,7 +48,11 @@
             <li><a class="dropdown-item text-danger" routerLink="login" (click)="logOut()">Déconnexion</a></li>
           </ul>
         </li>
+      
       </ul>
+
+      <!-- Profile Dropdown on right -->
+      
     </div>
   </div>
 </nav>
