@@ -25,7 +25,7 @@ exports.createData = async(req, res) => {
       }
       let productDetails = await Purchase.findOne({'_id': req.body.productId});
       
-      //console.log('PRODUCT IS :', productDetails);
+      console.log('PRODUCT IS :', productDetails);
       
       let lastRecod = await Order.findOne({}).sort({'_id': -1});
       RecodNumber = lastRecod?.number ? lastRecod.number + 1 : 1;

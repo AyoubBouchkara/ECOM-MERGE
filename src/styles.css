@@ -30,7 +30,11 @@ body{
 .home-container{
     margin: 50px auto;
 }
-
+.product-magasin-link{
+  text-transform: uppercase;
+  color: #0069ff;
+  font-weight: bolder;
+}
 
 .stores-container {
     display: flex;

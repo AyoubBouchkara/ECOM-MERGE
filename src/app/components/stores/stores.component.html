@@ -1,7 +1,7 @@
 <div class="container py-5">
   <!-- Header -->
   <div class="text-center mb-5">
-    <h2 class="fw-bold text-dark">🛒 Liste des Stores</h2>
+    <h2 class="fw-bold text-dark">🛒 Liste des Magasins</h2>
     <p class="text-muted">Gérez vos boutiques de manière simple et élégante.</p>
   </div>
 
@@ -51,7 +51,7 @@
   <div class="text-center mt-5">
     <button class="btn btn-outline-primary btn-lg rounded-pill px-4 shadow-sm" data-bs-toggle="modal"
       data-bs-target="#addStoreModal">
-      <i class="bi bi-plus-circle me-2"></i>Ajouter un Store
+      <i class="bi bi-plus-circle me-2"></i>Ajouter un Magasin
     </button>
   </div>
 
@@ -61,12 +61,12 @@
       <div class="modal-content border-0 rounded-4 shadow">
         <form (ngSubmit)="addStore()">
           <div class="modal-header bg-primary text-white rounded-top-4">
-            <h5 class="modal-title" id="addStoreModalLabel">➕ Nouveau Store</h5>
+            <h5 class="modal-title" id="addStoreModalLabel">Nouveau magasin</h5>
             <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
           </div>
           <div class="modal-body bg-light">
             <div class="mb-3">
-              <label for="storeName" class="form-label">Nom du Store</label>
+              <label for="storeName" class="form-label">Nom du magasin</label>
               <input type="text" id="storeName" class="form-control" [(ngModel)]="newStore.name" name="name" required>
             </div>
             <div class="mb-3">
@@ -128,7 +128,7 @@
     <div class="modal-content">
 
       <div class="modal-header">
-        <h5 class="modal-title w-100 text-center" id="exampleModalLabel">Store Products</h5>
+        <h5 class="modal-title w-100 text-center" id="exampleModalLabel">Magasin Products</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
 
@@ -144,8 +144,9 @@
               <div *ngFor="let lp of filteredLandingPage(pr._id)">
                 <ul class="list-unstyled mt-2" id="listLandingPages">
                   <li>
-                    <a [href]="lp.path" target="_blank" class="text-decoration-none">
+                    <a [href]="lp.path" target="_blank" class="product-magasin-link ">
                       {{ lp.lp_Name }}
+                      <i class="pi pi-eye"></i>
                     </a>
                   </li>
                 </ul>

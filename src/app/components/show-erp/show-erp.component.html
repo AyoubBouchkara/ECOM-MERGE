@@ -1,36 +1,35 @@
-  <div class="container mt-4">
+<div class="container mt-4">
   <h2 class="text-center fw-bold text-uppercase text-primary mb-4">
-    Orders
+    Commandes
   </h2>
 </div>
 <div class="first-section container py-4">
-
 
   <div class="row align-items-center">
     <div class="col-lg-6 recap-container d-flex gap-4 flex-wrap">
       <div class="recap-card bg-light shadow-sm">
         <div class="recap-number text-dark">{{ totalRecords }}</div>
-        <div class="recap-label text-muted">Total records</div>
+        <div class="recap-label text-muted">Total des enregistrements</div>
       </div>
       <div class="recap-card bg-light shadow-sm">
         <div class="recap-number text-success">{{ totalDelevered }}</div>
-        <div class="recap-label text-success">Delivered</div>
+        <div class="recap-label text-success">Livré</div>
       </div>
       <div class="recap-card bg-light shadow-sm">
         <div class="recap-number text-danger">{{ totalCanceled }}</div>
-        <div class="recap-label text-danger">Canceled</div>
+        <div class="recap-label text-danger">Annulé</div>
       </div>
     </div>
 
     <div class="col-lg-6 d-flex justify-content-end gap-3 action-icons">
       <a routerLink="/losses-purchasses" class="icon-wrapper">
-        <img src="https://cloud.digiparc.com/assets/icon40/add.svg" alt="add" />
+        <img src="https://cloud.digiparc.com/assets/icon40/add.svg" alt="ajouter" />
       </a>
       <div class="icon-wrapper" (click)="downloadExel()">
         <img src="https://cloud.digiparc.com/assets/icon40/excel.svg" alt="excel" />
       </div>
       <div class="icon-wrapper" (click)="clear()">
-        <img src="https://cloud.digiparc.com/assets/icon40/refresh.svg" alt="refresh" />
+        <img src="https://cloud.digiparc.com/assets/icon40/refresh.svg" alt="rafraîchir" />
       </div>
     </div>
   </div>
@@ -39,7 +38,7 @@
 <div class="showErp-container container py-3">
   <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-3">
     <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-      <i class="fa fa-filter me-1"></i> Filter
+      <i class="fa fa-filter me-1"></i> Filtrer
     </button>
 
     <div class="search input-group w-auto">
@@ -52,25 +51,22 @@
         [(ngModel)]="search"
         (ngModelChange)="filter()"
         class="form-control"
-        placeholder="Phone Number"
+        placeholder="Numéro de téléphone"
       />
     </div>
   </div>
 
-
-
-
   <table>
     <tr>
         <th>N.C</th>
-        <th>Product Name</th>
+        <th>Nom du Produit</th>
         <th>Date</th>
-        <th>City</th>
-        <th>Phone Number</th>
-        <th>Sale Price</th>
-        <th>Purchase Price</th>
-        <th>Status</th>
-        <th>Confirmed</th>
+        <th>Numéro de Téléphone</th>
+        <th>Ville</th>
+        <th>Prix de Vente</th>
+        <th>Prix d'Achat</th>
+        <th>Statut</th>
+        <th>Confirmé</th>
     </tr>
     <tr *ngFor="let item of items | paginate: { itemsPerPage: count, currentPage: p }">
         <td>{{ item.number }}</td>
@@ -88,20 +84,12 @@
           <p-toast></p-toast>
           <p-confirmPopup></p-confirmPopup>
           <span *ngIf="item.status == 'In progress'">
-            <p-button (onClick)="showDialog(item)"  icon="pi pi-check" styleClass="p-button-rounded p-button-success p-button-text"></p-button>
+            <p-button (onClick)="showDialog(item)" icon="pi pi-check" styleClass="p-button-rounded p-button-success p-button-text"></p-button>
             <p-button (click)="confirm($event, item)" icon="pi pi-times" styleClass="p-button-rounded p-button-danger p-button-text"></p-button>
           </span>  
-          <!--i 
-                class="fa-solid fa-pen-to-square btn btn-info" 
-                data-bs-toggle="modal" 
-                data-bs-target="#update"
-                (click)="getId(item)">
-            </i-->
         </td>
-
-
     </tr>
-</table>
+  </table>
 
 <!--Including the pagination control.-->
 <div class="text-center">
@@ -123,86 +111,88 @@
 </div>
 <!--Success Section End-->     
 
+  <!--Success Section Start-->
+  <div *ngIf="successShow" class="alert alert-success alert-dismissible fade show" role="alert">
+      <i class="fa-solid fa-check"></i>
+      Mis à jour avec succès !!
+      <button type="button" class="btn-close" (click)="toggleSuccess()"></button>
+  </div>
+  <!--Success Section End-->     
 
-
-
-
-
- <!-- Modal Updated -->
- <div class="modal fade" id="update" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <!-- Modal Updated -->
+  <div class="modal fade" id="update" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Update</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          <h5 class="modal-title" id="exampleModalLabel">Mettre à jour</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fermer"></button>
         </div>
         <div class="modal-body">
             <div class="input-group mb-3">
                 <span class="input-group-text" id="basic-addon1">
                     <i class="fa-solid fa-pen-nib"></i>
                 </span>
-                <input type="text" name="nameEdit" [(ngModel)]="orderUpdate.name" class="form-control" placeholder="Product Name" aria-label="Username" aria-describedby="basic-addon1">
+                <input type="text" name="nameEdit" [(ngModel)]="orderUpdate.name" class="form-control" placeholder="Nom du Produit" aria-label="Nom d'utilisateur" aria-describedby="basic-addon1">
             </div>
             <div class="input-group mb-3">
                 <span class="input-group-text" id="basic-addon1">
                     <i class="fa-solid fa-city"></i>
                 </span>
-                <input type="text" name="cityEdit" [(ngModel)]="orderUpdate.city" class="form-control" placeholder="Customer City" aria-label="Username" aria-describedby="basic-addon1">
+                <input type="text" name="cityEdit" [(ngModel)]="orderUpdate.city" class="form-control" placeholder="Ville du Client" aria-label="Nom d'utilisateur" aria-describedby="basic-addon1">
             </div>
             <div class="input-group mb-3">
                 <span class="input-group-text" id="basic-addon1">
                     <i class="fa-solid fa-phone"></i>
                 </span>
-                <input type="text" name="phoneEdit" [(ngModel)]="orderUpdate.phone" class="form-control" placeholder="Customer Phone Number" aria-label="Username" aria-describedby="basic-addon1">
+                <input type="text" name="phoneEdit" [(ngModel)]="orderUpdate.phone" class="form-control" placeholder="Numéro de Téléphone du Client" aria-label="Nom d'utilisateur" aria-describedby="basic-addon1">
             </div>
             <div class="input-group mb-3">
                 <span class="input-group-text" id="basic-addon1">
                     <i class="fa-solid fa-money-bill"></i>
                 </span>
-                <input type="text" name="purchasePriceEdit" [(ngModel)]="orderUpdate.purchasePrice" class="form-control" placeholder="The Purchase Price" aria-label="Username" aria-describedby="basic-addon1">
+                <input type="text" name="purchasePriceEdit" [(ngModel)]="orderUpdate.purchasePrice" class="form-control" placeholder="Prix d'Achat" aria-label="Nom d'utilisateur" aria-describedby="basic-addon1">
             </div>
             <div class="input-group mb-3">
                 <span class="input-group-text" id="basic-addon1">
                     <i class="fa-solid fa-money-bill"></i>
                 </span>
-                <input type="text" name="salePriceEdit" [(ngModel)]="orderUpdate.salePrice" class="form-control" placeholder="Sale Price" aria-label="Username" aria-describedby="basic-addon1">
+                <input type="text" name="salePriceEdit" [(ngModel)]="orderUpdate.salePrice" class="form-control" placeholder="Prix de Vente" aria-label="Nom d'utilisateur" aria-describedby="basic-addon1">
             </div>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
           <button 
             type="button" 
             class="btn btn-success text-white" 
             data-bs-dismiss="modal"
             (click)="updateInfo()">
-            Update
+            Mettre à jour
           </button>
         </div>
       </div>
     </div>
   </div>
 
-   <!-- Confirmed Order -->
- <div class="modal fade" id="confirnedOrder" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <!-- Confirmed Order -->
+  <div class="modal fade" id="confirnedOrder" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Confirm order</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          <h5 class="modal-title" id="exampleModalLabel">Confirmer la commande</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fermer"></button>
         </div>
         <div class="modal-body">
             <div class="input-group mb-3">
                 <span class="input-group-text" id="basic-addon1">
                     <i class="fa-solid fa-location-dot"></i>
                 </span>
-                <input type="text" name="nameEdit" [(ngModel)]="orderDetail.location" class="form-control" placeholder="Location" aria-label="Username" aria-describedby="basic-addon1">
+                <input type="text" name="nameEdit" [(ngModel)]="orderDetail.location" class="form-control" placeholder="Emplacement" aria-label="Nom d'utilisateur" aria-describedby="basic-addon1">
             </div>
             <div class="input-group mb-3">
                 <span class="input-group-text" id="basic-addon1">
                     <i class="fa-solid fa-calendar-days"></i>
                 </span>
                 <input id="startDate" class="form-control" type="date" />
-
             </div>
             <div class="input-group mb-3">
                 <p-inputMask class="form-control" mask="99:99" [(ngModel)]="orderDetail.timeStart" placeholder="Time start"></p-inputMask>
@@ -225,61 +215,42 @@
               </div>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="ngOnInit()">Close</button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="ngOnInit()">Fermer</button>
           <button 
             type="button" 
             class="btn btn-success text-white" 
             data-bs-dismiss="modal"
             (click)="updateInfo()">
-            Confirmed
+            Confirmé
           </button>
           <button 
             type="button" 
             class="btn btn-danger text-white" 
             data-bs-dismiss="modal"
             (click)="updateInfo()">
-            Canceled
-        </button>
+            Annulé
+          </button>
         </div>
       </div>
     </div>
   </div>
- 
 
-  <p-dialog header="Confirm order" [modal]="true" [(visible)]="visible" [style]="{ width: '25rem' }">
-        <div>
-          <div class="my-col-container">
-            <div class="my-col-6 label">
-              <label for="username" class="font-weight-bold">Location</label>
-            </div>
-            <div class="my-col-6 input">
-              <input pInputText type="text" class="p-inputtext-sm" [style]="{ width: '100%' }" [(ngModel)]="orderDetail.location" />
-            </div>
+  <p-dialog header="Confirmer la commande" [modal]="true" [(visible)]="visible" [style]="{ width: '25rem' }">
+      <div>
+        <div class="my-col-container">
+          <div class="my-col-6 label">
+            <label for="username" class="font-weight-bold">Emplacement</label>
           </div>
-          <div class="my-col-container">
-            <div class="my-col-6 label">
-              <label for="username" class="font-weight-bold">Date</label>
-            </div>
-            <div class="my-col-6 input">
-              <input pInputText id="startDate" class="p-inputtext-sm" [style]="{ width: '100%' }" [(ngModel)]="orderDetail.date" type="date" />
-            </div>
+          <div class="my-col-6 input">
+            <input pInputText type="text" class="p-inputtext-sm" [style]="{ width: '100%' }" [(ngModel)]="orderDetail.location" />
           </div>
-          <div class="my-col-container">
-            <div class="my-col-6 label">
-              <label for="username" class="font-weight-bold">Time start</label>
-            </div>
-            <div class="my-col-6 input">
-              <p-inputMask class="p-inputtext-sm" [style]="{ width: '100%' }"  mask="99:99" [(ngModel)]="orderDetail.timeStart" placeholder=""></p-inputMask>
-            </div>
+        </div>
+        <div class="my-col-container">
+          <div class="my-col-6 label">
+            <label for="username" class="font-weight-bold">Date</label>
           </div>
-
-          <div class="my-col-container">
-            <div class="my-col-6 label">
-              <label for="username" class="font-weight-bold">Time end</label>
-            </div>
-            <div class="my-col-6 input">
-              <p-inputMask class="p-inputtext-sm" [style]="{ width: '100%' }"  mask="99:99" [(ngModel)]="orderDetail.timeEnd" placeholder=""></p-inputMask>
-            </div>
+          <div class="my-col-6 input">
+            <input pInputText id="startDate" class="p-inputtext-sm" [style]="{ width: '100%' }" [(ngModel)]="orderDetail.date" type="date" />
           </div>
 
             <div class="my-col-container">
@@ -296,73 +267,60 @@
           <div class="my-col-container">
             <textarea class="form-control" [style]="{ width: '100%' }" placeholder="Description" [(ngModel)]="orderDetail.description" id="floatingTextarea2" style="height: 100px"></textarea>
           </div>
-
         </div>
 
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" (click)="ngOnInit()">Close</button>
-          <button 
-            type="button" 
-            class="btn btn-success text-white" 
-            (click)="updateInfo()">
-            Confirmed
-          </button>
+        <div class="my-col-container">
+          <div class="my-col-6 label">
+            <label for="username" class="font-weight-bold">Heure de fin</label>
+          </div>
+          <div class="my-col-6 input">
+            <p-inputMask class="p-inputtext-sm" [style]="{ width: '100%' }"  mask="99:99" [(ngModel)]="orderDetail.timeEnd" placeholder=""></p-inputMask>
+          </div>
         </div>
-
-      <!--div class="flex align-items-center gap-3 mb-5">
-          <label for="email" class="font-semibold w-6rem">Email</label>
-          <input pInputText type="text" class="p-inputtext-sm" />
+        <div class="my-col-container">
+          <textarea class="form-control" [style]="{ width: '100%' }" placeholder="Description" [(ngModel)]="orderDetail.description" id="floatingTextarea2" style="height: 100px"></textarea>
+        </div>
       </div>
-      <div class="flex justify-content-end gap-2">
-          <p-button label="Cancel" severity="secondary" (onClick)="visible = false" />
-          <p-button label="Save" (onClick)="visible = false" />
-      </div-->
 
-</p-dialog>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="ngOnInit()">Fermer</button>
+        <button 
+          type="button" 
+          class="btn btn-success text-white" 
+          (click)="updateInfo()">
+          Confirmé
+        </button>
+      </div>
+  </p-dialog>
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Filter By Date</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <h5 class="modal-title" id="exampleModalLabel">Filtrer par Date</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fermer"></button>
       </div>
       <div class="modal-body">
-          <div class="my-border">Start Date :</div>
+          <div class="my-border">Date de début :</div>
           <div class="input-group mb-3">
-              <input type="date" name="losses" [(ngModel)]="date" class="form-control" placeholder="Phone Number" aria-label="Username" aria-describedby="basic-addon1">
+              <input type="date" name="losses" [(ngModel)]="date" class="form-control" placeholder="Numéro de téléphone" aria-label="Nom d'utilisateur" aria-describedby="basic-addon1">
           </div>
 
-          <div class="my-border">End Date :</div>
+          <div class="my-border">Date de fin :</div>
           <div class="input-group mb-3">
-              <input type="date" name="losses" [(ngModel)]="endDate" class="form-control" placeholder="Phone Number" aria-label="Username" aria-describedby="basic-addon1">
+              <input type="date" name="losses" [(ngModel)]="endDate" class="form-control" placeholder="Numéro de téléphone" aria-label="Nom d'utilisateur" aria-describedby="basic-addon1">
           </div>
 
-          <div class="my-border">Status :</div>
-          <p-dropdown [(ngModel)]="selectedStatus" placeholder="Choose" class="p-inputtext-sm" [style]="{ width: '100%' }" [options]="statusList" optionLabel="libelle"></p-dropdown>
+          <div class="my-border">Statut :</div>
+          <p-dropdown [(ngModel)]="selectedStatus" placeholder="Choisir" class="p-inputtext-sm" [style]="{ width: '100%' }" [options]="statusList" optionLabel="libelle"></p-dropdown>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-info" (click)="clear()" data-bs-dismiss="modal">Clear</button>
-        <button type="button" class="btn btn-success text-white" data-bs-dismiss="modal" (click)="filter()">Filter</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+        <button type="button" class="btn btn-info" (click)="clear()" data-bs-dismiss="modal">Effacer</button>
+        <button type="button" class="btn btn-success text-white" data-bs-dismiss="modal" (click)="filter()">Filtrer</button>
       </div>
     </div>
   </div>
 </div>
-
-
