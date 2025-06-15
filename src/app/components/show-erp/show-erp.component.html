@@ -259,30 +259,29 @@
           <div class="my-col-6 input">
             <input pInputText id="startDate" class="p-inputtext-sm" [style]="{ width: '100%' }" [(ngModel)]="orderDetail.date" type="date" />
           </div>
+        </div>
 
-            <div class="my-col-container">
-              <p-dropdown 
-                [options]="deliveryManList" 
-                [(ngModel)]="orderUpdate.deliveryManId"
-                optionLabel="userName" 
-                optionValue="_id"
-                placeholder="Delivery Man"
-                styleClass="custom-dropdown">
-              </p-dropdown>
+        <div class="my-col-container">
+            <div class="my-col-6 label">
+              <label for="username" class="font-weight-bold">Heure début</label>
             </div>
-          
-          <div class="my-col-container">
-            <textarea class="form-control" [style]="{ width: '100%' }" placeholder="Description" [(ngModel)]="orderDetail.description" id="floatingTextarea2" style="height: 100px"></textarea>
-          </div>
+            <div class="my-col-6 input">
+              <p-inputMask class="p-inputtext-sm" [style]="{ width: '100%' }"  mask="99:99" [(ngModel)]="orderDetail.timeStart" placeholder=""></p-inputMask>
+            </div>
         </div>
 
         <div class="my-col-container">
           <div class="my-col-6 label">
-            <label for="username" class="font-weight-bold">Heure de fin</label>
+            <label for="username" class="font-weight-bold">Heure fin</label>
           </div>
           <div class="my-col-6 input">
             <p-inputMask class="p-inputtext-sm" [style]="{ width: '100%' }"  mask="99:99" [(ngModel)]="orderDetail.timeEnd" placeholder=""></p-inputMask>
           </div>
+        </div>
+        <div class="my-col-container">
+          <p-dropdown [options]="deliveryManList" [(ngModel)]="orderUpdate.deliveryManId" optionLabel="userName" optionValue="_id"
+            placeholder="Delivery Man" styleClass="custom-dropdown">
+          </p-dropdown>
         </div>
         <div class="my-col-container">
           <textarea class="form-control" [style]="{ width: '100%' }" placeholder="Description" [(ngModel)]="orderDetail.description" id="floatingTextarea2" style="height: 100px"></textarea>
@@ -290,7 +289,7 @@
       </div>
 
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" (click)="ngOnInit()">Fermer</button>
+        <button type="button" class="btn btn-secondary me-3" (click)="ngOnInit()">Fermer</button>
         <button 
           type="button" 
           class="btn btn-success text-white" 
