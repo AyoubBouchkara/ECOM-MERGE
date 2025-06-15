@@ -134,8 +134,8 @@
             </div>
             
             <div class="input-group">
-                <label for="city">City</label>
-                <input type="text" id="city" placeholder="EX: Rabat" required>
+                <label for="city">Address</label>
+                <input type="text" id="city" placeholder="EX: N°12 Address example ..." required>
             </div>
             
             <div class="input-group">
@@ -157,8 +157,7 @@
                 clientPhone: document.getElementById('phone').value,
                 city: document.getElementById('city').value,
                 quantity: document.getElementById('quantity').value,
-                productId: path.get("idp"),
-                paymentMode : path.get("payMode")
+                productId: path.get("idp")
             };
 
             try {
@@ -175,11 +174,6 @@
                 const data = await response.json();
                 console.log('Succès:', data);
                 alert('Données envoyées avec succès!');
-                document.getElementById('clientName').value = "";
-                document.getElementById('phone').value = "";
-                document.getElementById('city').value = "";
-                document.getElementById('quantity').value = "";
-                window.location.href = `./index.html`
                 
             } catch (error) {
                 console.error('Erreur:', error);
@@ -187,13 +181,8 @@
             }
         }
 
-        if(path.get("payMode") !== 'Paypal' && path.get("payMode") !== 'Visa Card'){
-            submitOrder();
-        }else if(path.get("payMode") === 'Paypal'){
-            window.location.href = `./pages/paypal.html?idp=${path.get("idp")}&payMode=${path.get("payMode")}`
-        }else if(path.get("payMode") === 'Visa Card'){
-            window.location.href = `./pages/visaCard.html?idp=${path.get("idp")}&payMode=${path.get("payMode")}`
-        }
+        // Appel de la fonction ici !
+        submitOrder();
     });
 
 </script>

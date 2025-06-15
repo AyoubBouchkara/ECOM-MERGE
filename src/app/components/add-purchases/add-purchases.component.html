@@ -1,11 +1,13 @@
-<form [formGroup]="purchasesForm"  *ngIf="purchasesShow" (ngSubmit)="onSubmit()">
+
+<form [formGroup]="purchasesForm" *ngIf="purchasesShow" (ngSubmit)="onSubmit()">
+
   <div class="row">
     <div class="col">
       <input 
         type="text" 
         formControlName="nameP"
         class="form-control" 
-        placeholder="Product Name" 
+        placeholder="Nom du produit" 
         required />
     </div>
 
@@ -14,7 +16,7 @@
         type="text" 
         formControlName="titleP" 
         class="form-control" 
-        placeholder="Product Title" 
+        placeholder="Titre du produit" 
         required />
     </div>
   </div>
@@ -29,26 +31,26 @@
   </div>
 
   <div class="form-group mt-3">
-    <label>Product Features:</label>
+    <label>Caractéristiques du produit :</label>
     <input 
       type="text" 
       formControlName="feature1_P" 
       class="form-control mb-2" 
-      placeholder="Feature 1" />
+      placeholder="Caractéristique 1" />
     <input 
       type="text" 
       formControlName="feature2_P" 
       class="form-control mb-2" 
-      placeholder="Feature 2" />
+      placeholder="Caractéristique 2" />
     <input 
       type="text" 
       formControlName="feature3_P" 
       class="form-control mb-2" 
-      placeholder="Feature 3" />
+      placeholder="Caractéristique 3" />
   </div>
 
   <div class="form-group mt-3">
-    <label>Upload Images:</label>
+    <label>Télécharger des images :</label>
     <input 
       type="file" 
       class="form-control mb-2" 
@@ -64,14 +66,14 @@
   </div>
 
   <div class="form-group mt-3">
-    <label>Stores:</label>
+    <label>Magasins :</label>
     <div class="col">
       <p-dropdown 
         [options]="storeList" 
         [(ngModel)]="selectedStore" 
         formControlName="stores"
         optionLabel="name" 
-        placeholder="Sélectionne un store">
+        placeholder="Sélectionnez un magasin">
       </p-dropdown>
     </div>
   </div>
@@ -82,7 +84,7 @@
         type="number" 
         formControlName="quantityP" 
         class="form-control" 
-        placeholder="Quantity" 
+        placeholder="Quantité" 
         required />
     </div>
     <div class="col">
@@ -90,23 +92,22 @@
         type="number" 
         formControlName="salePrice" 
         class="form-control" 
-        placeholder="Sale Price" />
+        placeholder="Prix de vente" />
     </div>
     <div class="col">
       <input 
         type="number" 
         formControlName="purchasePrice" 
         class="form-control" 
-        placeholder="Purchase Price" 
+        placeholder="Prix d'achat" 
         required />
     </div>
-
   </div>
 
   <button 
     type="submit" 
     class="btn btn-primary mt-4"
     [disabled]="purchasesForm.invalid">
-    Add Purchase
+    Ajouter un achat
   </button>
 </form>

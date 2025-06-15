@@ -6,6 +6,13 @@
   margin-right: auto;
   padding: 40px;
 }
+.breadcrunmbs-container {
+
+
+  margin-left: auto;
+  margin-right: auto;
+  padding: 40px;
+}
 /* Hide the default radio button */
 .template-option input[type="radio"] {
   display: none;

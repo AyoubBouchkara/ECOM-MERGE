@@ -1,4 +1,14 @@
 <div class="container mt-4">
+   <div class="row">
+      <div class="col">
+        <nav aria-label="breadcrumb" class="bg-body-tertiary rounded-3 p-3 mb-4">
+          <ol class="breadcrumb mb-0">
+            <li class="breadcrumb-item "><a href="/">Accueil</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Livraison</li>
+          </ol>
+        </nav>
+      </div>
+    </div>
   <h2 class="text-center fw-bold text-uppercase text-primary mb-4">
     Livraison
   </h2>
@@ -71,8 +81,9 @@
           <p-button (onClick)="confirmOrderDetails(item)" icon="pi pi-eye" styleClass="p-button-rounded p-button-success p-button-text"></p-button>
         </td>
         <td>
-          <p-tag [severity]="getSeverity(item.status)" [value]="item.status"></p-tag>
+          <p-tag [severity]="getSeverity(item.status)" [title]="item.cancellationReason ? item.cancellationReason : ''" [value]="item.status"></p-tag>
         </td>
+
 
         <td>
           <p-toast></p-toast>
@@ -97,11 +108,11 @@
 </div>
 
 <!--Success Section Start-->
-<div *ngIf="successShow" 
-     class="alert alert-success alert-dismissible fade show mt-4 d-flex justify-content-between align-items-center ms-auto me-3" 
-     style="max-width: 400px;" 
-     role="alert">
-     
+<div *ngIf="successShow"
+  class="alert alert-success alert-dismissible fade show position-fixed bottom-0 end-0 mb-4 me-4 d-flex justify-content-between align-items-center"
+  style="max-width: 400px; z-index: 1050;"
+  role="alert">
+
   <div>
     <i class="fa-solid fa-check-circle me-2"></i>
     <strong>Mis à jour avec succès !!</strong>
