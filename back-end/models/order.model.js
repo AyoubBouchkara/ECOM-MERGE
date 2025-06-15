@@ -20,6 +20,8 @@ const ordersSchema = mongoose.Schema(
         purchasePrice: { type: Number },
         salePrice: { type: Number},
         status: { type: String },
+        totalP: { type: Number },
+        modePayement : { type: String },
         isConfirmed: { type: Boolean },
         orderDetails: orderDetailsSchema,
         cancellationReason: { type: String },

@@ -41,7 +41,10 @@ export class DeliveryComponent implements OnChanges {
     phone: '',
     purchasePrice: 0,
     salePrice: 0,
+    quantity: 0,
+    totalP: 0,
     status: '',
+    modePayement: '',
     isConfirmed: false,
     orderDetails: [],
     societeCode: ''

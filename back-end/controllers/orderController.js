@@ -6,7 +6,7 @@ const Losses = require('../models/losses.model.js');
 exports.readData = async(req, res) => {
     try{
         const sCode = req.query.sCode;
-        console.log('enteeeeeeeer');
+        //console.log('enteeeeeeeer');
         const infos = await Order.find({ societeCode: sCode }).sort({ _id: -1 }).lean();
         res.status(200).json(infos);
     }
@@ -18,27 +18,29 @@ exports.readData = async(req, res) => {
 // add data
 exports.createData = async(req, res) => {
   try {
-      const { clientName, clientPhone, city, quantity, productId } = req.body;
+      const { clientName, clientPhone, city, quantity, productId, paymentMode } = req.body;
       // Validation des données
       if (!clientName || !clientPhone) {
           return res.status(400).json({ error: 'Nom et téléphone sont obligatoires' });
       }
       let productDetails = await Purchase.findOne({'_id': req.body.productId});
       
-      //console.log('PRODUCT IS :', productDetails);
+      //console.log('payment Mode IS :', req.body.paymentMode);
       
       let lastRecod = await Order.findOne({}).sort({'_id': -1});
       RecodNumber = lastRecod?.number ? lastRecod.number + 1 : 1;
       let orderData = {
         number: RecodNumber,
         name: req.body.clientName,
-        city: req.body.clientPhone,
         date: new Date(),
-        phone: req.body.phone,
+        city: req.body.city,
+        phone:req.body.clientPhone,
         quantity: req.body.quantity,
         purchasePrice: productDetails.purchasePrice,
         salePrice: productDetails.salePrice,
         status: "In progress",
+        totalP: (productDetails.salePrice) * (req.body.quantity),
+        modePayement: req.body.paymentMode,
         societeCode: productDetails.societeCode
       }
       await Order.create(orderData);

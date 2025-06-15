@@ -7,6 +7,7 @@
         <th>Purchasses Name</th>
         <th>Purchasses Date</th>
         <th>Purchasses Price</th>
+        <th>Sale Price</th>
         <th>Purchasses Quantity</th>
         <th>Total</th>
         <th>Actions</th>
@@ -15,7 +16,8 @@
         <td>{{ purchase.number }}</td>
         <td>{{ purchase.productName }}</td>
         <td>{{ purchase.createdAt | date: 'dd/MM/yyyy' }}</td>
-        <td>{{ purchase.productPrice }} DH</td>
+        <td>{{ purchase.purchasePrice }} DH</td>
+        <td>{{ purchase.salePrice }} DH</td>
         <td>{{ purchase.productquantity }}</td>
         <td>{{ purchase.totalP }} DH</td>
         <td (click)="getId(purchase._id, purchase.totalP)">

@@ -19,6 +19,9 @@ export class AddInfoComponent {
   phone: string;
   purchase: number;
   sale: number;
+  quantity: number;
+  totalP: number;
+  modePayement: string;
   showError: boolean = false;
   username;
 
@@ -37,6 +40,15 @@ export class AddInfoComponent {
       Validators.required,
       Validators.pattern('[1-9]([0-9]?)+(\.[0-9]?)?')
     ]),
+    quantity: new FormControl('', [
+      Validators.required,
+      Validators.pattern('[1-9]([0-9]?)+(\.[0-9]?)?')
+    ]),
+    totalP: new FormControl('', [
+      Validators.required,
+      Validators.pattern('[1-9]([0-9]?)+(\.[0-9]?)?')
+    ]),
+    modePayement: new FormControl('', Validators.required)
   })
 
   constructor(
@@ -62,6 +74,9 @@ export class AddInfoComponent {
       purchasePrice: this.purchase,
       salePrice: this.sale,
       status: 'In progress',
+      modePayement: this.modePayement,
+      quantity: this.quantity,
+      totalP: this.totalP,
       isConfirmed: false,
       societeCode: this.username
     }

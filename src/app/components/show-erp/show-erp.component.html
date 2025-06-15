@@ -68,8 +68,10 @@
         <th>City</th>
         <th>Phone Number</th>
         <th>Sale Price</th>
-        <th>Purchase Price</th>
+        <th>Quantity</th>
+        <th>Total Price</th>
         <th>Status</th>
+        <th>Payment Mode</th>
         <th>Confirmed</th>
     </tr>
     <tr *ngFor="let item of items | paginate: { itemsPerPage: count, currentPage: p }">
@@ -78,12 +80,13 @@
         <td>{{ item.date | date:'dd/MM/yyyy' }}</td>
         <td>{{ item.city }}</td>
         <td>{{ item.phone }}</td>
-        <td>{{ item.purchasePrice }} DH</td>
         <td>{{ item.salePrice }} DH</td>
+        <td>{{ item.quantity }}</td>
+        <td>{{ item.totalP }} DH</td>
         <td>
           <p-tag [severity]="getSeverity(item.status)" [value]="item.status"></p-tag>
         </td>
-
+        <td>{{ item.modePayement }}</td>
         <td>
           <p-toast></p-toast>
           <p-confirmPopup></p-confirmPopup>
@@ -98,8 +101,6 @@
                 (click)="getId(item)">
             </i-->
         </td>
-
-
     </tr>
 </table>
 

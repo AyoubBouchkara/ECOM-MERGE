@@ -11,4 +11,3 @@ document.getElementById('buyNowBtn').addEventListener('click', function () {
     }  
     window.location.href = `./forme.html?idp=${productId}&payMode=${paymentMode}`
 });
-  

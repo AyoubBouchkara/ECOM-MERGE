@@ -53,6 +53,7 @@
         <th>Ville</th>
         <th>Numéro de Téléphone</th>
         <th>Prix de Vente</th>
+        <th>Prix Total</th>
         <th>Détails de la Commande</th>
         <th>Statut</th>
         <th>Confirmé</th>
@@ -64,7 +65,8 @@
         <td>{{ item.date | date:'dd/MM/yyyy' }}</td>
         <td>{{ item.city }}</td>
         <td>{{ item.phone }}</td>
-        <td>{{ item.purchasePrice }} DH</td>
+        <td>{{ item.salePrice }} DH</td>
+        <td>{{ item.totalP }} DH</td>
         <td>
           <p-button (onClick)="confirmOrderDetails(item)" icon="pi pi-eye" styleClass="p-button-rounded p-button-success p-button-text"></p-button>
         </td>

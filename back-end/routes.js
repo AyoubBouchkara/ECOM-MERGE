@@ -25,7 +25,7 @@ module.exports = app => {
     const deliveryManController = require('./controllers/deliveryMan.controller.js');
     const lossessController = require('./controllers/losses.controller');
     const purchasesController = require('./controllers/purchase.controller');
-    const paymentModeController = require('./controllers/paymentMode.controller.js');
+    //const paymentModeController = require('./controllers/paymentMode.controller.js');
     const storeController = require('./controllers/store.controller.js');
     const landingCtrl = require('./controllers/landingPage.controller.js')
 
@@ -117,8 +117,8 @@ module.exports = app => {
 
     // profile
 
-    app.get('/payment-modes', paymentModeController.readData); // Read all payment modes
-    app.post('/payment-modes', paymentModeController.createData); // Create a new payment mode
-    app.put('/payment-modes/:id', paymentModeController.updateData); // Update a payment mode by ID
-    app.delete('/payment-modes/:id', paymentModeController.deleteData); // Delete a payment 
+    //app.get('/payment-modes', paymentModeController.readData); // Read all payment modes
+    //app.post('/payment-modes', paymentModeController.createData); // Create a new payment mode
+    //app.put('/payment-modes/:id', paymentModeController.updateData); // Update a payment mode by ID
+    //app.delete('/payment-modes/:id', paymentModeController.deleteData); // Delete a payment 
 };

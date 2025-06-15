@@ -66,11 +66,14 @@ exports.generateLandingPage = async (req, res) => {
       }
     });
 
-    // Copy 'assets' folder recursively
+    // Copy 'assets' and 'pages' folder recursively
+    const pagesSource = path.join(templateFolderPath, 'pages');
+    const pagesTarget = path.join(lp_folder, 'pages');
     const assetsSource = path.join(templateFolderPath, 'assets');
     const assetsTarget = path.join(lp_folder, 'assets');
-    if (fs.existsSync(assetsSource)) {
+    if (fs.existsSync(assetsSource) && fs.existsSync(pagesSource)) {
       copyFolderRecursiveSync(assetsSource, assetsTarget);
+      copyFolderRecursiveSync(pagesSource, pagesTarget);
     }
 
     const landingPageUrl = `http://localhost:3000/landing_pages_generated/${lp_Name}/index.html`;
