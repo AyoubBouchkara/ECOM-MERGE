@@ -45,10 +45,10 @@ export class HomeComponent implements OnInit {
 
       // Mise à jour des données du graphique après réception des données
       this.pieChartData = {
-        labels: ['Total Expenses', 'Total Profits'],
+        labels: ['Argent Total', 'Bénéfices totaux'],
         datasets: [{
           data: [this.totalMoney, this.totalProfits],
-          backgroundColor: ['#2CB946', '#36A2EB'],
+          backgroundColor: ['#14CBF0', '#208A59'],
         }]
       };
     });
