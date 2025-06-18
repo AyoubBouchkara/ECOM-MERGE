@@ -1,4 +1,4 @@
-<div class="breadcrunmbs-container">
+<div class="breadcrunmbs-container container padding-container">
    <div class="row">
       <div class="col">
         <nav aria-label="breadcrumb" class="bg-body-tertiary rounded-3 p-3 mb-4">
@@ -10,8 +10,7 @@
       </div>
     </div>
 </div>
-<div class="templates-container">
-  
+<div class="templates-container container">
   <div *ngFor="let template of templates" class="lp-card">
     <label class="template-option">
       <input 
@@ -30,7 +29,7 @@
     <div class="preview-section">
       <img [src]="safeUrls[template.name]" class="card-img-top" alt="Aperçu">
     </div>
-  </div> 
+  </div>
 </div>
 
 <!-- Customization toggle window -->

@@ -1,18 +1,22 @@
 <div class="lsPr-title">
   <h4 class="fw-bold text-secondary mb-3">Achats en Gros</h4>
 </div>
-<table>
-    <tr>
+<div class="table-responsive">
+  <table class="table table-striped table-bordered">
+    <thead>
+      <tr>
         <th>N.P</th>
-        <th>Purchasses Name</th>
-        <th>Purchasses Date</th>
-        <th>Purchasses Price</th>
-        <th>Sale Price</th>
-        <th>Purchasses Quantity</th>
+        <th>Nom des Achats</th>
+        <th>Date des Achats</th>
+        <th>Prix d'Achat</th>
+        <th>Prix de Vente</th>
+        <th>Quantité</th>
         <th>Total</th>
         <th>Actions</th>
-    </tr>
-    <tr *ngFor="let purchase of purchases">
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let purchase of purchases">
         <td>{{ purchase.number }}</td>
         <td>{{ purchase.productName }}</td>
         <td>{{ purchase.createdAt | date: 'dd/MM/yyyy' }}</td>
@@ -20,36 +24,34 @@
         <td>{{ purchase.salePrice }} DH</td>
         <td>{{ purchase.productquantity }}</td>
         <td>{{ purchase.totalP }} DH</td>
-        <td (click)="getId(purchase._id, purchase.totalP)">
-            <i class="fa-solid fa-trash btn btn-danger" data-bs-toggle="modal" data-bs-target="#purchases"></i>
+        <td>
+          <button type="button" (click)="getId(purchase._id, purchase.totalP)" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#purchases">
+            <i class="fa-solid fa-trash"></i>
+          </button>
         </td>
-    </tr>
-</table>
-
-<!-- Including the pagination control. -->
+      </tr>
+    </tbody>
+  </table>
+</div>
 
 <!-- Modal -->
 <div class="modal fade" id="purchases" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Supprimer les Achats</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fermer"></button>
-        </div>
-        <div class="modal-body">
-            <i class="fa-solid fa-triangle-exclamation text-warning"></i>
-            Êtes-vous sûr de vouloir supprimer ceci ?
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
-          <button 
-            type="button" 
-            class="btn btn-danger" 
-            data-bs-dismiss="modal"
-            (click)="deletePurchase()">
-            Supprimer
-          </button>
-        </div>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Supprimer les Achats</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fermer"></button>
+      </div>
+      <div class="modal-body">
+        <i class="fa-solid fa-triangle-exclamation text-warning"></i>
+        Êtes-vous sûr de vouloir supprimer ceci ?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal" (click)="deletePurchase()">
+          Supprimer
+        </button>
       </div>
     </div>
+  </div>
 </div>

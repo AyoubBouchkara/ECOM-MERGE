@@ -1,4 +1,4 @@
-<section style="background-color: #eee;">
+<section class="padding-container" style="background-color: #eee;">
   <div class="container py-5">
     <div class="row">
       <div class="col">
@@ -18,7 +18,7 @@
             <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" alt="avatar"
               class="rounded-circle img-fluid" style="width: 150px;">
             <h5 class="my-3">{{ username }}</h5>
-            <p class="text-muted mb-1">Admin</p>
+            <p class="text-muted mb-1">{{isAdmin ? "Admin" : "Livreur"}}</p>
             <p class="text-muted mb-4">{{address}}</p>
             <div class="d-flex justify-content-center mb-2">
               <button type="button" class="btn btn-primary" (click)="openEditModal()">Modifier</button>

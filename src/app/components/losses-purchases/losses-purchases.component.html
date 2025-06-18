@@ -1,4 +1,4 @@
-<div class="erp-container container ">
+<div class="erp-container container padding-container ">
   <div class="row">
       <div class="col">
         <nav aria-label="breadcrumb" class="bg-body-tertiary rounded-3 p-3 mb-4">
@@ -10,7 +10,7 @@
       </div>
     </div>
 </div>
-<div class="erp-container container py-4">
+<div class="erp-container container ">
   
   <div class="container mt-4">
     <h2 class="text-center fw-bold text-uppercase text-primary mb-4">
@@ -79,11 +79,12 @@
     </button>
   </div>
   <div class="row g-4">
-    <div class="col-lg-6">
-      <app-show-losses [ls]="ls" (dltL)="deleteLosses()"></app-show-losses>
-    </div>
-    <div class="col-lg-6">
+    
+    <div class="col-lg-12">
       <app-show-purchases [pr]="pr" (dltP)="deletePurchase()"></app-show-purchases>
+    </div>
+    <div class="col-lg-12">
+      <app-show-losses [ls]="ls" (dltL)="deleteLosses()"></app-show-losses>
     </div>
   </div>
 </div>

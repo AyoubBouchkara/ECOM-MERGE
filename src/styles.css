@@ -4,10 +4,15 @@
 
 body{
   
-  padding-top: 70px;  
+  /* padding-top: 70px;   */
 
     background: rgb(245, 245, 245);
     font-family: var(--font-family);
+}
+.padding-container{
+   padding-top: 90px !important;
+   padding-bottom: 20px !important;   
+
 }
 /*Start Our NavBar*/
 .navbar{
@@ -601,7 +606,21 @@ canvas {
 .text-style{
   text-transform: uppercase;
 }
+.showErp-container{
+    padding-top: 1rem;
+
+  }
 @media (max-width: 768px) {
+  .paddingStyle{
+    padding-bottom: 100px;
+  }
+  .recap-container{
+    padding-bottom: 50px;
+  }
+  .showErp-container{
+    padding-top: 270px !important;
+
+  }
    .register-wrapper {
     flex-direction: column-reverse; /* Stack elements vertically */
     align-items: center; /* Center items */
@@ -662,3 +681,6 @@ canvas {
     }    
     /*Home Page End*/
 }
+
+
+

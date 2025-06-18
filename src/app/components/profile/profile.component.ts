@@ -11,6 +11,7 @@ declare var window: any; // For using Bootstrap modal JS API
 })
 export class ProfileComponent implements OnInit {
   username: string | undefined;
+  isAdmin: boolean | false;
   email: string | undefined;
   phone: string | undefined;
   address: string | undefined;

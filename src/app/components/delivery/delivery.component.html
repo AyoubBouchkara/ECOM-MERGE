@@ -1,25 +1,23 @@
-<div class="container mt-4">
-   <div class="row">
-      <div class="col">
-        <nav aria-label="breadcrumb" class="bg-body-tertiary rounded-3 p-3 mb-4">
-          <ol class="breadcrumb mb-0">
-            <li class="breadcrumb-item "><a href="/">Accueil</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Livraison</li>
-          </ol>
-        </nav>
-      </div>
+<div class="container padding-container">
+  <div class="row">
+    <div class="col">
+      <nav aria-label="breadcrumb" class="bg-body-tertiary rounded-3 p-3 mb-4">
+        <ol class="breadcrumb mb-0">
+          <li class="breadcrumb-item"><a href="/">Accueil</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Livraison</li>
+        </ol>
+      </nav>
     </div>
-  <h2 class="text-center fw-bold text-uppercase text-primary mb-4">
-    Livraison
-  </h2>
+  </div>
+  <h2 class="text-center fw-bold text-uppercase text-primary mb-4">Livraison</h2>
 </div>
-<div class="first-section container py-4">
 
+<div class="first-section container paddingStyle " >
   <div class="row align-items-center">
     <div class="col-lg-6 recap-container d-flex gap-4 flex-wrap">
       <div class="recap-card bg-light shadow-sm">
         <div class="recap-number text-dark">{{ totalRecords }}</div>
-        <div class="recap-label text-muted">Total des enregistrements</div>
+        <div class="recap-label text-muted">Total </div>
       </div>
     </div>
 
@@ -34,7 +32,7 @@
   </div>
 </div>
 
-<div class="showErp-container container py-3">
+<div class="showErp-container container py-5">
   <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-3">
     <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
       <i class="fa fa-filter me-1"></i> Filtrer
@@ -55,74 +53,73 @@
     </div>
   </div>
     
-<table>
-    <tr>
-        <th>N.C</th>
-        <th>Nom du Produit</th>
-        <th>Date</th>
-        <th>Ville</th>
-        <th>Numéro de Téléphone</th>
-        <th>Prix de Vente</th>
-        <th>Prix Total</th>
-        <th>Détails de la Commande</th>
-        <th>Statut</th>
-        <th>Confirmé</th>
-        <th>Facture</th>
-    </tr>
-    <tr *ngFor="let item of items | paginate: { itemsPerPage: count, currentPage: p }">
-        <td>{{ item.number }}</td>
-        <td>{{ item.name }}</td>
-        <td>{{ item.date | date:'dd/MM/yyyy' }}</td>
-        <td>{{ item.city }}</td>
-        <td>{{ item.phone }}</td>
-        <td>{{ item.salePrice }} DH</td>
-        <td>{{ item.totalP }} DH</td>
-        <td>
-          <p-button (onClick)="confirmOrderDetails(item)" icon="pi pi-eye" styleClass="p-button-rounded p-button-success p-button-text"></p-button>
-        </td>
-        <td>
-          <p-tag [severity]="getSeverity(item.status)" [title]="item.cancellationReason ? item.cancellationReason : ''" [value]="item.status"></p-tag>
-        </td>
-
-
-        <td>
-          <p-toast></p-toast>
-          <p-confirmPopup></p-confirmPopup>
-          <span *ngIf="item.status == 'Confirmed'">
-            <p-button (onClick)="confirm($event, item)" icon="pi pi-check" styleClass="p-button-rounded p-button-success p-button-text"></p-button>
-            <p-button (onClick)="showDialog(item)" icon="pi pi-times" styleClass="p-button-rounded p-button-danger p-button-text"></p-button>
-          </span>  
-        </td>
-        <td>
-          <p-button 
-            (click)="invoice(item)"
-            icon="pi pi-file-pdf" 
-            styleClass="p-button-rounded p-button-danger p-button-text"></p-button>
-        </td>
-    </tr>
-</table>
-
-<!-- Including the pagination control. -->
-<div class="text-center">
-    <pagination-controls (pageChange)="p = $event"></pagination-controls>
-</div>
-
-<!--Success Section Start-->
-<div *ngIf="successShow"
-  class="alert alert-success alert-dismissible fade show position-fixed bottom-0 end-0 mb-4 me-4 d-flex justify-content-between align-items-center"
-  style="max-width: 400px; z-index: 1050;"
-  role="alert">
-
-  <div>
-    <i class="fa-solid fa-check-circle me-2"></i>
-    <strong>Mis à jour avec succès !!</strong>
+  <div class="table-responsive">
+    <table class="table table-striped table-bordered">
+      <thead>
+        <tr>
+          <th>N.C</th>
+          <th>Nom du Produit</th>
+          <th>Date</th>
+          <th>Ville</th>
+          <th>Numéro de Téléphone</th>
+          <th>Prix de Vente</th>
+          <th>Prix Total</th>
+          <th>Détails de la Commande</th>
+          <th>Statut</th>
+          <th>Confirmé</th>
+          <th>Facture</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of items | paginate: { itemsPerPage: count, currentPage: p }">
+          <td>{{ item.number }}</td>
+          <td>{{ item.name }}</td>
+          <td>{{ item.date | date:'dd/MM/yyyy' }}</td>
+          <td>{{ item.phone }}</td>
+          <td>{{ item.city }}</td>
+          <td>{{ item.salePrice }} DH</td>
+          <td>{{ item.totalP }} DH</td>
+          <td>
+            <p-button (onClick)="confirmOrderDetails(item)" icon="pi pi-eye" styleClass="p-button-rounded p-button-success p-button-text"></p-button>
+          </td>
+          <td>
+            <p-tag [severity]="getSeverity(item.status)" [title]="item.cancellationReason ? item.cancellationReason : ''" [value]="item.status"></p-tag>
+          </td>
+          <td>
+            <p-toast></p-toast>
+            <p-confirmPopup></p-confirmPopup>
+            <span *ngIf="item.status == 'Confirmed'">
+              <p-button (onClick)="confirm($event, item)" icon="pi pi-check" styleClass="p-button-rounded p-button-success p-button-text"></p-button>
+              <p-button (onClick)="showDialog(item)" icon="pi pi-times" styleClass="p-button-rounded p-button-danger p-button-text"></p-button>
+            </span>  
+          </td>
+          <td>
+            <p-button 
+              (click)="invoice(item)"
+              icon="pi pi-file-pdf" 
+              styleClass="p-button-rounded p-button-danger p-button-text"></p-button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 
-  <button type="button" class="btn-close ms-2" (click)="toggleSuccess()" aria-label="Close"></button>
-</div>
-<!--Success Section End-->     
+  <!-- Including the pagination control. -->
+  <div class="text-center">
+    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+  </div>
 
-<p-dialog header="Annuler la commande" [modal]="true" [(visible)]="visible" [style]="{ width: '25rem' }">
+  <!--Success Section Start-->
+  <div *ngIf="successShow" class="alert alert-success alert-dismissible fade show position-fixed bottom-0 end-0 mb-4 me-4 d-flex justify-content-between align-items-center" style="max-width: 400px; z-index: 1050;" role="alert">
+    <div>
+      <i class="fa-solid fa-check-circle me-2"></i>
+      <strong>Mis à jour avec succès !!</strong>
+    </div>
+    <button type="button" class="btn-close ms-2" (click)="toggleSuccess()" aria-label="Close"></button>
+  </div>
+  <!--Success Section End-->     
+
+  <p-dialog header="Annuler la commande" [modal]="true" [(visible)]="visible" [style]="{ width: '25rem' }">
     <div>
       <div class="my-col-container">
         <label class="my-border">Raison de l'annulation de la commande : </label>
@@ -132,82 +129,76 @@
 
     <div class="modal-footer">
       <button type="button" class="btn btn-secondary" (click)="ngOnInit()">Fermer</button>
-      <button 
-        type="button" 
-        class="btn btn-danger text-white" 
-        (click)="updateInfo()">
-        Annuler
-      </button>
+      <button type="button" class="btn btn-danger text-white" (click)="updateInfo()">Annuler</button>
     </div>
-</p-dialog>
+  </p-dialog>
 
-<p-dialog header="Détails de la commande" [modal]="true" [(visible)]="orderDetailVisible" [style]="{ width: '25rem' }">
-  <div>
-    <div class="my-col-container">
-      <div class="my-col-6 label">
-        <label for="username" class="font-weight-bold">Emplacement</label>
+  <p-dialog header="Détails de la commande" [modal]="true" [(visible)]="orderDetailVisible" [style]="{ width: '25rem' }">
+    <div>
+      <div class="my-col-container">
+        <div class="my-col-6 label">
+          <label for="username" class="font-weight-bold">Emplacement</label>
+        </div>
+        <div class="my-col-6 input">
+          <input pInputText type="text" class="p-inputtext-sm" [style]="{ width: '100%' }" [(ngModel)]="orderDetail.location" disabled/>
+        </div>
       </div>
-      <div class="my-col-6 input">
-        <input pInputText type="text" class="p-inputtext-sm" [style]="{ width: '100%' }" [(ngModel)]="orderDetail.location" disabled/>
+      <div class="my-col-container">
+        <div class="my-col-6 label">
+          <label for="username" class="font-weight-bold">Date</label>
+        </div>
+        <div class="my-col-6 input">
+          <input pInputText type="text" class="p-inputtext-sm" [style]="{ width: '100%' }" [(ngModel)]="orderDetail.date" disabled/>
+        </div>
       </div>
-    </div>
-    <div class="my-col-container">
-      <div class="my-col-6 label">
-        <label for="username" class="font-weight-bold">Date</label>
+      <div class="my-col-container">
+        <div class="my-col-6 label">
+          <label for="username" class="font-weight-bold">Heure de début</label>
+        </div>
+        <div class="my-col-6 input">
+          <p-inputMask class="p-inputtext-sm" [style]="{ width: '100%' }" mask="99:99" [(ngModel)]="orderDetail.timeStart" placeholder="" [disabled]="true"></p-inputMask>
+        </div>
       </div>
-      <div class="my-col-6 input">
-        <input pInputText type="text" class="p-inputtext-sm" [style]="{ width: '100%' }" [(ngModel)]="orderDetail.date" disabled/>
-      </div>
-    </div>
-    <div class="my-col-container">
-      <div class="my-col-6 label">
-        <label for="username" class="font-weight-bold">Heure de début</label>
-      </div>
-      <div class="my-col-6 input">
-        <p-inputMask class="p-inputtext-sm" [style]="{ width: '100%' }" mask="99:99" [(ngModel)]="orderDetail.timeStart" placeholder="" [disabled]="true"></p-inputMask>
-      </div>
-    </div>
 
-    <div class="my-col-container">
-      <div class="my-col-6 label">
-        <label for="username" class="font-weight-bold">Heure de fin</label>
+      <div class="my-col-container">
+        <div class="my-col-6 label">
+          <label for="username" class="font-weight-bold">Heure de fin</label>
+        </div>
+        <div class="my-col-6 input">
+          <p-inputMask class="p-inputtext-sm" [style]="{ width: '100%' }" mask="99:99" [(ngModel)]="orderDetail.timeEnd" placeholder="" [disabled]="true"></p-inputMask>
+        </div>
       </div>
-      <div class="my-col-6 input">
-        <p-inputMask class="p-inputtext-sm" [style]="{ width: '100%' }" mask="99:99" [(ngModel)]="orderDetail.timeEnd" placeholder="" [disabled]="true"></p-inputMask>
+      <div class="my-col-container">
+        <textarea class="form-control" [style]="{ width: '100%' }" placeholder="Description" [(ngModel)]="orderDetail.description" id="floatingTextarea2" style="height: 100px" disabled></textarea>
       </div>
     </div>
-    <div class="my-col-container">
-      <textarea class="form-control" [style]="{ width: '100%' }" placeholder="Description" [(ngModel)]="orderDetail.description" id="floatingTextarea2" style="height: 100px" disabled></textarea>
-    </div>
-  </div>
-</p-dialog>
+  </p-dialog>
 
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Filtrer par Date</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fermer"></button>
-      </div>
-      <div class="modal-body">
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Filtrer par Date</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fermer"></button>
+        </div>
+        <div class="modal-body">
           <div class="my-border">Date de Début :</div>
           <div class="input-group mb-3">
-              <input type="date" name="losses" [(ngModel)]="date" class="form-control" placeholder="Numéro de téléphone" aria-label="Username" aria-describedby="basic-addon1">
+            <input type="date" name="losses" [(ngModel)]="date" class="form-control" placeholder="Numéro de téléphone" aria-label="Username" aria-describedby="basic-addon1">
           </div>
 
           <div class="my-border">Date de Fin :</div>
           <div class="input-group mb-3">
-              <input type="date" name="losses" [(ngModel)]="endDate" class="form-control" placeholder="Numéro de téléphone" aria-label="Username" aria-describedby="basic-addon1">
+            <input type="date" name="losses" [(ngModel)]="endDate" class="form-control" placeholder="Numéro de téléphone" aria-label="Username" aria-describedby="basic-addon1">
           </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
-        <button type="button" class="btn btn-info" (click)="clear()" data-bs-dismiss="modal">Effacer</button>
-        <button type="button" class="btn btn-success text-white" data-bs-dismiss="modal" (click)="filter()">Filtrer</button>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+          <button type="button" class="btn btn-info" (click)="clear()" data-bs-dismiss="modal">Effacer</button>
+          <button type="button" class="btn btn-success text-white" data-bs-dismiss="modal" (click)="filter()">Filtrer</button>
+        </div>
       </div>
     </div>
   </div>
-</div>
-    
 </div>
