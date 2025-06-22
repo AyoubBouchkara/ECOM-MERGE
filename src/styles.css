@@ -2,26 +2,22 @@
 @import "primeng/resources/primeng.css";
 @import "primeicons/primeicons.css";
 
-body{
-  
-  /* padding-top: 70px;   */
-
-    background: rgb(245, 245, 245);
-    font-family: var(--font-family);
+body{  
+  background: rgb(245, 245, 245);
+  font-family: var(--font-family);
 }
 .padding-container{
-   padding-top: 90px !important;
-   padding-bottom: 20px !important;   
-
+  padding-top: 90px !important;
+  padding-bottom: 20px !important;
 }
 /*Start Our NavBar*/
+
 .navbar{
-    padding: 20px;
-    
+    padding: 20px;    
 }
 
 .navbar .nav-link{
-    font-size: 1.1em;
+    font-size: 1em;
 }
 
 .navbar-nav{
@@ -29,7 +25,6 @@ body{
     right: 100px;
 }
 /*End Our NavBar*/
-
 
 /*Start Our Home*/
 .home-container{
