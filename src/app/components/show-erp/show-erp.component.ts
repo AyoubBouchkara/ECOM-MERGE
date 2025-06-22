@@ -92,6 +92,7 @@ export class ShowErpComponent {
     this.orderUpdate = item;
     this.visible = true;
   }
+  
   itemsCopy;
   ngOnInit(): void {
     this.visible = false;
