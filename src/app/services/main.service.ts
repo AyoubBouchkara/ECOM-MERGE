@@ -7,6 +7,7 @@ import { Observable } from 'rxjs';
 import { Purchases } from '../purchases';
 import { LandingPage } from '../landingPage';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { environment } from '../../environments/environment';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -19,12 +20,13 @@ const httpOptions = {
 })
 
 export class MainService {
-  private apiUrl = 'http://localhost:3000/orders/';
-  private mainBaseUrl='http://localhost:3000'
-  private apiUrlLosses = ' http://localhost:3000/losses/';
-  private Url = 'http://localhost:3000/purchases/';
-  private storeApi = 'http://localhost:3000/store/';
-  private lpApi = 'http://localhost:3000/landing-pages/getLink/';
+  private readonly baseUrl = environment.apiUrl; // ✅ baseUrl configurable
+  private apiUrl = `${this.baseUrl}/orders/`;
+  private mainBaseUrl=`${this.baseUrl}`
+  private apiUrlLosses = `${this.baseUrl}/losses/`;
+  private Url = `${this.baseUrl}/purchases/`;
+  private storeApi = `${this.baseUrl}/store/`;
+  private lpApi = `${this.baseUrl}/getLink/`;
 
   constructor(
     private http: HttpClient,
@@ -53,7 +55,7 @@ export class MainService {
 
   getOrdersProfits(): Observable<any>{
     let params = { sCode: this.getUsername() };
-    return this.http.get<any>('http://localhost:3000/ordersProfits', { params });
+    return this.http.get<any>(`${this.baseUrl}/ordersProfits/`, { params });
   }
 
   updatePurchase(pcinfo: Pcinfo, nb): Observable<Pcinfo>{
@@ -62,7 +64,7 @@ export class MainService {
 
   getDataForDelivery(): Observable<Pcinfo[]>{
     let params = { sCode: this.getUsername() };
-    return this.http.get<Pcinfo[]>('http://localhost:3000/getDataForDelivery', { params });
+    return this.http.get<Pcinfo[]>(`${this.baseUrl}/getDataForDelivery/`, { params });
   }
   //#endregion Orders
 
